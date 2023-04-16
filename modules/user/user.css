@@ -1,0 +1,18 @@
+.user-form {
+    margin-top: 100px;
+}
+
+.form-error {
+    color: red;
+}
+
+.form-center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-link {
+    text-decoration: none;
+}
