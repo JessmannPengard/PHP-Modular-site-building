@@ -93,8 +93,8 @@ if (isset($_POST["email"])) {
             <!-- Enlace a la página de registro -->
             <div class="form-group form-center-container">
                 <small>¿Aún no tienes una cuenta?<a href="user.register.php" class="user-link"> Regístrate
-                            aquí</a></small>
-                <small><a href="" class="user-link">He olvidado mi contraseña</a></small>
+                        aquí</a></small>
+                <small><a href="user.passwordrecovery.php" class="user-link">He olvidado mi contraseña</a></small>
             </div>
         </form>
     </div>
@@ -103,7 +103,6 @@ if (isset($_POST["email"])) {
     <?php
     require_once("../footer/footer.lite.php");
     ?>
-
 
 </body>
 

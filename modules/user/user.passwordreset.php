@@ -7,37 +7,44 @@ require_once("user.model.php");
 // Inicializamos la variable que usaremos para mostrar mensajes en caso de algún error
 $msg = "";
 
-// Si nos están enviando el formulario...
-if (isset($_POST["email"])) {
-    // Obtenemos los datos para el registro
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+// Verificar si se ha enviado el formulario
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Obtener el correo electrónico y la nueva contraseña del usuario
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    // Nos conectamos a la base de datos
-    $db = new Database();
-    $user = new User($db->getConnection());
-
-    // Y llamamos al método para registrar un nuevo usuario
-    $registro = $user->register($email, $password);
-    // Si el registro es exitoso
-    if ($registro["result"]) {
-        // Cerramos la conexión
-        $db->closeConnection();
-        // Redirigimos a la página de login para que el usuario pueda iniciar sesión
-        header("Location: user.login.php");
-        exit();
+    // Validar que el correo electrónico y la contraseña no estén vacíos
+    if (empty($email) || empty($password)) {
+        $msg = 'Por favor, establezca su nueva contraseña.';
     } else {
-        // Registro no realizado, guardamos el mensaje de error a mostrar más abajo
-        $msg = $registro["msg"];
+        // Conectarse a la base de datos y verificar si el correo electrónico es válido
+        $conexion = new mysqli('localhost', 'usuario', 'contraseña', 'basedatos');
+        $consulta = $conexion->prepare('SELECT id FROM usuarios WHERE email = ?');
+        $consulta->bind_param('s', $email);
+        $consulta->execute();
+        $resultado = $consulta->get_result();
+
+        if ($resultado->num_rows == 0) {
+            $mensaje = 'El correo electrónico ' . $email . ' no está registrado en nuestro sistema.';
+        } else {
+            // Actualizar la contraseña del usuario
+            $id = $resultado->fetch_assoc()['id'];
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $consulta = $conexion->prepare('UPDATE usuarios SET password = ? WHERE id = ?');
+            $consulta->bind_param('si', $password_hash, $id);
+            $consulta->execute();
+
+            // Redirigir al usuario a la página de inicio de sesión con un mensaje de éxito
+            header('Location: user.login.php');
+            exit;
+        }
     }
-    // Cerramos la conexión
-    $db->closeConnection();
 }
 
+// Mostrar el formulario de recuperación de contraseña
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -52,7 +59,7 @@ if (isset($_POST["email"])) {
     <link rel="icon" type="image/png" href="../../favicon.ico">
     <!-- Título de la página -->
     <title>
-        <?= BRAND ?> - Registro
+        <?= BRAND ?> - Password reset
     </title>
 </head>
 
@@ -65,42 +72,33 @@ if (isset($_POST["email"])) {
     <!-- Contenido de la página -->
     <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
         <!-- Título del formulario -->
-        <h2>Crear cuenta</h2>
-        <!-- Formulario de registro -->
-        <form action="" method="post" class="form" id="form-register">
-            <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" maxlength=50 required
-                    placeholder="Introduce tu email" autofocus>
-            </div>
+        <h2>Restablecer contraseña</h2>
+        <!-- Formulario de inicio de sesión -->
+        <form action="" method="post" class="form">
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" maxlength=50 required
-                    placeholder="Introduce tu password">
+                <input type="password" class="form-control" name="password" placeholder="Introduce tu nueva contraseña"
+                    maxlength=50 required>
             </div>
             <div class="form-group">
                 <label for="r-password" class="form-label">Repetir password</label>
                 <input type="password" name="r-password" id="r-password" class="form-control" maxlength=50 required
-                    placeholder="Repite tu password">
+                    placeholder="Repite tu nueva contraseña">
             </div>
             <!-- Mostramos el mensaje de error, si lo hubiera -->
             <div class="form-group">
-                <p class="form-error" id="error">
+                <p class="form-error">
                     <?php echo $msg; ?>
                 </p>
             </div>
             <div class="form-group form-center-container">
-                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <button type="submit" class="btn btn-primary">Restablecer contraseña</button>
             </div>
             <hr>
-            <!-- Enlace a la página de inicio de sesión -->
-            <div class="form-group form-center-container">
-                <small>¿Ya tienes una cuenta?<a href="user.login.php" class="user-link"> Inicia sesión</a></small>
-            </div>
         </form>
     </div>
 
-    <!--Pie de página-->
+    <!-- Pie de página -->
     <?php
     require_once("../footer/footer.lite.php");
     ?>

@@ -41,8 +41,8 @@
                     </li>
                 <?php } else { ?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <img src="img/portrait.png" class="rounded-circle menu-icon" alt="Portrait" loading="lazy" />
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
@@ -91,6 +91,10 @@
 
 <!-- Styles -->
 <style>
+    .navbar {
+        text-align: center;
+    }
+
     .brand-container {
         display: flex;
         align-items: center;
