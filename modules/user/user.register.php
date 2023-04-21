@@ -47,7 +47,7 @@ if (isset($_POST["email"])) {
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
     <!-- Script de idiomas -->
-    <script src="../../js/translations.js"></script>
+    <script src="../../modules/translations/translations.js"></script>
     <!--Estilos-->
     <link rel="stylesheet" href="user.css">
     <!-- Favicon -->

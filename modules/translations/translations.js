@@ -12,7 +12,7 @@ window.onload = () => {
 const translations = {};
 
 function loadTranslations(language) {
-    fetch(`/templateB/lang/${language}.json`)
+    fetch(`/templateB/modules/translations/lang/${language}.json`)
         .then(response => response.json())
         .then(data => {
             translations[language] = data;
