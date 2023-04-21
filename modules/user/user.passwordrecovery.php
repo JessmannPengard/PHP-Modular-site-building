@@ -1,6 +1,8 @@
 <?php
 // Importamos los módulos necesarios
-require_once("../../config/app.php");
+require("../../config/app.php");
+require("../database/database.php");
+require("user.model.php");
 
 require("../phpmailer/src/Exception.php");
 require("../phpmailer/src/PHPMailer.php");
@@ -18,28 +20,41 @@ if (isset($_POST['email'])) {
     // Obtener el correo electrónico del usuario
     $email = $_POST['email'];
 
-    // Crear un objeto PHPMailer
-    $mail = new PHPMailer();
+    // Comprobamos que exista el usuario con ese email
+    $db = new Database();
+    $usuario = new User($db->getConnection());
 
-    try {
-        // Configurar los ajustes del servidor de correo
-        $mail->SMTPDebug = SMTP::DEBUG_OFF; //Enable verbose debug output
-        $mail->isHTML(true);
-        $mail->CharSet = 'UTF-8';
-        $mail->isSMTP(); //Send using SMTP
-        $mail->Host = MAIL_HOST; //Set the SMTP server to send through
-        $mail->SMTPAuth = true; //Enable SMTP authentication
-        $mail->Username = MAIL_USERNAME; //SMTP username
-        $mail->Password = MAIL_PASSWORD; //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port = 465;
+    if ($usuario->existEmail($email)) {
 
-        // Configurar los detalles del correo electrónico
-        $mail->setFrom(MAIL_MYEMAIL, BRAND);
-        $mail->addAddress($email);
-        $mail->Subject = 'Recuperación de contraseña';
-        $url = __DIR__ . '\user.passwordreset.php?email=' . $email;
-        $mail->Body = "
+        // Generamos el token de acceso aleatorio
+        $token = bin2hex(random_bytes((20)));
+        // Calculamos la fecha de caducidad del token (1 hora desde la creación)
+        $fecha_caducidad = date('Y-m-d H:i:s', strtotime('+1 hour'));
+        // Guardamos el token en la base de datos
+        $result = $usuario->setToken($email, $token, $fecha_caducidad);
+
+        // Crear un objeto PHPMailer
+        $mail = new PHPMailer();
+
+        try {
+            // Configurar los ajustes del servidor de correo
+            $mail->SMTPDebug = SMTP::DEBUG_OFF; //Enable verbose debug output
+            $mail->isHTML(true);
+            $mail->CharSet = 'UTF-8';
+            $mail->isSMTP(); //Send using SMTP
+            $mail->Host = MAIL_HOST; //Set the SMTP server to send through
+            $mail->SMTPAuth = true; //Enable SMTP authentication
+            $mail->Username = MAIL_USERNAME; //SMTP username
+            $mail->Password = MAIL_PASSWORD; //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port = 465;
+
+            // Configurar los detalles del correo electrónico
+            $mail->setFrom(MAIL_MYEMAIL, BRAND);
+            $mail->addAddress($email);
+            $mail->Subject = 'Recuperación de contraseña';
+            $url = __DIR__ . '\user.passwordreset.php?email=' . $email . '&token=' . $token;
+            $mail->Body = "
                 <html>
                 <head>
                     <style>
@@ -71,15 +86,18 @@ if (isset($_POST['email'])) {
                 </html>
                 ";
 
-        // Enviar el correo electrónico y comprobar si se ha enviado correctamente
-        if ($mail->send()) {
-            $msg = 'Se ha enviado un correo electrónico de recuperación de contraseña a ' . $email;
-        } else {
-            $msg = 'Ha ocurrido un error al enviar el correo electrónico de recuperación de contraseña.';
+            // Enviar el correo electrónico y comprobar si se ha enviado correctamente
+            if ($mail->send()) {
+                $msg = 'Se ha enviado un correo electrónico de recuperación de contraseña a ' . $email;
+            } else {
+                $msg = 'Ha ocurrido un error al enviar el correo electrónico de recuperación de contraseña.';
+            }
+        } catch (Exception $e) {
+            $response["succeed"] = false;
+            $response["msg"] = "Message could not be sent. Mailer Error:"; //{$mail->ErrorInfo}";
         }
-    } catch (Exception $e) {
-        $response->succeed = false;
-        $response->msg = "Message could not be sent. Mailer Error:"; //{$mail->ErrorInfo}";
+    } else {
+        $msg = "El email no está registrado";
     }
 }
 

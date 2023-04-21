@@ -1,44 +1,45 @@
 <?php
 // Importamos los módulos necesarios
-require_once("../../config/app.php");
-require_once("../../modules/database/database.php");
-require_once("user.model.php");
+require("../../config/app.php");
+require("../../modules/database/database.php");
+require("user.model.php");
 
 // Inicializamos la variable que usaremos para mostrar mensajes en caso de algún error
 $msg = "";
 
 // Verificar si se ha enviado el formulario
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"])) {
     // Obtener el correo electrónico y la nueva contraseña del usuario
-    $email = $_POST['email'];
+    $email = $_GET['email'];
+    $token = $_GET['token'];
     $password = $_POST['password'];
 
-    // Validar que el correo electrónico y la contraseña no estén vacíos
-    if (empty($email) || empty($password)) {
-        $msg = 'Por favor, establezca su nueva contraseña.';
-    } else {
-        // Conectarse a la base de datos y verificar si el correo electrónico es válido
-        $conexion = new mysqli('localhost', 'usuario', 'contraseña', 'basedatos');
-        $consulta = $conexion->prepare('SELECT id FROM usuarios WHERE email = ?');
-        $consulta->bind_param('s', $email);
-        $consulta->execute();
-        $resultado = $consulta->get_result();
+    print_r($email);
+    print_r($token);
+    print_r($password);
 
-        if ($resultado->num_rows == 0) {
-            $mensaje = 'El correo electrónico ' . $email . ' no está registrado en nuestro sistema.';
+    // Conectarse a la base de datos y verificar si el correo electrónico es válido
+    $db = new Database();
+    $user = new User($db->getConnection());
+
+    // Verificamos que el token sea válido
+    if ($user->checkToken($email, $token)) {
+
+        // Cambiamos la contraseña
+        $result = $user->setPassword($email, $password);
+
+        if ($result["result"] == false) {
+            $msg = $result["msg"];
         } else {
-            // Actualizar la contraseña del usuario
-            $id = $resultado->fetch_assoc()['id'];
-            $password_hash = password_hash($password, PASSWORD_DEFAULT);
-            $consulta = $conexion->prepare('UPDATE usuarios SET password = ? WHERE id = ?');
-            $consulta->bind_param('si', $password_hash, $id);
-            $consulta->execute();
-
-            // Redirigir al usuario a la página de inicio de sesión con un mensaje de éxito
-            header('Location: user.login.php');
-            exit;
+            // Borramos los tokens de recuperación de contraseña de este usuario
+            $user->deleteToken($email);
+            // Y redirigimos al login
+            header("Location: user.login.php");
         }
+    } else {
+        $msg = "Enlace no válido o caducado.<br><small><a href='user.passwordrecovery.php' class='user-link'>Recuperación de contraseña<a></small>";
     }
+
 }
 
 // Mostrar el formulario de recuperación de contraseña
@@ -74,20 +75,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Título del formulario -->
         <h2>Restablecer contraseña</h2>
         <!-- Formulario de inicio de sesión -->
-        <form action="" method="post" class="form">
+        <form action="" method="post" class="form" id="form-reset">
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Introduce tu nueva contraseña"
-                    maxlength=50 required>
+                <input type="password" name="password" id="password" class="form-control" maxlength=50 required
+                    placeholder="Introduce tu nuevo password">
             </div>
             <div class="form-group">
                 <label for="r-password" class="form-label">Repetir password</label>
                 <input type="password" name="r-password" id="r-password" class="form-control" maxlength=50 required
-                    placeholder="Repite tu nueva contraseña">
+                    placeholder="Repite tu nuevo password">
             </div>
             <!-- Mostramos el mensaje de error, si lo hubiera -->
             <div class="form-group">
-                <p class="form-error">
+                <p class="form-error" id="error">
                     <?php echo $msg; ?>
                 </p>
             </div>
@@ -106,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         // Comprobamos que el campo Repetir password coincida con el campo Password
         window.onload = function () {
-            let form = document.getElementById("form-register");
+            let form = document.getElementById("form-reset");
             form.onsubmit = function (e) {
                 let passw = document.getElementById("password").value;
                 let cpassw = document.getElementById("r-password").value;

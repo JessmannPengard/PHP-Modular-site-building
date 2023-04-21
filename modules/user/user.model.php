@@ -20,6 +20,7 @@ class User
         // Prepare
         $stm = $this->dbconn->prepare("SELECT * FROM " . DATABASE_TABLES_PREFIX . "users WHERE 
                 email=:email AND password=:password");
+
         $stm->bindValue(":email", $email);
         $stm->bindValue(":password", $pw);
 
@@ -39,7 +40,7 @@ class User
         if ($this->existEmail($email)) {
             // Si ya existe:
             $result["result"] = false;
-            $result["msg"] = "El número de socio ya está registrado.";
+            $result["msg"] = "El email ya está registrado.";
             return $result;
         }
 
@@ -60,6 +61,81 @@ class User
         $result["result"] = true;
         return $result;
     }
+
+    // Modificar password de usuario
+    public function setPassword($email, $password)
+    {
+        // Comprueba que el usuario exista
+        if (!$this->existEmail($email)) {
+            $result["result"] = false;
+            $result["msg"] = "El email no está registrado.";
+            return $result;
+        }
+
+        // Encriptar password
+        $pw = md5($password);
+
+        // Prepare
+        $stm = $this->dbconn->prepare("UPDATE " . DATABASE_TABLES_PREFIX . "users SET password=:password WHERE email=:email");
+
+        $stm->bindValue(":password", $pw);
+        $stm->bindValue(":email", $email);
+
+        // Execute
+        $stm->execute();
+
+        // Registrado con éxito
+        $result["result"] = true;
+        return $result;
+    }
+
+    // Guardar token de recuperación de contraseña
+    public function setToken($email, $token, $date_expire)
+    {
+        // Prepare
+        $stm = $this->dbconn->prepare("INSERT INTO " . DATABASE_TABLES_PREFIX . "users_recovery_tokens (email, token, date_expire)
+                VALUES (:email, :token, :date_expire)");
+
+        $stm->bindValue(":email", $email);
+        $stm->bindValue(":token", $token);
+        $stm->bindValue(":date_expire", $date_expire);
+
+        // Execute
+        $stm->execute();
+
+        // Registrado con éxito
+        $result["result"] = true;
+        return $result;
+    }
+
+    // Comprobar la validez del token de recuperación de contraseña
+    public function checkToken($email, $token)
+    {
+        // Prepare
+        $stm = $this->dbconn->prepare("SELECT id FROM " . DATABASE_TABLES_PREFIX . "users_recovery_tokens WHERE email = :email AND token = :token AND date_expire > now()");
+
+        $stm->bindValue(":email", $email);
+        $stm->bindValue(":token", $token);
+
+        // Execute
+        $stm->execute();
+
+        // Devolvemos el resultado
+        return $stm->fetch();
+    }
+
+    // Borrar tokens de recuperación de contraseña
+    public function deleteToken($email)
+    {
+        // Prepare
+        $stm = $this->dbconn->prepare("DELETE FROM " . DATABASE_TABLES_PREFIX . "users_recovery_tokens WHERE email = :email");
+
+        $stm->bindValue(":email", $email);
+
+        // Execute
+        $stm->execute();
+    }
+
 
     // Comprueba si un usuario ya existe en la base de datos
     public function existEmail($email)
@@ -83,6 +159,7 @@ class User
 
         // Prepare
         $stm = $this->dbconn->prepare("SELECT email FROM " . DATABASE_TABLES_PREFIX . "users WHERE id = :id");
+
         $stm->bindValue(":id", $id_user);
         $stm->bindColumn("email", $email);
 
@@ -104,6 +181,7 @@ class User
 
         // Prepare
         $stm = $this->dbconn->prepare("SELECT id FROM " . DATABASE_TABLES_PREFIX . "users WHERE email = :email");
+
         $stm->bindValue(":email", $email);
         $stm->bindColumn("id", $id);
 
