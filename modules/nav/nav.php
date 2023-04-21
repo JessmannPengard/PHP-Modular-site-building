@@ -23,21 +23,22 @@
 
                 <!-- Menu links -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#" data-i18n="home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="#" data-i18n="about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#" data-i18n="contact">Contact</a>
                 </li>
                 <!-- Menu links -->
 
                 <!-- Session options -->
                 <?php if (!isset($_SESSION["email"])) { ?>
                     <li class="session-container nav-item">
-                        <a href="modules/user/user.login.php" class="btn btn-primary">Login</a>
-                        <a href="modules/user/user.register.php" class="btn btn-outline-primary">Register</a>
+                        <a href="modules/user/user.login.php" class="btn btn-primary" data-i18n="login">Login</a>
+                        <a href="modules/user/user.register.php" class="btn btn-outline-primary"
+                            data-i18n="register">Register</a>
                     </li>
                 <?php } else { ?>
                     <li class="nav-item dropdown">
@@ -47,13 +48,13 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="#">My profile</a>
+                                <a class="dropdown-item" href="#" data-i18n="my profile">My profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Settings</a>
+                                <a class="dropdown-item" href="#" data-i18n="settings">Settings</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="modules/user/user.logout.php">Logout</a>
+                                <a class="dropdown-item" href="modules/user/user.logout.php" data-i18n="logout">Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -64,24 +65,28 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="modules/nav/img/flag-great-britain.png" alt="" class="menu-icon">
+                        <img src="modules/nav/img/flag-great-britain.png" alt="" class="menu-icon"
+                            id="language-selected-image">
                     </a>
+
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><img src="modules/nav/img/flag-great-britain.png" alt=""
-                                    class="menu-icon">English
-                                <svg xmlns="http://www.w3.org/2000/svg" class="language-selected"
-                                    viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                    <path
-                                        d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-                                </svg></a></li>
-                        <li>
-                            <hr class="dropdown-divider" />
+                        <li class="language-item" data-language-id="en">
+                            <a class="dropdown-item" href="#">
+                                <img src="modules/nav/img/flag-great-britain.png" alt="" class="menu-icon">
+                                <span>English</span>
+                                <span id="language-selected-icon">&#x2714;</span>
+                            </a>
                         </li>
-                        <li><a class="dropdown-item" href="#"><img src="modules/nav/img/flag-spain.png" alt=""
-                                    class="menu-icon">Español</a></li>
+                        <li class="language-item" data-language-id="es">
+                            <a class="dropdown-item" href="#">
+                                <img src="modules/nav/img/flag-spain.png" alt="" class="menu-icon">
+                                <span>Español</span></a>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <!-- Language menu -->
+
             </ul>
         </div>
         <!-- Collapsible navbar -->
@@ -121,9 +126,55 @@
         height: 25px;
     }
 
-    .language-selected {
+    .language-selected-icon {
         height: 20px;
-        fill: green;
+        color: green;
     }
 </style>
 <!-- Styles -->
+
+<script>
+
+    // Selección de idioma
+    window.onload = function () {
+        const languageItems = document.querySelectorAll(".language-item");
+
+        // Recuperar el idioma seleccionado del almacenamiento local (si existe)
+        const selectedLanguageId = localStorage.getItem("selectedLanguageId");
+
+        languageItems.forEach(item => {
+            item.addEventListener("click", function () {
+                // Obtener la imagen y el icono del item seleccionado
+                const imageUrl = this.querySelector("img").src;
+                const selectedIcon = document.querySelector("#language-selected-icon");
+                // Cambiar la imagen del botón del dropdown-toggle
+                document.querySelector("#language-selected-image").src = imageUrl;
+                // Mover el icono de seleccionado al nuevo item seleccionado
+                selectedIcon.parentNode.removeChild(selectedIcon);
+                const icon = document.createElement("span");
+                icon.id = "language-selected-icon";
+                icon.innerText = "\u2714";
+                const dropdownItem = this.querySelector(".dropdown-item");
+                insertAfter(icon, dropdownItem.lastElementChild);
+
+                // Obtener el data-language-id del item seleccionado
+                const languageId = this.getAttribute("data-language-id");
+                // Traducir
+                loadTranslations(languageId);
+                // Guardar en local el idioma seleccionado
+                localStorage.setItem("selectedLanguageId", languageId);
+            });
+            // Seleccionar el elemento correspondiente al valor guardado en local
+            if (selectedLanguageId && item.getAttribute("data-language-id") === selectedLanguageId) {
+                item.click();
+            }
+        });
+
+        function insertAfter(newNode, existingNode) {
+            existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+        }
+    }
+
+    
+
+</script>

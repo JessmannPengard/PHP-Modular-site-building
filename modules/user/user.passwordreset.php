@@ -60,7 +60,7 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
     <link rel="icon" type="image/png" href="../../favicon.ico">
     <!-- Título de la página -->
     <title>
-        <?= BRAND ?> - Password reset
+        <?= BRAND ?>
     </title>
 </head>
 
@@ -106,15 +106,13 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
 
     <script>
         // Comprobamos que el campo Repetir password coincida con el campo Password
-        window.onload = function () {
-            let form = document.getElementById("form-reset");
-            form.onsubmit = function (e) {
-                let passw = document.getElementById("password").value;
-                let cpassw = document.getElementById("r-password").value;
-                if (passw != cpassw) {
-                    e.preventDefault();
-                    document.getElementById("error").innerHTML = "La contraseña no coincide.";
-                }
+        let form = document.getElementById("form-reset");
+        form.onsubmit = function (e) {
+            let passw = document.getElementById("password").value;
+            let cpassw = document.getElementById("r-password").value;
+            if (passw != cpassw) {
+                e.preventDefault();
+                document.getElementById("error").innerHTML = "La contraseña no coincide.";
             }
         }
     </script>

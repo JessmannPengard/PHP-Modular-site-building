@@ -40,7 +40,7 @@ class User
         if ($this->existEmail($email)) {
             // Si ya existe:
             $result["result"] = false;
-            $result["msg"] = "El email ya está registrado.";
+            $result["msg"] = "email already registered";
             return $result;
         }
 

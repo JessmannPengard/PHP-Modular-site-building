@@ -30,7 +30,7 @@ if (isset($_POST["email"])) {
         exit();
     } else {
         // Login incorrecto, guardamos el mensaje de error a mostrar más abajo
-        $msg = "Email y/o contraseña incorrectos.";
+        $msg = "wrong email or password";
     }
     // Cerramos la conexión a la base de datos
     $db->closeConnection();
@@ -48,13 +48,15 @@ if (isset($_POST["email"])) {
     <!-- Bootstrap -->
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
+    <!-- Script de idiomas -->
+    <script src="../../js/translations.js"></script>
     <!--Estilos-->
     <link rel="stylesheet" href="user.css">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../../favicon.ico">
     <!-- Título de la página -->
     <title>
-        <?= BRAND ?> - Login
+        <?= BRAND ?>
     </title>
 </head>
 
@@ -67,34 +69,35 @@ if (isset($_POST["email"])) {
     <!-- Contenido de la página -->
     <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
         <!-- Título del formulario -->
-        <h2>Inicia sesión</h2>
+        <h2 data-i18n="log in">Inicia sesión</h2>
         <!-- Formulario de inicio de sesión -->
         <form action="" method="post" class="form">
             <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" name="email" placeholder="Introduce tu email" maxlength=50
-                    required autofocus>
+                <label for="email" class="form-label" data-i18n="email">Email</label>
+                <input type="text" class="form-control" name="email" maxlength=50 required autofocus>
             </div>
             <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Introduce tu password"
-                    maxlength=50 required>
+                <label for="password" class="form-label" data-i18n="password">Password</label>
+                <input type="password" class="form-control" name="password" maxlength=50 required>
             </div>
             <!-- Mostramos el mensaje de error, si lo hubiera -->
             <div class="form-group">
-                <p class="form-error">
-                    <?php echo $msg; ?>
-                </p>
+                <p class="form-error" data-i18n="<?= $msg ?>"></p>
             </div>
             <div class="form-group form-center-container">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary" data-i18n="login">Login</button>
             </div>
             <hr>
             <!-- Enlace a la página de registro -->
             <div class="form-group form-center-container">
-                <small>¿Aún no tienes una cuenta?<a href="user.register.php" class="user-link"> Regístrate
+                <small data-i18n="not account">¿Todavía no tienes una cuenta?</small>
+                <small><a href="user.register.php" class="user-link" data-i18n="register here"> Regístrate
                         aquí</a></small>
-                <small><a href="user.passwordrecovery.php" class="user-link">He olvidado mi contraseña</a></small>
+                <br>
+                <small>
+                    <a href="user.passwordrecovery.php" class="user-link" data-i18n="forgot password">He olvidado mi
+                        contraseña</a>
+                </small>
             </div>
         </form>
     </div>

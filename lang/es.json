@@ -1,0 +1,23 @@
+{
+    "empty": " ",
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "my profile": "Mi perfil",
+    "settings": "Configuración",
+    "logout": "Cerrar sesión",
+    "log in": "Inicia sesión",
+    "email": "Email",
+    "password": "Contraseña",
+    "repeat password": "Repite tu contraseña",
+    "not account": "¿Todavía no tienes una cuenta?",
+    "register here": "Regístrate aquí",
+    "forgot password": "¿Has olvidado tu contraseña?",
+    "create account": "Crea tu cuenta",
+    "already registered": "¿Ya tienes una cuenta?",
+    "wrong email or password": "Email y/o contraseña incorrectos",
+    "email already registered": "Este email ya está registrado",
+    "password not match": "La contraseña no coincide"
+}

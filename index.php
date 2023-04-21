@@ -18,6 +18,8 @@ session_start();
     <!-- Bootstrap -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+    <!-- Script de idiomas -->
+    <script src="js/translations.js"></script>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.ico">
 </head>

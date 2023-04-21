@@ -119,7 +119,7 @@ if (isset($_POST['email'])) {
     <link rel="icon" type="image/png" href="../../favicon.ico">
     <!-- Título de la página -->
     <title>
-        <?= BRAND ?> - Password recovery
+        <?= BRAND ?>
     </title>
 </head>
 

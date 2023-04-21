@@ -1,0 +1,23 @@
+{
+    "empty": " ",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "my profile": "My profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "log in": "Log into your account",
+    "email": "Email",
+    "password": "Password",
+    "repeat password": "Repeat password",
+    "not account": "You still do not have an account?",
+    "register here": "Register here",
+    "forgot password": "Have you forgotten your password?",
+    "create account": "Create account",
+    "already registered": "Do you already have an account?",
+    "wrong email or password": "Wrong email and/or password",
+    "email already registered": "Email already registered",
+    "password not match": "Password does not match"
+}
