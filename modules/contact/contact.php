@@ -13,22 +13,19 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="contact-name" class="form-label">Your name</label>
-                <input type="text" id="contact-name" name="contact-name" class="form-control" required
-                    placeholder="Enter your name">
+                <input type="text" id="contact-name" name="contact-name" class="form-control" required>
             </div>
 
             <div class="col-md-6">
                 <label for="contact-email" class="form-label">Your email</label>
-                <input type="email" id="contact-email" name="contact-email" class="form-control" required
-                    placeholder="Enter your email">
+                <input type="email" id="contact-email" name="contact-email" class="form-control" required>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <label for="contact-subject" class="form-label">Subject</label>
-                <input type="text" id="contact-subject" name="contact-subject" class="form-control" required
-                    placeholder="Enter the subject">
+                <input type="text" id="contact-subject" name="contact-subject" class="form-control" required>
             </div>
         </div>
 
@@ -36,7 +33,7 @@
             <div class="col-md-12">
                 <label for="contact-message" class="form-label">Your message</label>
                 <textarea type="text" id="contact-message" name="contact-message" rows="5"
-                    class="form-control md-textarea" required placeholder="Enter your question"></textarea>
+                    class="form-control md-textarea" required></textarea>
             </div>
         </div>
         <br>
@@ -117,7 +114,7 @@
                 }
             } else {
                 document.getElementById('error').innerText = "You must fill all the fields";
-                document.getElementById('contact-name')
+                document.getElementById('contact-name').focus();
             }
 
         } else {

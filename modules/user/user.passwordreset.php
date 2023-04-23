@@ -5,7 +5,7 @@ require("../../modules/database/database.php");
 require("user.model.php");
 
 // Inicializamos la variable que usaremos para mostrar mensajes en caso de algún error
-$msg = "";
+$msg = "empty";
 
 // Verificar si se ha enviado el formulario
 if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"])) {
@@ -14,11 +14,7 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
     $token = $_GET['token'];
     $password = $_POST['password'];
 
-    print_r($email);
-    print_r($token);
-    print_r($password);
-
-    // Conectarse a la base de datos y verificar si el correo electrónico es válido
+    // Conectarse a la base de datos y verificar si el correo electrónico y el token son válidos
     $db = new Database();
     $user = new User($db->getConnection());
 
@@ -37,7 +33,7 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
             header("Location: user.login.php");
         }
     } else {
-        $msg = "Enlace no válido o caducado.<br><small><a href='user.passwordrecovery.php' class='user-link'>Recuperación de contraseña<a></small>";
+        $msg = "recovery link not valid";
     }
 
 }
@@ -54,6 +50,8 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
     <!-- Bootstrap -->
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
+    <!-- Script de idiomas -->
+    <script src="../../modules/translations/translations.js"></script>
     <!--Estilos-->
     <link rel="stylesheet" href="user.css">
     <!-- Favicon -->
@@ -73,27 +71,23 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
     <!-- Contenido de la página -->
     <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
         <!-- Título del formulario -->
-        <h2>Restablecer contraseña</h2>
+        <h2 data-i18n="reset password">Restablecer contraseña</h2>
         <!-- Formulario de inicio de sesión -->
         <form action="" method="post" class="form" id="form-reset">
             <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" maxlength=50 required
-                    placeholder="Introduce tu nuevo password">
+                <label for="password" class="form-label" data-i18n="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" maxlength=50 required>
             </div>
             <div class="form-group">
-                <label for="r-password" class="form-label">Repetir password</label>
-                <input type="password" name="r-password" id="r-password" class="form-control" maxlength=50 required
-                    placeholder="Repite tu nuevo password">
+                <label for="r-password" class="form-label" data-i18n="repeat password">Repetir password</label>
+                <input type="password" name="r-password" id="r-password" class="form-control" maxlength=50 required>
             </div>
             <!-- Mostramos el mensaje de error, si lo hubiera -->
             <div class="form-group">
-                <p class="form-error" id="error">
-                    <?php echo $msg; ?>
-                </p>
+                <p class="form-error" id="error" data-i18n="<?= $msg ?>"></p>
             </div>
             <div class="form-group form-center-container">
-                <button type="submit" class="btn btn-primary">Restablecer contraseña</button>
+                <button type="submit" class="btn btn-primary" data-i18n="reset password">Restablecer contraseña</button>
             </div>
             <hr>
         </form>
@@ -112,7 +106,12 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
             let cpassw = document.getElementById("r-password").value;
             if (passw != cpassw) {
                 e.preventDefault();
-                document.getElementById("error").innerHTML = "La contraseña no coincide.";
+                elementError = document.getElementById("error");
+                const key = "password not match";
+                const translation = translations[selectedLanguageId][key];
+                if (translation) {
+                    elementError.textContent = translation;
+                }
             }
         }
     </script>

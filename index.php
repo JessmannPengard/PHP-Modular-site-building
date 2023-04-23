@@ -35,6 +35,9 @@ session_start();
     <!-- Formulario de contacto -->
     <?php include("modules/contact/contact.php"); ?>
 
+    <!-- Mapa -->
+    <?php include("modules/map/map.php"); ?>
+
     <!-- Pie de página -->
     <?php include("modules/footer/footer.php"); ?>
 

@@ -68,7 +68,7 @@ class User
         // Comprueba que el usuario exista
         if (!$this->existEmail($email)) {
             $result["result"] = false;
-            $result["msg"] = "El email no está registrado.";
+            $result["msg"] = "email not registered";
             return $result;
         }
 

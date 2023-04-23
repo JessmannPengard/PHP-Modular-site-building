@@ -48,10 +48,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="#" data-i18n="my profile">My profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#" data-i18n="settings">Settings</a>
+                                <a class="dropdown-item" href="modules/user/user.settings.php" data-i18n="settings">Settings</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="modules/user/user.logout.php" data-i18n="logout">Logout</a>
@@ -175,6 +172,6 @@
         }
     }
 
-    
+
 
 </script>

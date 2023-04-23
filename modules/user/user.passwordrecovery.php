@@ -13,7 +13,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
 // Inicializamos la variable que usaremos para mostrar mensajes
-$msg = "";
+$msg = "empty";
 
 // Verificar si se ha enviado el correo electrónico
 if (isset($_POST['email'])) {
@@ -88,16 +88,16 @@ if (isset($_POST['email'])) {
 
             // Enviar el correo electrónico y comprobar si se ha enviado correctamente
             if ($mail->send()) {
-                $msg = 'Se ha enviado un correo electrónico de recuperación de contraseña a ' . $email;
+                $msg = 'recovery mail sent' . $email;
             } else {
-                $msg = 'Ha ocurrido un error al enviar el correo electrónico de recuperación de contraseña.';
+                $msg = 'mail sending error';
             }
         } catch (Exception $e) {
             $response["succeed"] = false;
-            $response["msg"] = "Message could not be sent. Mailer Error:"; //{$mail->ErrorInfo}";
+            $response["msg"] = "mailer error"; //{$mail->ErrorInfo}";
         }
     } else {
-        $msg = "El email no está registrado";
+        $msg = "email not registered";
     }
 }
 
@@ -113,6 +113,8 @@ if (isset($_POST['email'])) {
     <!-- Bootstrap -->
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
+    <!-- Script de idiomas -->
+    <script src="../../modules/translations/translations.js"></script>
     <!--Estilos-->
     <link rel="stylesheet" href="user.css">
     <!-- Favicon -->
@@ -132,27 +134,25 @@ if (isset($_POST['email'])) {
     <!-- Contenido de la página -->
     <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
         <!-- Título del formulario -->
-        <h2>Recuperación de contraseña</h2>
+        <h2 data-i18n="password recovery">Recuperación de contraseña</h2>
         <!-- Formulario de recuperación de contraseña -->
         <form action="" method="post" class="form">
             <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" name="email" placeholder="Introduce tu email" maxlength=50
-                    required autofocus>
+                <label for="email" class="form-label" data-i18n="email">Email</label>
+                <input type="text" class="form-control" name="email" maxlength=50 required autofocus>
             </div>
             <!-- Mostramos el mensaje si lo hubiera -->
             <div class="form-group">
-                <p class="form-error">
-                    <?php echo $msg; ?>
-                </p>
+                <p class="form-error" id="error" data-i18n="<?= $msg ?>"></p>
             </div>
             <div class="form-group form-center-container">
-                <button type="submit" class="btn btn-primary">Enviar email</button>
+                <button type="submit" class="btn btn-primary" data-i18n="send email">Enviar email</button>
             </div>
             <hr>
             <!-- Enlace a la página de inicio de sesión -->
             <div class="form-group form-center-container">
-                <small>o <a href="user.login.php" class="user-link"> Inicia sesión</a></small>
+                <small data-i18n="or">o <a href="user.login.php" class="user-link" data-i18n="sign in"> Inicia
+                        sesión</a></small>
             </div>
         </form>
     </div>

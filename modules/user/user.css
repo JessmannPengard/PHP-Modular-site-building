@@ -16,3 +16,17 @@
 .user-link {
     text-decoration: none;
 }
+
+#section-profile {
+    margin: 65px 0;
+    background-color: #eee;
+}
+
+#settings-profile-picture {
+    cursor: pointer;
+    width: 150px;
+}
+
+.settings-icon {
+    width: 16px;
+}
