@@ -40,7 +40,6 @@ class User
         if ($this->existEmail($email)) {
             // Si ya existe:
             $result["result"] = false;
-            $result["msg"] = "email already registered";
             return $result;
         }
 
@@ -68,7 +67,6 @@ class User
         // Comprueba que el usuario exista
         if (!$this->existEmail($email)) {
             $result["result"] = false;
-            $result["msg"] = "email not registered";
             return $result;
         }
 

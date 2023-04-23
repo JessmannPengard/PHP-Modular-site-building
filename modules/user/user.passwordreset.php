@@ -5,7 +5,9 @@ require("../../modules/database/database.php");
 require("user.model.php");
 
 // Inicializamos la variable que usaremos para mostrar mensajes en caso de algún error
-$msg = "empty";
+$msgEmailNotReg = "hidden";
+$msgInvalidToken = "hidden";
+$msgErrorPass = "hidden";
 
 // Verificar si se ha enviado el formulario
 if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"])) {
@@ -25,7 +27,7 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
         $result = $user->setPassword($email, $password);
 
         if ($result["result"] == false) {
-            $msg = $result["msg"];
+            $msgEmailNotReg = "";
         } else {
             // Borramos los tokens de recuperación de contraseña de este usuario
             $user->deleteToken($email);
@@ -33,9 +35,10 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
             header("Location: user.login.php");
         }
     } else {
-        $msg = "recovery link not valid";
+        $msgInvalidToken = "";
     }
-
+} else {
+    $msgInvalidToken = "";
 }
 
 // Mostrar el formulario de recuperación de contraseña
@@ -84,8 +87,20 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
             </div>
             <!-- Mostramos el mensaje de error, si lo hubiera -->
             <div class="form-group">
-                <p class="form-error" id="error" data-i18n="<?= $msg ?>"></p>
+                <p class="form-error" data-i18n="email not registered" <?= $msgEmailNotReg ?>>Email no registrado</p>
+
+                <div class="form-error" <?= $msgInvalidToken ?>>
+                    <p data-i18n="recovery link not valid">Enlace no válido o caducado.</p>
+                    <small>
+                        <a href='user.passwordrecovery.php' class='user-link' data-i18n="password recovery">Recuperación
+                            de contraseña</a>
+                    </small>
+                </div>
+
+                <p class="form-error" data-i18n="password not match" id="password-match" <?= $msgErrorPass ?>>La
+                    contraseña no coincide</p>
             </div>
+            <br>
             <div class="form-group form-center-container">
                 <button type="submit" class="btn btn-primary" data-i18n="reset password">Restablecer contraseña</button>
             </div>
@@ -106,12 +121,7 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
             let cpassw = document.getElementById("r-password").value;
             if (passw != cpassw) {
                 e.preventDefault();
-                elementError = document.getElementById("error");
-                const key = "password not match";
-                const translation = translations[selectedLanguageId][key];
-                if (translation) {
-                    elementError.textContent = translation;
-                }
+                elementError = document.getElementById("password-match").hidden = false;
             }
         }
     </script>

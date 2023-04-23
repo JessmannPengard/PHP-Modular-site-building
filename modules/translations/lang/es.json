@@ -31,13 +31,13 @@
     "delete account msg1": "Esta acción borrará su cuenta definitivamente, ¡perderá todos sus datos y no podrá recuperarlos!",
     "delete account msg2": "¿Seguro que desea continuar con el proceso?",
     "reset password": "Restablecer contraseña",
-    "recovery link not valid": "Enlace no válido o caducado.<br><small><a href='user.passwordrecovery.php' class='user-link'>Recuperación de contraseña<a></small>",
+    "recovery link not valid": "Enlace no válido o caducado.",
     "password recovery": "Recuperación de contraseña",
     "send email": "Enviar email",
-    "or": "o ",
-    "sign in": " inicia sesión",
+    "or": "o",
+    "sign in": "inicia sesión",
     "email not registered": "Email no registrado",
     "mailer error": "El mensaje no se ha podido enviar. ¡Error de Mailer!",
-    "recovery mail sent": "Se ha enviado un email de recuperación de contraseña a ",
+    "recovery mail sent": "Se ha enviado un email de recuperación de contraseña.",
     "mail sending error": "Ha ocurrido un error al enviar el email de recuperación de contraseña."
 }

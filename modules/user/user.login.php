@@ -4,8 +4,8 @@ require_once("../../config/app.php");
 require_once("../../modules/database/database.php");
 require_once("user.model.php");
 
-// Inicializamos la variable que usaremos para mostrar mensajes en caso de algún error
-$msg = "empty";
+// Inicializamos las variables que usaremos para mostrar mensajes en caso de algún error
+$msgWrong = "hidden";
 
 // Si nos están enviando el formulario...
 if (isset($_POST["email"])) {
@@ -29,8 +29,8 @@ if (isset($_POST["email"])) {
         header("Location: ../../index.php");
         exit();
     } else {
-        // Login incorrecto, guardamos el mensaje de error a mostrar más abajo
-        $msg = "wrong email or password";
+        // Login incorrecto, mostraremos el mensaje de error
+        $msgWrong = "";
     }
     // Cerramos la conexión a la base de datos
     $db->closeConnection();
@@ -77,15 +77,17 @@ if (isset($_POST["email"])) {
                 <input type="text" class="form-control" name="email" maxlength=50 required autofocus>
             </div>
             <div class="form-group">
-                <label for="password" class="form-label" data-i18n="password">Password</label>
+                <label for="password" class="form-label" data-i18n="password">Contraseña</label>
                 <input type="password" class="form-control" name="password" maxlength=50 required>
             </div>
             <!-- Mostramos el mensaje de error, si lo hubiera -->
             <div class="form-group">
-                <p class="form-error" data-i18n="<?= $msg ?>"></p>
+                <p class="form-error" data-i18n="wrong email or password" <?= $msgWrong ?>>Email
+                    y/o contraseña incorrectos</p>
             </div>
+            <br>
             <div class="form-group form-center-container">
-                <button type="submit" class="btn btn-primary" data-i18n="login">Login</button>
+                <button type="submit" class="btn btn-primary" data-i18n="login">Iniciar sesión</button>
             </div>
             <hr>
             <!-- Enlace a la página de registro -->

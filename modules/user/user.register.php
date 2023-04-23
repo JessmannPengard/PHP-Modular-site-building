@@ -4,8 +4,9 @@ require_once("../../config/app.php");
 require_once("../../modules/database/database.php");
 require_once("user.model.php");
 
-// Inicializamos la variable que usaremos para mostrar mensajes en caso de algún error
-$msg = "empty";
+// Inicializamos las variables que usaremos para mostrar mensajes en caso de algún error
+$msgEmailExists = "hidden";
+$msgErrorPass = "hidden";
 
 // Si nos están enviando el formulario...
 if (isset($_POST["email"])) {
@@ -27,8 +28,8 @@ if (isset($_POST["email"])) {
         header("Location: user.login.php");
         exit();
     } else {
-        // Registro no realizado, guardamos el mensaje de error a mostrar más abajo
-        $msg = $registro["msg"];
+        // El email ya estaba registrado mostraremos el mensaje de error
+        $msgEmailExists = "";
     }
     // Cerramos la conexión
     $db->closeConnection();
@@ -75,17 +76,21 @@ if (isset($_POST["email"])) {
                 <input type="text" name="email" class="form-control" maxlength=50 required autofocus>
             </div>
             <div class="form-group">
-                <label for="password" class="form-label" data-i18n="password">Password</label>
+                <label for="password" class="form-label" data-i18n="password">Contraseña</label>
                 <input type="password" name="password" id="password" class="form-control" maxlength=50 required>
             </div>
             <div class="form-group">
-                <label for="r-password" class="form-label" data-i18n="repeat password">Repetir password</label>
+                <label for="r-password" class="form-label" data-i18n="repeat password">Repetir contraseña</label>
                 <input type="password" name="r-password" id="r-password" class="form-control" maxlength=50 required>
             </div>
             <!-- Mostramos el mensaje de error, si lo hubiera -->
             <div class="form-group">
-                <p class="form-error" id="error" data-i18n="<?= $msg ?>"></p>
+                <p class="form-error" data-i18n="email already registered" <?= $msgEmailExists ?>>Este email ya está
+                    registrado</p>
+                <p class="form-error" data-i18n="password not match" id="password-match" <?= $msgErrorPass ?>>La
+                    contraseña no coincide</p>
             </div>
+            <br>
             <div class="form-group form-center-container">
                 <button type="submit" class="btn btn-primary" data-i18n="register">Registrarse</button>
             </div>
@@ -113,12 +118,8 @@ if (isset($_POST["email"])) {
             let cpassw = document.getElementById("r-password").value;
             if (passw != cpassw) {
                 e.preventDefault();
-                elementError = document.getElementById("error");
-                const key = "password not match";
-                const translation = translations[selectedLanguageId][key];
-                if (translation) {
-                    elementError.textContent = translation;
-                }
+                // Mostramos el mensaje de error
+                elementError = document.getElementById("password-match").hidden = false;
             }
         }
     </script>

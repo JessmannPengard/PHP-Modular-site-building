@@ -1,8 +1,8 @@
 <?php
-require("../phpmailer/src/Exception.php");
-require("../phpmailer/src/PHPMailer.php");
-require("../phpmailer/src/SMTP.php");
-require("../phpmailer/src/mail.config.php");
+require("Exception.php");
+require("PHPMailer.php");
+require("SMTP.php");
+require("mail.config.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -28,7 +28,7 @@ try {
     $mail->Username = MAIL_USERNAME; //SMTP username
     $mail->Password = MAIL_PASSWORD; //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port = 465;
+    $mail->Port = MAIL_PORT;
 
     // Configurar los detalles del correo electrónico
     $mail->setFrom($email, $name);

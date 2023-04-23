@@ -12,8 +12,11 @@ require("../phpmailer/src/mail.config.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-// Inicializamos la variable que usaremos para mostrar mensajes
-$msg = "empty";
+// Inicializamos la variable que usaremos para mostrar mensajes en caso de algún error
+$msgMailSent = "hidden";
+$msgMailingError = "hidden";
+$msgMailNotReg = "hidden";
+$msgMailerError = "hidden";
 
 // Verificar si se ha enviado el correo electrónico
 if (isset($_POST['email'])) {
@@ -22,16 +25,16 @@ if (isset($_POST['email'])) {
 
     // Comprobamos que exista el usuario con ese email
     $db = new Database();
-    $usuario = new User($db->getConnection());
+    $user = new User($db->getConnection());
 
-    if ($usuario->existEmail($email)) {
+    if ($user->existEmail($email)) {
 
         // Generamos el token de acceso aleatorio
         $token = bin2hex(random_bytes((20)));
         // Calculamos la fecha de caducidad del token (1 hora desde la creación)
-        $fecha_caducidad = date('Y-m-d H:i:s', strtotime('+1 hour'));
+        $expiry_date = date('Y-m-d H:i:s', strtotime('+1 hour'));
         // Guardamos el token en la base de datos
-        $result = $usuario->setToken($email, $token, $fecha_caducidad);
+        $result = $user->setToken($email, $token, $expiry_date);
 
         // Crear un objeto PHPMailer
         $mail = new PHPMailer();
@@ -47,7 +50,7 @@ if (isset($_POST['email'])) {
             $mail->Username = MAIL_USERNAME; //SMTP username
             $mail->Password = MAIL_PASSWORD; //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->Port = 465;
+            $mail->Port = MAIL_PORT;
 
             // Configurar los detalles del correo electrónico
             $mail->setFrom(MAIL_MYEMAIL, BRAND);
@@ -88,16 +91,15 @@ if (isset($_POST['email'])) {
 
             // Enviar el correo electrónico y comprobar si se ha enviado correctamente
             if ($mail->send()) {
-                $msg = 'recovery mail sent' . $email;
+                $msgMailSent = '';
             } else {
-                $msg = 'mail sending error';
+                $msgMailingError = '';
             }
         } catch (Exception $e) {
-            $response["succeed"] = false;
-            $response["msg"] = "mailer error"; //{$mail->ErrorInfo}";
+            $msgMailerError = "";
         }
     } else {
-        $msg = "email not registered";
+        $msgMailNotReg = "";
     }
 }
 
@@ -143,15 +145,23 @@ if (isset($_POST['email'])) {
             </div>
             <!-- Mostramos el mensaje si lo hubiera -->
             <div class="form-group">
-                <p class="form-error" id="error" data-i18n="<?= $msg ?>"></p>
+                <p class="form-error" data-i18n="recovery mail sent" <?= $msgMailSent ?>>Se ha enviado el email de
+                    recuperación de contraseña.</p>
+                <p class="form-error" data-i18n="mail sending error" <?= $msgMailingError ?>>Ha ocurrido un error al
+                    enviar el email de recuperación de contraseña.</p>
+                <p class="form-error" data-i18n="email not registered" <?= $msgMailNotReg ?>>Email no registrado</p>
+                <p class="form-error" data-i18n="mailer error" <?= $msgMailerError ?>>El mensaje no se ha podido enviar.
+                    ¡Error de Mailer!</p>
             </div>
+            <br>
             <div class="form-group form-center-container">
                 <button type="submit" class="btn btn-primary" data-i18n="send email">Enviar email</button>
             </div>
             <hr>
             <!-- Enlace a la página de inicio de sesión -->
             <div class="form-group form-center-container">
-                <small data-i18n="or">o <a href="user.login.php" class="user-link" data-i18n="sign in"> Inicia
+                <small data-i18n="or">o</small><small><a href="user.login.php" class="user-link"
+                        data-i18n="sign in">Inicia
                         sesión</a></small>
             </div>
         </form>

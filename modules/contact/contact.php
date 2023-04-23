@@ -8,7 +8,7 @@
         directly. Our team will come back to you within a matter of hours to help you.</p>
 
     <!--Form-->
-    <form id="contact-form" name="contact-form" action="modules/contact/mail.php" method="POST">
+    <form id="contact-form" name="contact-form" action="" method="POST">
 
         <div class="row">
             <div class="col-md-6">
@@ -82,7 +82,7 @@
             if (name && email && subject && message) {
                 if (ValidateEmail(email)) {
 
-                    fetch('modules/contact/mail.php', {
+                    fetch('modules/phpmailer/src/mail.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'

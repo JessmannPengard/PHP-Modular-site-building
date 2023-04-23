@@ -31,13 +31,13 @@
     "delete account msg1": "This action will permantly delete your account, you will loose all your data and could not be restored!",
     "delete account msg2": "Are you sure you want to continue with this process?",
     "reset password": "Reset password",
-    "recovery link not valid": "Recovery link not valid or expired.<br><small><a href='user.passwordrecovery.php' class='user-link'>Password recovery<a></small>",
+    "recovery link not valid": "Recovery link not valid or expired.",
     "password recovery": "Password recovery",
     "send email": "Send email",
-    "or": "or ",
-    "sign in": " sign in",
+    "or": "or",
+    "sign in": "sign in",
     "email not registered": "Email not registered",
     "mailer error": "Message could not be sent. Mailer Error!",
-    "recovery mail sent": "A password recovery mail was sent to ",
+    "recovery mail sent": "Password recovery mail was sent.",
     "mail sending error": "An error ocurred while sending password recovery mail."
 }
