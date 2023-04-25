@@ -58,7 +58,7 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
     <!--Estilos-->
     <link rel="stylesheet" href="user.css">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../../favicon.ico">
+    <link rel="icon" type="image/png" href="../../img/favicon.ico">
     <!-- Título de la página -->
     <title>
         <?= BRAND ?>

@@ -21,7 +21,7 @@ session_start();
     <!-- Script de idiomas -->
     <script src="modules/translations/translations.js"></script>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
 
 <body>
