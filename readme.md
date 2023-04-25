@@ -93,7 +93,7 @@ sitio/
 # Ejemplo de una página web simple con el sistema de módulos
 Esta página se compone de una barra de navegación, un carrusel, un formulario de contacto, un mapa de google y un pie de página, además de un sistema de selección de idioma.
 
-<?php
+```<?php
 include("config/app.php");  //Incluimos el archivo de configuración
 
 session_start();    // Iniciamos sesión
@@ -138,7 +138,7 @@ session_start();    // Iniciamos sesión
 
 </body>
 
-</html>
+</html>```
 
 
 # Módulos
@@ -177,7 +177,8 @@ session_start();    // Iniciamos sesión
 ### Uso
 ### Dependencias
 
-## PHPMAILER (https://github.com/PHPMailer/PHPMailer)
+## PHPMAILER
+https://github.com/PHPMailer/PHPMailer
 ### Descripción
 ### Uso
 ### Dependencias
