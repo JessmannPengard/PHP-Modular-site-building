@@ -192,4 +192,26 @@ class User
         // Devolvemos el id
         return $id;
     }
+
+    // Obtiene el idioma almacenado en los settings de un usuario
+    public function getLanguage($id_user)
+    {
+        // Inicializamos la variable a devolver
+        $language = "";
+
+        // Prepare
+        $stm = $this->dbconn->prepare("SELECT language FROM " . DATABASE_TABLES_PREFIX . "users_settings WHERE id_user = :id_user");
+
+        $stm->bindValue(":id_user", $id_user);
+        $stm->bindColumn("language", $language);
+
+        // Execute
+        $stm->execute();
+
+        // Obtenemos el resultado
+        $stm->fetch();
+
+        // Devolvemos el email de usuario
+        return $language;
+    }
 }

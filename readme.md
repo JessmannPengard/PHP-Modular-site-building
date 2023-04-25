@@ -128,8 +128,17 @@ Esta página se compone de una barra de navegación, un carrusel, un formulario 
 	    <!-- Bootstrap -->
 	    <script  src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 	    <link  rel="stylesheet"  href="vendor/bootstrap/css/bootstrap.css">
-	    <!-- Script de idiomas -->
-	    <script  src="modules/translations/translations.js"></script>
+	    <!-- Asignar el idioma de la sesión a una variable PHP (para usar en el nav) y una variable JavaScript para usar en translations.js -->
+        <?php
+        if (isset($_SESSION['language'])) {
+            $selectedLanguageId = $_SESSION['language'];
+        } else {
+            $selectedLanguageId = null;
+        }
+        echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
+        ?>
+        <!-- Script de idiomas -->
+        <script src="modules/translations/translations.js"></script>
 	    <!-- Favicon -->
 	    <link  rel="icon"  type="image/png"  href="img/favicon.ico">
     </head>
@@ -201,8 +210,63 @@ Esta página se compone de una barra de navegación, un carrusel, un formulario 
 
 ## Translations
 ### Descripción
+Este módulo permite la utilización de diferentes idiomas en tu sitio.
+Consiste en un script que traduce los diferentes elementos en función del idioma seleccionado.
 ### Uso
+
+ Para poder utilizar la traducción en tu sitio, hay varios requisitos básicos: 
+
+ - Dentro de la carpeta del módulo *translations/lang* debes    incluir
+   los archivos de idiomas en formato *json* con el siguiente   
+   formato:
+  
+       {
+       "home": "Home",
+       "about": "About",
+       "contact": "Contact",
+       "login": "Login"
+       }
+	Este archivo se llamaría, por ejemplo *en.json*.
+ - Además, si vas a usar el *plugin* del módulo *nav* para seleccionar
+   el idioma, debes incluir la imagen de la bandera correspondiente al
+   idioma que en este caso sería *en.png*. Y así para el resto de
+   idiomas: *es.json*, *es.png*, etc.
+   
+ - Cada texto que desees traducir    debe incluir el atributo
+   *data-i18n* con la *key* correspondiente del    archivo de idioma *json*:
+      
+          <label data-i18n="home">Home</label>
+
+Dependiendo del sitio que estés construyendo, el manejo de idiomas se puede utilizar de dos formas diferentes:
+#### Sitios SIN usuarios registrados
+El idioma se guardará en LocalStorage. Una vez que el usuario selecciona un idioma, este se almacenará en su máquina local y cada vez que acceda al sitio, utilizará este valor para traducir la página. Para ello sólo será necesario añadir el script a cada página:
+
+    <script  src="modules/translations/translations.js"></script>
+
+La ruta puede variar en función de la estructura de tu sitio.
+
+#### Sitios CON usuarios registrados
+En este caso, los requisitos son los mismos, con la diferencia de que el idioma se puede guardar a nivel de usuario en la base de datos. El sistema buscará el idioma seleccionado por este orden:
+
+ - Sesión
+ - LocalStorage
+ - Default ("en")
+
+En este caso debemos incluir en nuestra página:
+
+    <?php
+    if (isset($_SESSION['language'])) {
+    $selectedLanguageId = $_SESSION['language'];
+    } else {
+    $selectedLanguageId = null;
+    }
+    echo  '<script>const sessionLanguage = "'  .  $selectedLanguageId  .  '";</script>';
+    ?>
+    <script  src="modules/translations/translations.js"></script>
+
+De nuevo, la ruta del script puede variar en función de la estructura de tu sitio.
 ### Dependencias
+Este módulo no necesita de ningún otro para funcionar, no obstante se puede combinar con el plugin *language.plugin.php* del módulo *nav* para tener una funcionalidad completa.
 
 ## User
 ### Descripción

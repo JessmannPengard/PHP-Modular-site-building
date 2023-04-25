@@ -105,73 +105,43 @@ if (isset($_POST['email'])) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require("user.header.template.php");
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
-    <!-- Script de idiomas -->
-    <script src="../../modules/translations/translations.js"></script>
-    <!--Estilos-->
-    <link rel="stylesheet" href="user.css">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../../img/favicon.ico">
-    <!-- Título de la página -->
-    <title>
-        <?= BRAND ?>
-    </title>
-</head>
+<!-- Contenido de la página -->
+<div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
+    <!-- Título del formulario -->
+    <h2 data-i18n="password recovery">Recuperación de contraseña</h2>
+    <!-- Formulario de recuperación de contraseña -->
+    <form action="" method="post" class="form">
+        <div class="form-group">
+            <label for="email" class="form-label" data-i18n="email">Email</label>
+            <input type="text" class="form-control" name="email" maxlength=50 required autofocus>
+        </div>
+        <!-- Mostramos el mensaje si lo hubiera -->
+        <div class="form-group">
+            <p class="form-error" data-i18n="recovery mail sent" <?= $msgMailSent ?>>Se ha enviado el email de
+                recuperación de contraseña.</p>
+            <p class="form-error" data-i18n="mail sending error" <?= $msgMailingError ?>>Ha ocurrido un error al
+                enviar el email de recuperación de contraseña.</p>
+            <p class="form-error" data-i18n="email not registered" <?= $msgMailNotReg ?>>Email no registrado</p>
+            <p class="form-error" data-i18n="mailer error" <?= $msgMailerError ?>>El mensaje no se ha podido enviar.
+                ¡Error de Mailer!</p>
+        </div>
+        <br>
+        <div class="form-group form-center-container">
+            <button type="submit" class="btn btn-primary" data-i18n="send email">Enviar email</button>
+        </div>
+        <hr>
+        <!-- Enlace a la página de inicio de sesión -->
+        <div class="form-group form-center-container">
+            <small data-i18n="or">o</small><small><a href="user.login.php" class="user-link" data-i18n="sign in">Inicia
+                    sesión</a></small>
+        </div>
+    </form>
+</div>
 
-<body>
-    <!-- Encabezado de página -->
-    <?php
-    require_once("../nav/nav.lite.php");
-    ?>
-
-    <!-- Contenido de la página -->
-    <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
-        <!-- Título del formulario -->
-        <h2 data-i18n="password recovery">Recuperación de contraseña</h2>
-        <!-- Formulario de recuperación de contraseña -->
-        <form action="" method="post" class="form">
-            <div class="form-group">
-                <label for="email" class="form-label" data-i18n="email">Email</label>
-                <input type="text" class="form-control" name="email" maxlength=50 required autofocus>
-            </div>
-            <!-- Mostramos el mensaje si lo hubiera -->
-            <div class="form-group">
-                <p class="form-error" data-i18n="recovery mail sent" <?= $msgMailSent ?>>Se ha enviado el email de
-                    recuperación de contraseña.</p>
-                <p class="form-error" data-i18n="mail sending error" <?= $msgMailingError ?>>Ha ocurrido un error al
-                    enviar el email de recuperación de contraseña.</p>
-                <p class="form-error" data-i18n="email not registered" <?= $msgMailNotReg ?>>Email no registrado</p>
-                <p class="form-error" data-i18n="mailer error" <?= $msgMailerError ?>>El mensaje no se ha podido enviar.
-                    ¡Error de Mailer!</p>
-            </div>
-            <br>
-            <div class="form-group form-center-container">
-                <button type="submit" class="btn btn-primary" data-i18n="send email">Enviar email</button>
-            </div>
-            <hr>
-            <!-- Enlace a la página de inicio de sesión -->
-            <div class="form-group form-center-container">
-                <small data-i18n="or">o</small><small><a href="user.login.php" class="user-link"
-                        data-i18n="sign in">Inicia
-                        sesión</a></small>
-            </div>
-        </form>
-    </div>
-
-    <!-- Pie de página -->
-    <?php
-    require_once("../footer/footer.lite.php");
-    ?>
-
-</body>
-
-</html>
+<?php
+require("user.footer.template.php");
+?>

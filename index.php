@@ -15,11 +15,24 @@ session_start();
     <title>
         <?= BRAND ?>
     </title>
+
     <!-- Bootstrap -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+
+    <!-- Variables necesarias para usar idiomas con usuarios -->
+    <?php
+    if (isset($_SESSION['language'])) {
+        $selectedLanguageId = $_SESSION['language'];
+    } else {
+        $selectedLanguageId = null;
+    }
+    echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
+    ?>
+    
     <!-- Script de idiomas -->
     <script src="modules/translations/translations.js"></script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>

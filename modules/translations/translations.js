@@ -1,9 +1,8 @@
-// Traducir
-// Recuperar el idioma seleccionado del almacenamiento local (si existe)
-const selectedLanguageId = localStorage.getItem("selectedLanguageId");
+// Get selected language from session, localStorage or default ("en")
+const selectedLanguageId = sessionLanguage || localStorage.getItem("selectedLanguageId") || "en";
 
 window.onload = () => {
-    // Traducir
+    // Translate
     if (selectedLanguageId) {
         loadTranslations(selectedLanguageId);
     }
@@ -11,6 +10,7 @@ window.onload = () => {
 
 const translations = {};
 
+// Load translations from file
 function loadTranslations(language) {
     fetch(`/templateB/modules/translations/lang/${language}.json`)
         .then(response => response.json())
@@ -23,6 +23,7 @@ function loadTranslations(language) {
         });
 }
 
+// Apply translations to elements
 function applyTranslations(language) {
     const elements = document.querySelectorAll("[data-i18n]");
     elements.forEach(element => {
