@@ -1,0 +1,53 @@
+·/config
+    En esta carpeta guardaremos los archivos de configuración generales de nuestra aplicación o sitio web.
+        -app.php
+            Almacena las constantes globales y generales para toda la aplicación:
+            -BRAND: define el nombre de la aplicación o sitio web.
+
+·/img
+    Carpeta en la que guardamos las imágenes generales de la aplicación o sitio web:
+        logo.png
+            El logotipo de nuestra aplicación
+        ·/svg
+            Carpeta donde almacenamos todas las imágenes de tipo .svg (esencialmente los iconos de nuestra aplicación)
+
+·/modules
+    Esta carpeta contiene cada uno de los módulos que conformarán nuestra aplicación o sitio web. Cada módulo estará contenido a su vez en su propia carpeta que contendrá todo lo necesario para el funcionamiento de dicho módulo.
+    En ocasiones, ciertos módulos necesitan de otros para funcionar correctamente. Esto se especificará en la documentación de cada uno de los módulos.
+        -CAROUSEL
+        -CONTACT
+        -DATABASE
+        -FOOTER
+        -GALLERY
+        -HERO
+        -MAP
+        -NAV
+        -PHPMAILER
+        -TRANSLATIONS
+        -USER
+
+·/vendor
+    Aquí guardamos bibliotecas o contenido de terceros que utilizaremos en nuestra aplicación o sitio web:
+        ·/bootstrap
+            Archivos de bootstrap
+                -/css
+                    Archivos CSS
+                -/js
+                    Archivos Javascript
+
+·.gitignore
+    Este archivo contiene las referencias a los archivos que NO deben ser subidos al repositorio por contener información sensible, datos de conexión, datos privados que no deben ser públicos.
+        -modules/phpmailer/src/mail.config.php
+            Archivo de configuración de nuestro servidor SMTP
+        -modules/database/database.config.php
+            Archivo con los datos de conexión a nuestra base de datos
+    Para estos archivos se subirá al repositorio un archivo de ejemplo con el nombre archivo.php.sample
+
+·favicon.ico
+    Favicon de nuestra aplicación o sitio web
+
+·index.php
+    Página de ejemplo utilizando varios de los módulos de nuestra aplicación o sitio web, podemos probar y testear desde aquí los diferentes módulos y su funcionalidad.
+
+·readme
+    Archivo con toda la documentación y descripción del proyecto.
