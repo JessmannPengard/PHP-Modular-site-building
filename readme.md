@@ -54,7 +54,9 @@ En esta carpeta guardaremos los archivos de configuración generales de nuestra 
 Carpeta en la que guardamos las imágenes generales de la aplicación o sitio web:
 
 **logo.png**: el logotipo de nuestra aplicación.
+
 **favicon.ico**: favicon de nuestra aplicación o sitio web.
+
 **/svg**: carpeta donde almacenamos todas las imágenes de tipo *.svg* (esencialmente los iconos de nuestra aplicación).
 
 ## /modules
