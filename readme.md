@@ -138,7 +138,7 @@ session_start();    // Iniciamos sesión
 
 </body>
 
-</html>```
+</html>´´´
 
 
 # Módulos
