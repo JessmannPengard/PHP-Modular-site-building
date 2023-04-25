@@ -106,7 +106,6 @@ Archivo con toda la documentación y descripción del proyecto.
 
 Esta página se compone de una barra de navegación, un carrusel, un formulario de contacto, un mapa de google y un pie de página, además de un sistema de selección de idioma y un acceso y registro de usuarios.
 
-<<<<<<< HEAD
     <?php
     include("config/app.php"); //Incluimos el archivo de configuración
     
@@ -153,51 +152,6 @@ Esta página se compone de una barra de navegación, un carrusel, un formulario 
     </body>
     
     </html>
-=======
-session_start();    // Iniciamos sesión
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Título -->
-    <title>
-        <?= BRAND ?>
-    </title>
-    <!-- Bootstrap -->
-    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
-    <!-- Script de idiomas -->
-    <script src="modules/translations/translations.js"></script>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/favicon.ico">
-</head>
-
-<body>
-
-    <!-- Barra de navegación -->
-    <?php include("modules/nav/nav.php"); ?>
-
-    <!-- Carrusel -->
-    <?php include("modules/carousel/carousel.php"); ?>
-
-    <!-- Formulario de contacto -->
-    <?php include("modules/contact/contact.php"); ?>
-
-    <!-- Mapa de google-->
-    <?php include("modules/map/map.php"); ?>
-
-    <!-- Pie de página -->
-    <?php include("modules/footer/footer.php"); ?>
-
-</body>
-
-</html>´´´
->>>>>>> 29be51028cbf1d9175bc2c7b116a174619015246
 
 
 # Módulos
