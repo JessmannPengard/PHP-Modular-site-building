@@ -7,7 +7,7 @@ De este modo aceleramos y facilitamos la creación de un sitio web o aplicación
 Todos los módulos tienen un diseño **responsive**, de modo que nos aseguramos de que nuestra aplicación se verá siempre bien en cualquier tipo de pantalla o dispositivo.
 
 
-# Carpetas y achivos
+# Carpetas y archivos
 
 ```
 sitio/

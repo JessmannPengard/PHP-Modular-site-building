@@ -38,3 +38,8 @@ function applyTranslations(language) {
         }
     });
 }
+
+// Translate
+function translate(key) {
+    return (translations && selectedLanguageId) ? translations[selectedLanguageId][key] : "";
+}

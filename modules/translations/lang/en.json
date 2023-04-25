@@ -39,5 +39,14 @@
     "email not registered": "Email not registered",
     "mailer error": "Message could not be sent. Mailer Error!",
     "recovery mail sent": "Password recovery mail was sent.",
-    "mail sending error": "An error ocurred while sending password recovery mail."
+    "mail sending error": "An error ocurred while sending password recovery mail.",
+    "contact us": "Contact us",
+    "contact message": "Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within a matter of hours to help you.",
+    "your name": "Your name",
+    "your email": "Your email",
+    "subject": "Subject",
+    "your message": "You message",
+    "send": "Send",
+    "enter valid email": "Please, enter a valid email",
+    "fill all fields": "You must fill all the fields"
 }

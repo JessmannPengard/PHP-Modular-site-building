@@ -39,5 +39,14 @@
     "email not registered": "Email no registrado",
     "mailer error": "El mensaje no se ha podido enviar. ¡Error de Mailer!",
     "recovery mail sent": "Se ha enviado un email de recuperación de contraseña.",
-    "mail sending error": "Ha ocurrido un error al enviar el email de recuperación de contraseña."
+    "mail sending error": "Ha ocurrido un error al enviar el email de recuperación de contraseña.",
+    "contact us": "Contáctanos",
+    "contact message": "¿Tienes alguna consulta? Por favor, no dudes en contactarnos. Nuestro equipo se pondrá en contacto contigo a la menor brevedad posible para resolver tus dudas.",
+    "your name": "Tu nombre",
+    "your email": "Tu email",
+    "subject": "Asunto",
+    "your message": "Tu consulta",
+    "send": "Enviar",
+    "enter valid email": "Por favor, introduce un email válido",
+    "fill all fields": "Debes rellenar todos los campos"
 }
