@@ -29,6 +29,9 @@ sitio/
 			|____module2.php
 			|____...
 		|____...
+	|____upload/
+		|____profile/
+			|____...
 	|____vendor/
 		|____bootstrap/
 			|____css/
@@ -76,6 +79,13 @@ En ocasiones, ciertos módulos necesitan de otros para funcionar correctamente. 
  - *PHPMAILER*
  - *TRANSLATIONS*
  - *USER*
+
+## /upload
+
+Aquí guardamos los archivos subidos a nuestro sitio por los usuarios.
+
+**/profiles**: imágenes de perfil de los usuarios.
+
 
 ## /vendor
 
@@ -169,8 +179,14 @@ Esta página se compone de una barra de navegación, un carrusel, un formulario 
 
 ## Carousel
 ### Descripción
+Un carrusel de imágenes simple con Bootstrap.
 ### Uso
-### Dependencias
+Simplemente incrustar en tu página y listo:
+
+    <?php  include("modules/carousel/carousel.php"); ?>
+
+Recuerda revisar la ruta en función de la estructura de tu sitio.
+Las imágenes se guardan dentro de la carpeta *carousel/img/*, en el propio módulo.
 
 ## Contact
 ### Descripción

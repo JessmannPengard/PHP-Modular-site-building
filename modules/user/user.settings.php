@@ -1,3 +1,5 @@
+<!-- User module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
 <?php
 // Autorización se sesión
 require("user.authsession.php");

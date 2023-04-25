@@ -1,3 +1,5 @@
+<!-- Nav module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
 <nav class="navbar fixed-top navbar-expand-md bg-body-tertiary">
     <div class="container-fluid">
 

@@ -1,3 +1,5 @@
+<!-- User module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
 <?php
 // Importamos los módulos necesarios
 require_once("../../config/app.php");

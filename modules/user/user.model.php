@@ -214,4 +214,26 @@ class User
         // Devolvemos el email de usuario
         return $language;
     }
+
+    // Obtiene el idioma almacenado en los settings de un usuario
+    public function getProfilePicture($id_user)
+    {
+        // Inicializamos la variable a devolver
+        $url = "";
+
+        // Prepare
+        $stm = $this->dbconn->prepare("SELECT profile_picture FROM " . DATABASE_TABLES_PREFIX . "users WHERE id = :id_user");
+
+        $stm->bindValue(":id_user", $id_user);
+        $stm->bindColumn("profile_picture", $url);
+
+        // Execute
+        $stm->execute();
+
+        // Obtenemos el resultado
+        $stm->fetch();
+
+        // Devolvemos el email de usuario
+        return $url;
+    }
 }

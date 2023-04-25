@@ -1,4 +1,6 @@
-<section class="container">
+<!-- Contact module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
+<section class="container" id="section-contact">
 
     <!--Section heading-->
     <h2 class="h1 font-weight-bold text-center my-4">Contact us</h2>
@@ -58,8 +60,6 @@
             </div>
         </div>
 
-        <div class="status"></div>
-
     </form>
 
     <!--Form-->
@@ -116,9 +116,6 @@
                 document.getElementById('error').innerText = "You must fill all the fields";
                 document.getElementById('contact-name').focus();
             }
-
-        } else {
-            window.location = "modules/contact/bot-detected.php";
         }
     }
 
@@ -135,6 +132,10 @@
 </script>
 
 <style>
+    #section-contact {
+        margin-bottom: 20px;
+    }
+
     .form-error {
         color: red;
     }

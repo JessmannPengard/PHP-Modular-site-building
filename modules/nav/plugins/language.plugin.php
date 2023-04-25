@@ -1,21 +1,23 @@
+<!-- Language plugin by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
 <!-- Language dropdown: start -->
 <?php
 $languages = [];
 foreach (glob("modules/translations/lang/*.json") as $file) {
-    // Obtener el nombre del archivo (sin la extensión)
+    // Get file name (without extension)
     $name = basename($file, ".json");
-    // Obtener el nombre del archivo de imagen correspondiente
+    // Get file name of the picture
     $image = "modules/translations/lang/" . $name . ".png";
-    // Agregar el idioma a la lista
+    // Add language to list
     $languages[] = [
         "id" => $name,
+        // First character to uppercase
         "name" => ucfirst($name),
-        // Convertir la primera letra a mayúscula
         "image" => $image,
     ];
 }
 ?>
-<!-- Generar el HTML -->
+<!-- Generate HTML -->
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="" alt="" class="menu-icon" id="language-selected-image">
@@ -40,19 +42,18 @@ foreach (glob("modules/translations/lang/*.json") as $file) {
 <!-- Language dropdown: end -->
 
 <script>
-
-    // Selección de idioma
+    // Language selection
     window.onload = function () {
         const languageItems = document.querySelectorAll(".language-item");
 
         languageItems.forEach(item => {
             item.addEventListener("click", function () {
-                // Obtener la imagen y el icono del item seleccionado
+                // Get picture and icon from selected item
                 const imageUrl = this.querySelector("img").src;
                 const selectedIcon = document.querySelector("#language-selected-icon");
-                // Cambiar la imagen del botón del dropdown-toggle
+                // Change selected picture
                 document.querySelector("#language-selected-image").src = imageUrl;
-                // Mover el icono de seleccionado al nuevo item seleccionado
+                // Move selection icon to the selected item
                 if (selectedIcon) {
                     selectedIcon.parentNode.removeChild(selectedIcon);
                 }
@@ -62,14 +63,14 @@ foreach (glob("modules/translations/lang/*.json") as $file) {
                 const dropdownItem = this.querySelector(".dropdown-item");
                 insertAfter(icon, dropdownItem.lastElementChild);
 
-                // Obtener el data-language-id del item seleccionado
+                // Get data-language-id attribute from selected item
                 const languageId = this.getAttribute("data-language-id");
-                // Traducir
+                // TRanslate
                 loadTranslations(languageId);
-                // Guardar en local el idioma seleccionado
+                // Store selected item in localStorage
                 localStorage.setItem("selectedLanguageId", languageId);
             });
-            // Seleccionar el elemento correspondiente al valor guardado en local
+            // Select element that match localStorage value
             if (selectedLanguageId && item.getAttribute("data-language-id") === selectedLanguageId) {
                 item.click();
             }
@@ -79,5 +80,4 @@ foreach (glob("modules/translations/lang/*.json") as $file) {
             existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
         }
     }
-
 </script>

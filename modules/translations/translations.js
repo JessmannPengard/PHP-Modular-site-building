@@ -1,3 +1,5 @@
+// Translations module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard)
+
 // Get selected language from session, localStorage or default ("en")
 const selectedLanguageId = sessionLanguage || localStorage.getItem("selectedLanguageId") || "en";
 

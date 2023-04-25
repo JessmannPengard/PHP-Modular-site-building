@@ -1,6 +1,10 @@
+<!-- Index sample by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
 <?php
+// Config file
 include("config/app.php");
 
+// Init session
 session_start();
 ?>
 
@@ -11,7 +15,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Título -->
+    <!-- Title -->
     <title>
         <?= BRAND ?>
     </title>
@@ -20,7 +24,7 @@ session_start();
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
 
-    <!-- Variables necesarias para usar idiomas con usuarios -->
+    <!-- Variables for languages with users -->
     <?php
     if (isset($_SESSION['language'])) {
         $selectedLanguageId = $_SESSION['language'];
@@ -29,8 +33,8 @@ session_start();
     }
     echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
     ?>
-    
-    <!-- Script de idiomas -->
+
+    <!-- Language script -->
     <script src="modules/translations/translations.js"></script>
 
     <!-- Favicon -->
@@ -39,19 +43,19 @@ session_start();
 
 <body>
 
-    <!-- Barra de menú -->
+    <!-- Menu nav -->
     <?php include("modules/nav/nav.php"); ?>
 
-    <!-- Carrusel -->
+    <!-- Carousel -->
     <?php include("modules/carousel/carousel.php"); ?>
 
-    <!-- Formulario de contacto -->
+    <!-- Contact Form -->
     <?php include("modules/contact/contact.php"); ?>
 
-    <!-- Mapa -->
+    <!-- Map -->
     <?php include("modules/map/map.php"); ?>
 
-    <!-- Pie de página -->
+    <!-- Footer -->
     <?php include("modules/footer/footer.php"); ?>
 
 </body>

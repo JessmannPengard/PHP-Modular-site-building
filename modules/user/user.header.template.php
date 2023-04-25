@@ -1,3 +1,5 @@
+<!-- User module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +20,7 @@
     }
     echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
     ?>
-    
+
     <!-- Script de idiomas -->
     <script src="../../modules/translations/translations.js"></script>
 
