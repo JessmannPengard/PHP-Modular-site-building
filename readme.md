@@ -142,53 +142,52 @@ session_start();    // Iniciamos sesión
 
 
 # Módulos
-CAROUSEL
-Descripción
-Uso
-Dependencias
+## CAROUSEL
+### Descripción
+### Uso
+### Dependencias
 
-CONTACT
-Descripción
-Uso
-Dependencias
+## CONTACT
+### Descripción
+### Uso
+### Dependencias
 
-DATABASE
-Descripción
-Uso
-Dependencias
+## DATABASE
+### Descripción
+### Uso
+### Dependencias
 
-FOOTER
-Descripción
-Uso
-Dependencias
+## FOOTER
+### Descripción
+### Uso
+### Dependencias
 
-HERO
-Descripción
-Uso
-Dependencias
+## HERO
+### Descripción
+### Uso
+### Dependencias
 
-MAP
-Descripción
-Uso
-Dependencias
+## MAP
+### Descripción
+### Uso
+### Dependencias
 
-NAV
-Descripción
-Uso
-Dependencias
+## NAV
+### Descripción
+### Uso
+### Dependencias
 
-PHPMAILER
-https://github.com/PHPMailer/PHPMailer
-Descripción
-Uso
-Dependencias
+## PHPMAILER (https://github.com/PHPMailer/PHPMailer)
+### Descripción
+### Uso
+### Dependencias
 
-TRANSLATIONS
-Descripción
-Uso
-Dependencias
+## TRANSLATIONS
+### Descripción
+### Uso
+### Dependencias
 
-USER
-Descripción
-Uso
-Dependencias
+## USER
+### Descripción
+### Uso
+### Dependencias
