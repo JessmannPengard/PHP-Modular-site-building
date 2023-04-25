@@ -34,7 +34,7 @@ sitio/
     |____.gitignore
     |____favicon.ico
     |____index.php
-    |____readme
+    |____readme.md
 
 ·/config
     En esta carpeta guardaremos los archivos de configuración generales de nuestra aplicación o sitio web.
@@ -86,7 +86,7 @@ sitio/
 ·index.php
     Página de ejemplo utilizando varios de los módulos de nuestra aplicación o sitio web, podemos probar y testear desde aquí los diferentes módulos y su funcionalidad.
 
-·readme
+·readme.md
     Archivo con toda la documentación y descripción del proyecto.
 
 
