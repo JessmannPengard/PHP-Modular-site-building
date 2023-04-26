@@ -457,7 +457,7 @@ Cierra sesión enlazando a *modules/user/user.logout.php*, una vez cerrada la se
 
  - *Autorización de sesión*
 
-    ```php
+```php
 <? php require("user.authsession.php"); ?>
 ```
 
