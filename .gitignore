@@ -1,3 +1,5 @@
 modules/phpmailer/src/mail.config.php
 modules/database/database.config.php
+modules/gallery/instagram.config.php
+modules/gallery/instagram-cache*
 upload/profiles/*

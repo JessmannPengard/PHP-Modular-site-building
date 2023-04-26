@@ -1,0 +1,22 @@
+<?php
+
+//https://github.com/orsifrancesco/instagram-without-api
+
+//Login to Instagram
+//Go to your https://instagram/yourUsername
+//Open your Browser Console (on Chrome just pressing F12)
+//Select the "Network" tab
+//Search and click on "timeline/" file; if it is empty just refresh the page
+//Select "Headers" bar
+//Be sure the file is Request Method "POST" (if it is "OPTIONS" search the other "timeline/" file in the list)
+//Scroll down and select "Request Headers" tab
+//Copy all the code after the word "cookie: " and paste it on $cookie variable
+//Copy all the code after the word "user-agent: " and paste it on $userAgent variable
+//Copy all the code after the word "x-ig-app-id: " and paste it on $xIgAppId variable
+//- don't share your cookie code with anyone!!! it is the same of your credentials
+
+define('INSTAGRAM_COOKIE','kdsflsdhlf.....');
+define('INSTAGRAM_USES_AGENT','Mozilla.....');
+define('INSTAGRAM_XIGAPPID','2131.....');
+
+?>
