@@ -78,18 +78,16 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="emailConfirmationModalLabel" data-i18n="email confirmation">Confirmación
-                        de envío de email</h5>
+                    <h5 class="modal-title" id="emailConfirmationModalLabel" data-i18n="email confirmation">Sent mail confirmation</h5>
                     <!-- Reload page on close to avoid resending -->
                     <button type="button" onclick="location=location;" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="jumbotron">
-                        <h1 class="display-4" data-i18n="email success">¡Email enviado con éxito!</h1>
+                        <h1 class="display-4" data-i18n="email success">Your email was successfully sent!</h1>
                         <hr class="my-4">
-                        <p class="lead" data-i18n="email thanks">Gracias por contactarnos. Haremos todo lo posible por
-                            responder lo antes posible.</p>
+                        <p class="lead" data-i18n="email thanks">Thank you for contacting us. We will come back to you as soon as possible.</p>
                     </div>
                 </div>
             </div>

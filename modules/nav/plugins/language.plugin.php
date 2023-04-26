@@ -65,7 +65,7 @@ foreach (glob("modules/translations/lang/*.json") as $file) {
 
                 // Get data-language-id attribute from selected item
                 const languageId = this.getAttribute("data-language-id");
-                // TRanslate
+                // Translate
                 loadTranslations(languageId);
                 // Store selected item in localStorage
                 localStorage.setItem("selectedLanguageId", languageId);

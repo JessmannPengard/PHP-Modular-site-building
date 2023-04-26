@@ -1,15 +1,12 @@
 <?php
-// Script para cerrar sesión
+// Script for closing session
 
-// Iniciamos sesión
+// Init session
 session_start();
-// Al hacer unset, se eliminan las variables de sesión y su valor, 
-// por lo que cualquier intento de acceder a estas variables 
-// después de cerrar sesión no será posible.
+// Unset session
 session_unset();
-// Destruimos la sesión
+// Destroy session
 session_destroy();
 
-// Redirigimos a la página de login
+// Redirect to Login
 header("Location: user.login.php");
-?>

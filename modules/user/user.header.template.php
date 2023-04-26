@@ -1,5 +1,6 @@
 <!-- User module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
 
+<!-- Header template: start -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
 
-    <!-- Variables necesarias para usar idiomas con usuarios -->
+    <!-- Language variables -->
     <?php
     if (isset($_SESSION['language'])) {
         $selectedLanguageId = $_SESSION['language'];
@@ -21,23 +22,24 @@
     echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
     ?>
 
-    <!-- Script de idiomas -->
+    <!-- Language script -->
     <script src="../../modules/translations/translations.js"></script>
 
-    <!--Estilos-->
+    <!-- Styles -->
     <link rel="stylesheet" href="user.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../../img/favicon.ico">
 
-    <!-- Título de la página -->
+    <!-- Title -->
     <title>
         <?= BRAND ?>
     </title>
 </head>
 
 <body>
-    <!-- Encabezado de página -->
-    <?php
-    require_once("../nav/nav.lite.php");
-    ?>
+    <!-- Header: start -->
+    <?php require("../nav/nav.lite.php"); ?>
+    <!-- Header: end -->
+
+<!-- Header template: end -->

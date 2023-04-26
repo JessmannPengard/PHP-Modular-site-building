@@ -1,7 +1,7 @@
 <!-- User module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
 
 <?php
-// Importamos los módulos necesarios
+// Includes
 require("../../config/app.php");
 require("../database/database.php");
 require("user.model.php");
@@ -14,35 +14,35 @@ require("../phpmailer/src/mail.config.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-// Inicializamos la variable que usaremos para mostrar mensajes en caso de algún error
+// Error messages
 $msgMailSent = "hidden";
 $msgMailingError = "hidden";
 $msgMailNotReg = "hidden";
 $msgMailerError = "hidden";
 
-// Verificar si se ha enviado el correo electrónico
+// Check if email was sent
 if (isset($_POST['email'])) {
-    // Obtener el correo electrónico del usuario
+    // Get posted user email
     $email = $_POST['email'];
 
-    // Comprobamos que exista el usuario con ese email
+    // Check for registered email
     $db = new Database();
     $user = new User($db->getConnection());
 
     if ($user->existEmail($email)) {
-
-        // Generamos el token de acceso aleatorio
+        // If so...
+        // Generate recovery token
         $token = bin2hex(random_bytes((20)));
-        // Calculamos la fecha de caducidad del token (1 hora desde la creación)
+        // Calculate expiry date (1 hour from creation)
         $expiry_date = date('Y-m-d H:i:s', strtotime('+1 hour'));
-        // Guardamos el token en la base de datos
+        // Store token in DB
         $result = $user->setToken($email, $token, $expiry_date);
 
-        // Crear un objeto PHPMailer
+        // new PHPMailer
         $mail = new PHPMailer();
 
         try {
-            // Configurar los ajustes del servidor de correo
+            // Configure mail server settings
             $mail->SMTPDebug = SMTP::DEBUG_OFF; //Enable verbose debug output
             $mail->isHTML(true);
             $mail->CharSet = 'UTF-8';
@@ -54,7 +54,7 @@ if (isset($_POST['email'])) {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = MAIL_PORT;
 
-            // Configurar los detalles del correo electrónico
+            // Configure email details
             $mail->setFrom(MAIL_MYEMAIL, BRAND);
             $mail->addAddress($email);
             $mail->Subject = 'Recuperación de contraseña';
@@ -91,7 +91,7 @@ if (isset($_POST['email'])) {
                 </html>
                 ";
 
-            // Enviar el correo electrónico y comprobar si se ha enviado correctamente
+            // Send email and check for success
             if ($mail->send()) {
                 $msgMailSent = '';
             } else {
@@ -107,21 +107,28 @@ if (isset($_POST['email'])) {
 
 ?>
 
-<?php
-require("user.header.template.php");
-?>
+<!-- Header template: start -->
+<?php require("user.header.template.php"); ?>
+<!-- Header template: end -->
 
-<!-- Contenido de la página -->
+<!-- Content: start -->
 <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
-    <!-- Título del formulario -->
+
+    <!-- Title: start -->
     <h2 data-i18n="password recovery">Recuperación de contraseña</h2>
-    <!-- Formulario de recuperación de contraseña -->
+    <!-- Title: end -->
+
+    <!-- Password recovery form: start -->
     <form action="" method="post" class="form">
+
+        <!-- Fields: start -->
         <div class="form-group">
             <label for="email" class="form-label" data-i18n="email">Email</label>
             <input type="text" class="form-control" name="email" maxlength=50 required autofocus>
         </div>
-        <!-- Mostramos el mensaje si lo hubiera -->
+        <!-- Fields: end -->
+
+        <!-- Error message container: start -->
         <div class="form-group">
             <p class="form-error" data-i18n="recovery mail sent" <?= $msgMailSent ?>>Se ha enviado el email de
                 recuperación de contraseña.</p>
@@ -131,19 +138,30 @@ require("user.header.template.php");
             <p class="form-error" data-i18n="mailer error" <?= $msgMailerError ?>>El mensaje no se ha podido enviar.
                 ¡Error de Mailer!</p>
         </div>
+        <!-- Error message container: end -->
         <br>
+
+        <!-- Submit button: start -->
         <div class="form-group form-center-container">
             <button type="submit" class="btn btn-primary" data-i18n="send email">Enviar email</button>
         </div>
+        <!-- Submit button: end -->
         <hr>
-        <!-- Enlace a la página de inicio de sesión -->
+
+        <!-- Init session link: start -->
         <div class="form-group form-center-container">
             <small data-i18n="or">o</small><small><a href="user.login.php" class="user-link" data-i18n="sign in">Inicia
                     sesión</a></small>
         </div>
-    </form>
-</div>
+        <!-- Init session link: end -->
 
-<?php
-require("user.footer.template.php");
-?>
+
+    </form>
+    <!-- Password recovery form: end -->
+
+</div>
+<!-- Content: end -->
+
+<!-- Footer template: start -->
+<?php require("user.footer.template.php"); ?>
+<!-- Footer template: end -->

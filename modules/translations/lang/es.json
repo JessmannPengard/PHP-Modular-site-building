@@ -51,5 +51,16 @@
     "fill all fields": "Debes rellenar todos los campos",
     "email confirmation": "Confirmación de envío de email",
     "email success": "¡Email enviado con éxito!",
-    "email thanks": "Gracias por contactarnos. Haremos todo lo posible por responder lo antes posible."
+    "email thanks": "Gracias por contactarnos. Haremos todo lo posible por responder lo antes posible.",
+    "carouselH1": "Cabecera de ejemplo.",
+    "carouselB1": "Un contenido de texto para la primera imagen del carrusel.",
+    "carouselBTN1": "Haz algo 1",
+    "carouselH2": "Otra cabecera de ejemplo.",
+    "carouselB2": "Un contenido de texto para la segunda imagen del carrusel.",
+    "carouselBTN2": "Haz algo 2",
+    "carouselH3": "Una cabecera más.",
+    "carouselB3": "Un contenido de texto para la tercera imagen del carrusel.",
+    "carouselBTN3": "Haz algo 3",
+    "previous": "Anterior",
+    "next": "Siguiente"
 }

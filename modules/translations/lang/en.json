@@ -51,5 +51,16 @@
     "fill all fields": "You must fill all the fields",
     "email confirmation": "Sent mail confirmation",
     "email success": "Your email was successfully sent!",
-    "email thanks": "Thank you for contacting us. We will come back to you as soon as possible."
+    "email thanks": "Thank you for contacting us. We will come back to you as soon as possible.",
+    "carouselH1": "Example headline.",
+    "carouselB1": "Some representative placeholder content for the first slide of the carousel.",
+    "carouselBTN1": "Do something 1",
+    "carouselH2": "Another headline.",
+    "carouselB2": "Some representative placeholder content for the second slide of the carousel.",
+    "carouselBTN2": "Do something 2",
+    "carouselH3": "Another one.",
+    "carouselB3": "Some representative placeholder content for the third slide of the carousel.",
+    "carouselBTN3": "Do something 3",
+    "previous": "Previous",
+    "next": "Next"
 }

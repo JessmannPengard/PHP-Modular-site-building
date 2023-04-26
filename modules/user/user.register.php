@@ -1,54 +1,59 @@
 <!-- User module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
 
 <?php
-// Importamos los módulos necesarios
-require_once("../../config/app.php");
-require_once("../../modules/database/database.php");
-require_once("user.model.php");
+// Includes
+require("../../config/app.php");
+require("../../modules/database/database.php");
+require("user.model.php");
 
-// Inicializamos las variables que usaremos para mostrar mensajes en caso de algún error
+// Init error messagess variables
 $msgEmailExists = "hidden";
 $msgErrorPass = "hidden";
 
-// Si nos están enviando el formulario...
+// if POST...
 if (isset($_POST["email"])) {
-    // Obtenemos los datos para el registro
+    // Get email and password
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Nos conectamos a la base de datos
+    // Connect to DB
     $db = new Database();
     $user = new User($db->getConnection());
 
-    // Y llamamos al método para registrar un nuevo usuario
+    // Call User->register method
     $registro = $user->register($email, $password);
-    // Si el registro es exitoso
+    // Success
     if ($registro["result"]) {
-        // Cerramos la conexión
+        // Close DB connection
         $db->closeConnection();
-        // Redirigimos a la página de login para que el usuario pueda iniciar sesión
+        // Redirect to login
         header("Location: user.login.php");
         exit();
     } else {
-        // El email ya estaba registrado mostraremos el mensaje de error
+        // Email already registered
         $msgEmailExists = "";
     }
-    // Cerramos la conexión
+    // Close DB connection
     $db->closeConnection();
 }
 
 ?>
 
-<?php
-require("user.header.template.php");
-?>
+<!-- Header template: start -->
+<?php require("user.header.template.php"); ?>
+<!-- Header template: end -->
 
-<!-- Contenido de la página -->
+<!-- Content: start -->
 <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
-    <!-- Título del formulario -->
+
+    <!-- Title: start -->
     <h2 data-i18n="create account">Crear cuenta</h2>
-    <!-- Formulario de registro -->
+    <!-- Title: end -->
+
+    <!-- Register form: start -->
     <form action="" method="post" class="form" id="form-register">
+
+        <!-- Fields: start -->
         <div class="form-group">
             <label for="email" class="form-label" data-i18n="email">Email</label>
             <input type="text" name="email" class="form-control" maxlength=50 required autofocus>
@@ -61,7 +66,9 @@ require("user.header.template.php");
             <label for="r-password" class="form-label" data-i18n="repeat password">Repetir contraseña</label>
             <input type="password" name="r-password" id="r-password" class="form-control" maxlength=50 required>
         </div>
-        <!-- Mostramos el mensaje de error, si lo hubiera -->
+        <!-- Fields: end -->
+
+        <!-- Error messsage container: start -->
         <div class="form-group">
             <p class="form-error" data-i18n="email already registered" <?= $msgEmailExists ?>>Este email ya está
                 registrado</p>
@@ -69,34 +76,46 @@ require("user.header.template.php");
                 contraseña no coincide</p>
         </div>
         <br>
+        <!-- Error messsage container: end -->
+
+        <!-- Submit button: start -->
         <div class="form-group form-center-container">
             <button type="submit" class="btn btn-primary" data-i18n="register">Registrarse</button>
         </div>
         <hr>
-        <!-- Enlace a la página de inicio de sesión -->
+        <!-- Submit button: end -->
+
+        <!-- Login link: start -->
         <div class="form-group form-center-container">
             <small data-i18n="already registered">¿Ya tienes una cuenta? </small>
             <small>
                 <a href="user.login.php" class="user-link" data-i18n="log in"> Inicia sesión</a>
             </small>
         </div>
+        <!-- Login link: end -->
+
     </form>
+    <!-- Register form: end -->
+
 </div>
+<!-- Content: end -->
 
-<?php
-require("user.footer.template.php");
-?>
+<!-- Footer template: start -->
+<?php require("user.footer.template.php"); ?>
+<!-- Footer template: end -->
 
+<!-- Script: start -->
 <script>
-    // Comprobamos que el campo Repetir password coincida con el campo Password
+    // Check both password fields equal
     let form = document.getElementById("form-register");
-    form.onsubmit = function (e) {
+    form.onsubmit = function(e) {
         let passw = document.getElementById("password").value;
         let cpassw = document.getElementById("r-password").value;
         if (passw != cpassw) {
             e.preventDefault();
-            // Mostramos el mensaje de error
+            // Error: not equal
             elementError = document.getElementById("password-match").hidden = false;
         }
     }
 </script>
+<!-- Script: end -->

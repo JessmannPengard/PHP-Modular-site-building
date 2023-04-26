@@ -16,6 +16,7 @@
         $profilePicture = $user->getProfilePicture($id_user);
         // If there is a profile picture show it, else show a generic icon
         ?>
+    <!-- Logged user options menu: start -->
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="<?= $profilePicture ? $profilePicture : "img/svg/user.svg" ?>" class="rounded-circle menu-icon"
@@ -30,5 +31,6 @@
             </li>
         </ul>
     </li>
+    <!-- Logged user options menu: end -->
 <?php } ?>
 <!-- Session plugin: end -->

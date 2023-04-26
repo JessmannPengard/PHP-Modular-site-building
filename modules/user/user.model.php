@@ -1,6 +1,6 @@
 <?php
 
-// Clase para gestionar los usuarios en la tabla "usuarios"
+// DB Table -> DATABASE_TABLES_PREFIX + 'users'
 class User
 {
     protected $dbconn;
@@ -11,10 +11,10 @@ class User
         $this->dbconn = $conn;
     }
 
-    // Comprueba que la combinación usuario/contraseña sea correcta
+    // Login method
     public function login($email, $password)
     {
-        // Encriptar contraseña
+        // Password encryption
         $pw = md5($password);
 
         // Prepare
@@ -27,23 +27,23 @@ class User
         // Execute
         $stm->execute();
 
-        // Devolver resultado
+        // Return result
         return $stm->fetch();
     }
 
-    // Registrar nuevo usuario
+    // Register method
     public function register($email, $password)
     {
         $result = array();
 
-        // Comprueba que el usuario no exista ya en la base de datos
+        // Check that email is not yet registered
         if ($this->existEmail($email)) {
-            // Si ya existe:
+            // If registered:
             $result["result"] = false;
             return $result;
         }
 
-        // Encriptar password
+        // Encrypt password
         $pw = md5($password);
 
         // Prepare
@@ -56,21 +56,21 @@ class User
         // Execute
         $stm->execute();
 
-        // Registrado con éxito
+        // Success
         $result["result"] = true;
         return $result;
     }
 
-    // Modificar password de usuario
+    // User password modify
     public function setPassword($email, $password)
     {
-        // Comprueba que el usuario exista
+        // Check for registered email
         if (!$this->existEmail($email)) {
             $result["result"] = false;
             return $result;
         }
 
-        // Encriptar password
+        // Encrypt password
         $pw = md5($password);
 
         // Prepare
@@ -82,12 +82,12 @@ class User
         // Execute
         $stm->execute();
 
-        // Registrado con éxito
+        // Success
         $result["result"] = true;
         return $result;
     }
 
-    // Guardar token de recuperación de contraseña
+    // Store recovery password token
     public function setToken($email, $token, $date_expire)
     {
         // Prepare
@@ -101,12 +101,12 @@ class User
         // Execute
         $stm->execute();
 
-        // Registrado con éxito
+        // Success
         $result["result"] = true;
         return $result;
     }
 
-    // Comprobar la validez del token de recuperación de contraseña
+    // Check valid recovery token
     public function checkToken($email, $token)
     {
         // Prepare
@@ -118,11 +118,11 @@ class User
         // Execute
         $stm->execute();
 
-        // Devolvemos el resultado
+        // Return result
         return $stm->fetch();
     }
 
-    // Borrar tokens de recuperación de contraseña
+    // Delete recovery tokens from user
     public function deleteToken($email)
     {
         // Prepare
@@ -135,7 +135,7 @@ class User
     }
 
 
-    // Comprueba si un usuario ya existe en la base de datos
+    // Check for registered email
     public function existEmail($email)
     {
         // Prepare
@@ -145,14 +145,14 @@ class User
         // Execute
         $stm->execute();
 
-        // Devolvemos el resultado
+        // Return result
         return $stm->fetch();
     }
 
-    // Obtiene el email de usuario a partir de su id
+    // Get email from id
     public function getEmail($id_user)
     {
-        // Inicializamos la variable a devolver
+        // Init variable
         $email = "";
 
         // Prepare
@@ -164,17 +164,17 @@ class User
         // Execute
         $stm->execute();
 
-        // Obtenemos el resultado
+        // Get result
         $stm->fetch();
 
-        // Devolvemos el email de usuario
+        // Return email
         return $email;
     }
 
-    // Obtiene el id de un usuario a partir de su email
+    // Get id from email
     public function getId($email)
     {
-        // Inicializamos la variable a devolver
+        // Init variable
         $id = 0;
 
         // Prepare
@@ -186,17 +186,17 @@ class User
         // Execute
         $stm->execute();
 
-        // Obtenemos el resultado
+        // Get result
         $stm->fetch();
 
-        // Devolvemos el id
+        // Return id
         return $id;
     }
 
-    // Obtiene el idioma almacenado en los settings de un usuario
+    // Get language from user
     public function getLanguage($id_user)
     {
-        // Inicializamos la variable a devolver
+        // Init variable
         $language = "";
 
         // Prepare
@@ -208,17 +208,17 @@ class User
         // Execute
         $stm->execute();
 
-        // Obtenemos el resultado
+        // Get result
         $stm->fetch();
 
-        // Devolvemos el email de usuario
+        // Return language
         return $language;
     }
 
-    // Obtiene el idioma almacenado en los settings de un usuario
+    // Get profile picture from user
     public function getProfilePicture($id_user)
     {
-        // Inicializamos la variable a devolver
+        // Init variable
         $url = "";
 
         // Prepare
@@ -230,10 +230,10 @@ class User
         // Execute
         $stm->execute();
 
-        // Obtenemos el resultado
+        // Get result
         $stm->fetch();
 
-        // Devolvemos el email de usuario
+        // Return profile picture url
         return $url;
     }
 }
