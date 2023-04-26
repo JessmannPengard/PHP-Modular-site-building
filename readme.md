@@ -8,37 +8,37 @@ Todos los módulos tienen un diseño **responsive**, de modo que nos aseguramos 
 # Carpetas y archivos
 ```
 site/
-		config/
-				app.php
-		img/
-				svg/
-						svg1.svg
-						svg2.svg
-						...
-				logo.png
-				favicon.ico
-				...
-		modules/
-				module1/
-						module1.php
-						...
-				module2/
-						module2.php
-						...
-				...
-		upload/
-				profile/
-						...
-				...
-		vendor/
-				bootstrap/
-						css/
-								...
-						js/
-								...
-		.gitignore
-		index.php
-		readme.md
+├──config/
+│		├── app.php
+├──img/
+│		├── svg/
+│		│		├── svg1.svg
+│		│		├── svg2.svg
+│		│		├──...
+│		├── logo.png
+│		├── favicon.ico
+│		├──	...
+├──modules/
+│		├── module1/
+│		│		├── module1.php
+│		│		├── ...
+│		├── module2/
+│		│		├── module2.php
+│		│		├── ...
+│		├── ...
+├──upload/
+│		├── profile/
+│		│		├──...
+│		├──...
+├──vendor/
+│		├── bootstrap/
+│				├── css/
+│				│	 ├── ...
+│				├── js/
+│						├── ...
+├──.gitignore
+├──index.php
+└──readme.md
 ```
 
 ## config/
