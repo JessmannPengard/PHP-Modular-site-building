@@ -57,9 +57,7 @@ En esta carpeta guardaremos los archivos de configuración generales de nuestra 
 Carpeta en la que guardamos las imágenes generales de la aplicación o sitio web:
 
 **logo.png**: el logotipo de nuestra aplicación.
-
-**favicon.ico**: favicon de nuestra aplicación o sitio web.
-
+**favicon.ico**: *favicon* de nuestra aplicación o sitio web.
 **/svg**: carpeta donde almacenamos todas las imágenes de tipo *.svg* (esencialmente los iconos de nuestra aplicación).
 
 ## /modules
@@ -116,7 +114,7 @@ Archivo con toda la documentación y descripción del proyecto.
 
 # Ejemplo de una página web simple con el sistema de módulos
 
-Esta página se compone de una barra de navegación, un carrusel, un formulario de contacto, un mapa de google y un pie de página, además de un sistema de selección de idioma y un acceso y registro de usuarios.
+Esta página se compone de una barra de navegación, un carrusel, un formulario de contacto, un mapa de *google* y un pie de página, además de un sistema de selección de idioma y un acceso y registro de usuarios.
 
     <?php
     include("config/app.php"); //Incluimos el archivo de configuración
@@ -138,17 +136,8 @@ Esta página se compone de una barra de navegación, un carrusel, un formulario 
 	    <!-- Bootstrap -->
 	    <script  src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 	    <link  rel="stylesheet"  href="vendor/bootstrap/css/bootstrap.css">
-	    <!-- Asignar el idioma de la sesión a una variable PHP (para usar en el nav) y una variable JavaScript para usar en translations.js -->
-        <?php
-        if (isset($_SESSION['language'])) {
-            $selectedLanguageId = $_SESSION['language'];
-        } else {
-            $selectedLanguageId = null;
-        }
-        echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
-        ?>
-        <!-- Script de idiomas -->
-        <script src="modules/translations/translations.js"></script>
+	    <!-- Script de idiomas -->
+	    <script  src="modules/translations/translations.js"></script>
 	    <!-- Favicon -->
 	    <link  rel="icon"  type="image/png"  href="img/favicon.ico">
     </head>
@@ -190,33 +179,94 @@ Las imágenes se guardan dentro de la carpeta *carousel/img/*, en el propio mód
 
 ## Contact
 ### Descripción
+Permite el envío de correo electrónico al administrador de la página.
 ### Uso
+Simplemente incluir el módulo en el lugar deseado de la página:
+
+    <?php  include("modules/contact/contact.php"); ?>
+
 ### Dependencias
+Este módulo requiere la inclusión en el proyecto del módulo **phpmailer**.
 
 ## Database
 ### Descripción
+Este módulo es muy simple. Lo utilizamos para conectarnos a una base de datos. Lo incluiremos siempre que necesitemos una conexión con alguna base de datos.
 ### Uso
+En el archivo *database.config.php* debemos definir los datos de configuración de la conexión a nuestra base de datos. Se incluye el archivo *database.config.php.sample* como ejemplo.
+Instanciamos la clase Database y esta dispone de dos métodos: *getConnection()* y *closeConnection()*:
+
+    require("modules/database/database.php");
+    require("modules/user/user.model.php");
+    
+        $db = new  Database();
+        $user = new  User($db->getConnection());
+
 ### Dependencias
+Ninguna.
 
 ## Footer
 ### Descripción
+Otro módulo muy sencillo. En este caso (al igual que con el nav) disponemos de dos versiones, una completa y una *lite*. El uso de uno u otro dependerá de las características del sitio que estemos construyendo. Podemos usar los dos, el completo para la página principal y el *lite* para páginas segundarias o auxiliares.
+### Uso
+
+    <?php  include("modules/footer/footer.php"); ?>
+
+    <?php  include("modules/footer/footer.lite.php"); ?>
+
+### Dependencias
+Ninguna.
+
+## Gallery
+### Descripción
+*En construcción.*
 ### Uso
 ### Dependencias
 
 ## Hero
 ### Descripción
+*En construcción.*
 ### Uso
 ### Dependencias
 
 ## Map
 ### Descripción
+Un mapa de *google* sin más. He añadido un overlay que permite oscurecer o tintar el mapa según la apariencia del sitio que estés construyendo.
 ### Uso
+Incrustar y listo. Asegúrate de cambiar la ubicación del mapa según la ubicación que desees mostrar.
+
+    <?php  include("modules/map/map.php"); ?>
+
 ### Dependencias
+Ninguna.
 
 ## Nav
 ### Descripción
+La barra de navegación cuenta con dos versiones al igual que el *footer*, completa y *lite*.
+La versión *lite* simplemente muestra el *BRAND*, ya sea imagen, texto o ambas.
+La versión completa además del *BRAND* incluye un menú de navegación tradicional *responsive*. Además dispone de dos *plugins* que podemos utilizar dependiendo del sitio que estemos construyendo:
+#### language.plugin.php
+Para sitios con distintos idiomas, es un selector de idioma que guarda el idioma seleccionado en localStorage.
+#### session.plugin.php
+Para sitios que permiten registro e inicio de sesión de usuarios. Muestra las diferentes opciones en función de si se ha iniciado sesión o no.
+
 ### Uso
+Incluir la versión deseada:
+
+    <?php  include("modules/nav/nav.php"); ?>
+    
+    <?php  include("modules/nav/nav.lite.php"); ?>
+
+La versión completa incluye los *plugins* de sesión e idioma:
+
+    <?php
+    require("plugins/session.plugin.php");
+    require("plugins/language.plugin.php");
+    ?>
+Si no se van a utilizar, pueden eliminarse o comentarse.
+
 ### Dependencias
+El *plugin* de sesión requiere de los módulos *user* y *database*.
+El *plugin* de idioma requiere el módulo *translations*.
 
 ## PHPMailer
 ### Descripción
@@ -237,21 +287,31 @@ Consiste en un script que traduce los diferentes elementos en función del idiom
    formato:
   
        {
-       "home": "Home",
-       "about": "About",
-       "contact": "Contact",
-       "login": "Login"
+       "home": "Inicio",
+       "about": "Acerca de",
+       "contact": "Contacto",
+       "login": "Iniciar sesión"
        }
-	Este archivo se llamaría, por ejemplo *en.json*.
+	Este archivo se llamaría, por ejemplo *es.json*.
  - Además, si vas a usar el *plugin* del módulo *nav* para seleccionar
    el idioma, debes incluir la imagen de la bandera correspondiente al
-   idioma que en este caso sería *en.png*. Y así para el resto de
-   idiomas: *es.json*, *es.png*, etc.
+   idioma que en este caso sería *es.png*. Y así para el resto de
+   idiomas: *en.json*, *en.png*, etc.
    
- - Cada texto que desees traducir    debe incluir el atributo
-   *data-i18n* con la *key* correspondiente del    archivo de idioma *json*:
+ - Cada texto que desees traducir debe incluir el atributo
+   *data-i18n* con la *key* correspondiente del archivo de idioma *json*:
       
           <label data-i18n="home">Home</label>
+ - En el caso de que generes el texto de manera dinámica (por ejemplo
+   para mostrar mensajes de error) mediante javascript, puedes utilizar
+   la función *translate(key)*:
+   
+       translate("mailer error");
+   
+   Debes tener cargado el módulo *translations* para que funcione, para
+   evitar errores podrías hacer la comprobación de este modo:
+   
+       let texto = translations ? translate("mailer error") : "Message could not be sent. Mailer Error";
 
 Dependiendo del sitio que estés construyendo, el manejo de idiomas se puede utilizar de dos formas diferentes:
 #### Sitios SIN usuarios registrados
@@ -288,3 +348,4 @@ Este módulo no necesita de ningún otro para funcionar, no obstante se puede co
 ### Descripción
 ### Uso
 ### Dependencias
+
