@@ -346,6 +346,7 @@ Este módulo no necesita de ningún otro para funcionar, no obstante se puede co
 
 ## User
 ### Descripción
+*Preparando documentación.*
 ### Uso
 ### Dependencias
 
