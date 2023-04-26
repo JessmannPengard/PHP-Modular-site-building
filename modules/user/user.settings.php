@@ -11,7 +11,6 @@ require_once("user.model.php");
 
 // Init error msg variable
 $msg = "empty";
-
 ?>
 
 <!-- Header: start -->
