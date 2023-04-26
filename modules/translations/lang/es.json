@@ -48,5 +48,8 @@
     "your message": "Tu consulta",
     "send": "Enviar",
     "enter valid email": "Por favor, introduce un email válido",
-    "fill all fields": "Debes rellenar todos los campos"
+    "fill all fields": "Debes rellenar todos los campos",
+    "email confirmation": "Confirmación de envío de email",
+    "email success": "¡Email enviado con éxito!",
+    "email thanks": "Gracias por contactarnos. Haremos todo lo posible por responder lo antes posible."
 }

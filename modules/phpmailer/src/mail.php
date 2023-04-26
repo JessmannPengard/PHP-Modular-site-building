@@ -42,7 +42,7 @@ try {
     $response->msg = "Message has been sent";
 } catch (Exception $e) {
     $response->succeed = false;
-    $response->msg = "Message could not be sent. Mailer Error"; //{$mail->ErrorInfo}";
+    $response->msg = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 
 // Convertir el objeto PHP a JSON

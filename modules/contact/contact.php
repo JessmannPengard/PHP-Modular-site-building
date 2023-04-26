@@ -8,8 +8,8 @@
     <!-- Contact heading: end -->
 
     <!-- Contact description: start -->
-    <p class="text-center mx-auto mb-5" data-i18n="contact message">Do you have any questions? Please do not hesitate to contact us
-        directly. Our team will come back to you within a matter of hours to help you.</p>
+    <p class="text-center mx-auto mb-5" data-i18n="contact message">Do you have any questions? Please do not hesitate to
+        contact us directly. Our team will come back to you within a matter of hours to help you.</p>
     <!-- Contact description: end -->
 
     <!-- Form: start -->
@@ -38,7 +38,8 @@
         <div class="row">
             <div class="col-md-12">
                 <label for="contact-message" class="form-label" data-i18n="your message">Your message</label>
-                <textarea type="text" id="contact-message" name="contact-message" rows="5" class="form-control md-textarea" required></textarea>
+                <textarea type="text" id="contact-message" name="contact-message" rows="5"
+                    class="form-control md-textarea" required></textarea>
             </div>
         </div>
         <br>
@@ -62,13 +63,40 @@
         <!-- Send button: start -->
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="button" id="contact-form-submit-button" class="btn btn-primary" data-i18n="send">Send</button>
+                <button type="button" id="contact-form-submit-button" class="btn btn-primary"
+                    data-i18n="send">Send</button>
             </div>
         </div>
         <!-- Send button: end -->
 
     </form>
     <!-- Form: end -->
+
+    <!-- Sent email modal confirmation: start -->
+    <div class="modal fade" id="emailConfirmationModal" tabindex="-1" aria-labelledby="emailConfirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emailConfirmationModalLabel" data-i18n="email confirmation">Confirmación
+                        de envío de email</h5>
+                    <!-- Reload page on close to avoid resending -->
+                    <button type="button" onclick="location=location;" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="jumbotron">
+                        <h1 class="display-4" data-i18n="email success">¡Email enviado con éxito!</h1>
+                        <hr class="my-4">
+                        <p class="lead" data-i18n="email thanks">Gracias por contactarnos. Haremos todo lo posible por
+                            responder lo antes posible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sent email modal confirmation: end -->
+
 
 </section>
 <!-- Section contact: end -->
@@ -98,23 +126,26 @@
 
                     // Send mail
                     fetch('modules/phpmailer/src/mail.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            },
-                            body: new URLSearchParams({
-                                name: name,
-                                email: email,
-                                subject: subject,
-                                message: message
-                            })
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams({
+                            name: name,
+                            email: email,
+                            subject: subject,
+                            message: message
                         })
+                    })
                         .then(response => response.json())
                         .then(data => {
                             if (data.succeed) {
-                                // Show modal, then redirect
-                                // TODO *******************
-                                location = location;
+                                // Show confirmation modal (reload page on close)
+                                var emailConfirmationModal = new bootstrap.Modal(document.getElementById('emailConfirmationModal'), {
+                                    backdrop: 'static',
+                                    keyboard: false
+                                });
+                                emailConfirmationModal.show();
                             } else {
                                 // Mailer error
                                 document.getElementById('error').innerText = translations ? translate("mailer error") : "Message could not be sent. Mailer Error";

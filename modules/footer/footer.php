@@ -8,7 +8,7 @@
 
         <!-- Right: start -->
         <div>
-            <a href="" class="me-4 text-reset"><img src="img/svg/facebook.svg" alt="" class="icon-social"></a>
+            <a href="" class="me-4 text-reset"> <img src="img/svg/facebook.svg" alt="" class="icon-social"></a>
             <a href="" class="me-4 text-reset"><img src="img/svg/twitter.svg" alt="" class="icon-social"></a>
             <a href="" class="me-4 text-reset"><img src="img/svg/google.svg" alt="" class="icon-social"></a>
             <a href="" class="me-4 text-reset"><img src="img/svg/instagram.svg" alt="" class="icon-social"></a>

@@ -48,5 +48,8 @@
     "your message": "You message",
     "send": "Send",
     "enter valid email": "Please, enter a valid email",
-    "fill all fields": "You must fill all the fields"
+    "fill all fields": "You must fill all the fields",
+    "email confirmation": "Sent mail confirmation",
+    "email success": "Your email was successfully sent!",
+    "email thanks": "Thank you for contacting us. We will come back to you as soon as possible."
 }
