@@ -47,7 +47,10 @@ session_start();
     <?php include("modules/nav/nav.php"); ?>
 
     <!-- Carousel -->
-    <?php include("modules/carousel/carousel.php"); ?>
+    <?php //include("modules/carousel/carousel.php"); ?>
+
+    <!-- Hero -->
+    <?php include("modules/hero/hero.php"); ?>
 
     <!-- Contact Form -->
     <?php include("modules/contact/contact.php"); ?>
