@@ -12,7 +12,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 g-3">
             <div class="col">
                 <div class="card card-v bg-light">
-                    <img src="img/padel.jpg" class="card-img-top" alt="padel">
+                    <img src="modules/cards/img/padel.jpg" class="card-img-top" alt="padel">
                     <div class="card-body">
                         <small class="card-title" data-i18n="paddle title">Paddle Reservations</small>
                         <p class="text-muted" data-i18n="paddle text">This web allows users to reserve paddle courts.</p>
@@ -25,7 +25,7 @@
             </div>
             <div class="col">
                 <div class="card card-v bg-light">
-                    <img src="img/transylvania.jpg" class="card-img-top" alt="transylvania">
+                    <img src="modules/cards/img/transylvania.jpg" class="card-img-top" alt="transylvania">
                     <div class="card-body">
                         <small class="card-title" data-i18n="heavy title">Heavy metal Pub</small>
                         <p class="text-muted" data-i18n="heavy text">A cool web for a Heavy Metal Pub.</p>
@@ -37,7 +37,7 @@
             </div>
             <div class="col">
                 <div class="card card-v bg-light">
-                    <img src="img/lopaje.jpg" class="card-img-top" alt="lopaje">
+                    <img src="modules/cards/img/lopaje.jpg" class="card-img-top" alt="lopaje">
                     <div class="card-body">
                         <small class="card-title" data-i18n="voting title">Picture voting site</small>
                         <p class="text-muted" data-i18n="voting text">Site to create votations, upload and vote pictures.</p>
@@ -50,7 +50,7 @@
             </div>
             <div class="col">
                 <div class="card card-v bg-light">
-                    <img src="img/padel.jpg" class="card-img-top" alt="padel">
+                    <img src="modules/cards/img/padel.jpg" class="card-img-top" alt="padel">
                     <div class="card-body">
                         <small class="card-title" data-i18n="paddle title">Paddle Reservations</small>
                         <p class="text-muted" data-i18n="paddle text">This web allows users to reserve paddle courts.</p>
@@ -63,7 +63,7 @@
             </div>
             <div class="col">
                 <div class="card card-v bg-light">
-                    <img src="img/transylvania.jpg" class="card-img-top" alt="transylvania">
+                    <img src="modules/cards/img/transylvania.jpg" class="card-img-top" alt="transylvania">
                     <div class="card-body">
                         <small class="card-title" data-i18n="heavy title">Heavy metal Pub</small>
                         <p class="text-muted" data-i18n="heavy text">A cool web for a Heavy Metal Pub.</p>
@@ -75,7 +75,7 @@
             </div>
             <div class="col">
                 <div class="card card-v bg-light">
-                    <img src="img/lopaje.jpg" class="card-img-top" alt="lopaje">
+                    <img src="modules/cards/img/lopaje.jpg" class="card-img-top" alt="lopaje">
                     <div class="card-body">
                         <small class="card-title" data-i18n="voting title">Picture voting site</small>
                         <p class="text-muted" data-i18n="voting text">Site to create votations, upload and vote pictures.</p>

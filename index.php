@@ -45,9 +45,11 @@ session_start();
 
     <?php include("modules/nav/nav.php"); ?>
 
-    <?php //include("modules/carousel/carousel.php"); ?>
-
     <?php include("modules/hero/hero.php"); ?>
+
+    <?php include("modules/carousel/carousel.php"); ?>
+
+    <?php include("modules/gallery/gallery.paginated.php"); ?>
 
     <?php include("modules/about/about.php"); ?>
 
@@ -57,7 +59,7 @@ session_start();
 
     <?php include("modules/contact/contact.php"); ?>
 
-    <?php //include("modules/map/map.php"); ?>
+    <?php include("modules/map/map.php"); ?>
 
     <?php include("modules/footer/footer.php"); ?>
 

@@ -38,7 +38,7 @@
         padding-top: 80px;
         background-size: cover;
         background-position: center;
-        background-image: url('img/hero.png');
+        background-image: url('modules/hero/img/hero.png');
         position: relative;
     }
 
