@@ -51,7 +51,6 @@ En esta carpeta guardaremos los archivos de configuración generales de nuestra 
 
 - BRAND: define el nombre de la aplicación o sitio web.
 
-
 ## img/
 
 Carpeta en la que guardamos las imágenes generales de la aplicación o sitio web:
@@ -163,6 +162,26 @@ session_start(); // Iniciamos sesión
 
 # Módulos
 
+## About
+
+### Descripción
+
+*En desarrollo.*
+
+### Uso
+
+### Dependencias
+
+## Cards
+
+### Descripción
+
+*En desarrollo.*
+
+### Uso
+
+### Dependencias
+
 ## Carousel
 
 ### Descripción
@@ -179,7 +198,6 @@ Simplemente incrustar en tu página y listo:
 Recuerda revisar la ruta en función de la estructura de tu sitio.
 
 Las imágenes se guardan dentro de la carpeta *carousel/img/*, en el propio módulo.
-
 
 ## Contact
 
@@ -245,12 +263,11 @@ Otro módulo muy sencillo. En este caso (al igual que con el nav) disponemos de 
 
 Ninguna.
 
-
 ## Gallery
 
 ### Descripción
 
-*En construcción.*
+*En desarrollo.*
 
 ### Uso
 
@@ -260,7 +277,7 @@ Ninguna.
 
 ### Descripción
 
-*En construcción.*
+*En desarrollo.*
 
 ### Uso
 
@@ -430,7 +447,6 @@ De nuevo, la ruta del script puede variar en función de la estructura de tu sit
 ### Dependencias
 
 Este módulo no necesita de ningún otro para funcionar, no obstante se puede combinar con el plugin *language.plugin.php* del módulo *nav* para tener una funcionalidad completa.
-
 
 ## User
 
