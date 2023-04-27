@@ -5,84 +5,84 @@
     <div class="container-fluid">
 
         <!-- Cards heading: start -->
-        <h2 class="h1 font-weight-bold text-center my-4">Some stuff I've been doing</h2>
+        <h2 class="h1 font-weight-bold text-center my-4" data-i18n="cards-v heading">Some stuff I've been doing</h2>
         <!-- cards heading: end -->
 
         <!-- Cards: start -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 g-3">
             <div class="col">
-                <div class="card card-v">
+                <div class="card card-v bg-light">
                     <img src="img/padel.jpg" class="card-img-top" alt="padel">
                     <div class="card-body">
-                        <small class="card-title">Paddle Reservations</small>
-                        <p class="text-muted">This web allows users to reserve paddle courts.</p>
+                        <small class="card-title" data-i18n="paddle title">Paddle Reservations</small>
+                        <p class="text-muted" data-i18n="paddle text">This web allows users to reserve paddle courts.</p>
                     </div>
-                    <div class="card-footer">
-                        <p><a href="" class="card-link">Test the web</a></p>
-                        <p><a href="" class="card-link">Github repository</a></p>
+                    <div class="card-footer text-center">
+                        <p><small><a href="" class="card-link" data-i18n="visit web">Test the web</a></small></p>
+                        <p><small><a href="" class="card-link" data-i18n="repo">Github repository</a></small></p>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class="card card-v">
+                <div class="card card-v bg-light">
                     <img src="img/transylvania.jpg" class="card-img-top" alt="transylvania">
                     <div class="card-body">
-                        <small class="card-title">Heavy metal Pub</small>
-                        <p class="text-muted">A cool web for a Heavy Metal Pub.</p>
+                        <small class="card-title" data-i18n="heavy title">Heavy metal Pub</small>
+                        <p class="text-muted" data-i18n="heavy text">A cool web for a Heavy Metal Pub.</p>
                     </div>
-                    <div class="card-footer">
-                        <p><a href="" class="card-link">Visit the web</a></p>
+                    <div class="card-footer text-center">
+                        <p><small><a href="" class="card-link" data-i18n="visit web">Visit the web</a></small></p>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class="card card-v">
+                <div class="card card-v bg-light">
                     <img src="img/lopaje.jpg" class="card-img-top" alt="lopaje">
                     <div class="card-body">
-                        <small class="card-title">Picture voting site</small>
-                        <p class="text-muted">Site to create votations, upload, and vote pictures.</p>
+                        <small class="card-title" data-i18n="voting title">Picture voting site</small>
+                        <p class="text-muted" data-i18n="voting text">Site to create votations, upload and vote pictures.</p>
                     </div>
-                    <div class="card-footer">
-                        <p><a href="" class="card-link">Test my web</a></p>
-                        <p><a href="" class="card-link">Github repository</a></p>
+                    <div class="card-footer text-center">
+                        <p><small><a href="" class="card-link" data-i18n="visit web">Test my web</a></small></p>
+                        <p><small><a href="" class="card-link" data-i18n="repo">Github repository</a></small></p>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class="card card-v">
+                <div class="card card-v bg-light">
                     <img src="img/padel.jpg" class="card-img-top" alt="padel">
                     <div class="card-body">
-                        <small class="card-title">Paddle Reservations</small>
-                        <p class="text-muted">This web allows users to reserve paddle courts.</p>
+                        <small class="card-title" data-i18n="paddle title">Paddle Reservations</small>
+                        <p class="text-muted" data-i18n="paddle text">This web allows users to reserve paddle courts.</p>
                     </div>
-                    <div class="card-footer">
-                        <p><a href="" class="card-link">Test the web</a></p>
-                        <p><a href="" class="card-link">Github repository</a></p>
+                    <div class="card-footer text-center">
+                        <p><small><a href="" class="card-link" data-i18n="visit web">Test the web</a></small></p>
+                        <p><small><a href="" class="card-link" data-i18n="repo">Github repository</a></small></p>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class="card card-v">
+                <div class="card card-v bg-light">
                     <img src="img/transylvania.jpg" class="card-img-top" alt="transylvania">
                     <div class="card-body">
-                        <small class="card-title">Heavy metal Pub</small>
-                        <p class="text-muted">A cool web for a Heavy Metal Pub.</p>
+                        <small class="card-title" data-i18n="heavy title">Heavy metal Pub</small>
+                        <p class="text-muted" data-i18n="heavy text">A cool web for a Heavy Metal Pub.</p>
                     </div>
-                    <div class="card-footer">
-                        <p><a href="" class="card-link">Visit the web</a></p>
+                    <div class="card-footer text-center">
+                        <p><small><a href="" class="card-link" data-i18n="visit web">Visit the web</a></small></p>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class="card card-v">
+                <div class="card card-v bg-light">
                     <img src="img/lopaje.jpg" class="card-img-top" alt="lopaje">
                     <div class="card-body">
-                        <small class="card-title">Picture voting site</small>
-                        <p class="text-muted">Site to create votations, upload, and vote pictures.</p>
+                        <small class="card-title" data-i18n="voting title">Picture voting site</small>
+                        <p class="text-muted" data-i18n="voting text">Site to create votations, upload and vote pictures.</p>
                     </div>
-                    <div class="card-footer">
-                        <p><a href="" class="card-link">Test my web</a></p>
-                        <p><a href="" class="card-link">Github repository</a></p>
+                    <div class="card-footer text-center">
+                        <p><small><a href="" class="card-link" data-i18n="visit web">Test my web</a></small></p>
+                        <p><small><a href="" class="card-link" data-i18n="repo">Github repository</a></small></p>
                     </div>
                 </div>
             </div>
@@ -103,6 +103,22 @@
 
     .card-v .card-title {
         font-weight: bold;
+    }
+
+    .card-v .card-body {
+        padding-bottom: 0;
+    }
+
+    .card-v .card-body p {
+        margin-bottom: 5px;
+    }
+
+    .card-v .card-footer {
+        margin-top: 5px;
+    }
+
+    .card-v .card-footer p {
+        margin-bottom: 0;
     }
 
     .card-link {

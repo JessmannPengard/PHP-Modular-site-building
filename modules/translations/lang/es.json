@@ -78,5 +78,14 @@
     "many": "múltiples",
     "courses": "cursos y formaciones",
     "thousands": "Miles",
-    "typing code": "de horas escribiendo código"
+    "typing code": "de horas escribiendo código",
+    "cards-v heading": "Algunas cosas que he estado haciendo",
+    "paddle title": "Reservas de pádel",
+    "paddle text": "Esta web permite a los usuarios reservar pistas de pádel.",
+    "visit web": "Visita la web",
+    "repo": "Repositorio de Github",
+    "heavy title": "Pub de Heavy Metal",
+    "heavy text": "Una web chula para un pub de Heavy Metal.",
+    "voting title": "Web de votación de imágenes",
+    "voting text": "Permite crear votaciones, subir y votar imágenes."
 }

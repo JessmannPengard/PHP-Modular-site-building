@@ -78,5 +78,14 @@
     "many": "many",
     "courses": "courses and trainings",
     "thousands": "Thousands",
-    "typing code": "of hours typing code"
+    "typing code": "of hours typing code",
+    "cards-v heading": "Some stuff I've been doing",
+    "paddle title": "Paddle reservations",
+    "paddle text": "This web allows users to reserve paddle courts.",
+    "visit web": "Visit the web",
+    "repo": "Github repository",
+    "heavy title": "Heavy Metal Pub",
+    "heavy text": "A cool web for a Heavy Metal Pub.",
+    "voting title": "Picture voting site",
+    "voting text": "Site to create votations, upload and vote pictures."
 }

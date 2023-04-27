@@ -68,7 +68,7 @@ Esta carpeta contiene cada uno de los módulos que conformarán nuestra aplicaci
 En ocasiones, ciertos módulos necesitan de otros para funcionar correctamente. Esto se especificará en la documentación de cada uno de los módulos.
 
 -  *ABOUT*
--  *CARDS (en desarrollo)*
+-  *CARDS*
 -  *CAROUSEL*
 -  *CONTACT*
 -  *DATABASE*
@@ -180,11 +180,22 @@ Ninguna.
 
 ### Descripción
 
-*En desarrollo.*
+Este módulo incluye un par de plantillas de *cards* de *bootstrap* para diferentes usos: mostrar productos, portfolio, skills, etc.
+*cards-horizontal.php:* presenta una configuración horizontal de las *cards*, con una imagen a la izquierda y el texto a la derecha.
+*cards-vertical.php:* con una configuración estándar, imagen, título, descripción y un pie (en este caso incluye hipervínculos).
 
 ### Uso
+Simplemente incluir y personalizar según las necesidades:
+```php
+<?php include("modules/cards/cards-horizontal.php"); ?>
+```
+
+```php
+<?php include("modules/cards/cards-vertical.php"); ?>
+```
 
 ### Dependencias
+Ninguna.
 
 ## Carousel
 
