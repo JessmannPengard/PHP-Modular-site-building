@@ -1,6 +1,6 @@
 <!-- Contact module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
 
-<!-- Section contact -->
+<!-- Section contact: start -->
 <section class="container" id="section-contact">
 
     <!-- Contact heading: start -->

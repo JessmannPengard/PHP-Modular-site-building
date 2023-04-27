@@ -43,22 +43,22 @@ session_start();
 
 <body>
 
-    <!-- Menu nav -->
     <?php include("modules/nav/nav.php"); ?>
 
-    <!-- Carousel -->
     <?php //include("modules/carousel/carousel.php"); ?>
 
-    <!-- Hero -->
     <?php include("modules/hero/hero.php"); ?>
 
-    <!-- Contact Form -->
+    <?php include("modules/about/about.php"); ?>
+
+    <?php include("modules/cards/cards-horizontal.php"); ?>
+
+    <?php include("modules/cards/cards-vertical.php"); ?>
+
     <?php include("modules/contact/contact.php"); ?>
 
-    <!-- Map -->
-    <?php include("modules/map/map.php"); ?>
+    <?php //include("modules/map/map.php"); ?>
 
-    <!-- Footer -->
     <?php include("modules/footer/footer.php"); ?>
 
 </body>

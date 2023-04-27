@@ -5,37 +5,39 @@ De este modo aceleramos y facilitamos la creación de un sitio web o aplicación
 
 Todos los módulos tienen un diseño **responsive**, de modo que nos aseguramos de que nuestra aplicación se verá siempre bien en cualquier tipo de pantalla o dispositivo.
 
-# Carpetas y archivos
+*Este proyecto continúa en desarrollo e iré incorporando nuevos módulos y tratando de mejorar y optimizar los existentes.*
+
+# Estructura del proyecto
 ```
 site/
 ├──config/
-│		├── app.php
+│	├── app.php
 ├──img/
-│		├── svg/
-│		│		├── svg1.svg
-│		│		├── svg2.svg
-│		│		├──...
-│		├── logo.png
-│		├── favicon.ico
-│		├──	...
+│	├── svg/
+│	│	├── svg1.svg
+│	│	├── svg2.svg
+│	│	├──...
+│	├── logo.png
+│	├── favicon.ico
+│	├──	...
 ├──modules/
-│		├── module1/
-│		│		├── module1.php
-│		│		├── ...
-│		├── module2/
-│		│		├── module2.php
-│		│		├── ...
-│		├── ...
+│	├── module1/
+│	│	├── module1.php
+│	│	├── ...
+│	├── module2/
+│	│	├── module2.php
+│	│	├── ...
+│	├── ...
 ├──upload/
-│		├── profile/
-│		│		├──...
-│		├──...
+│	├── profile/
+│	│	├──...
+│	├──...
 ├──vendor/
-│		├── bootstrap/
-│				├── css/
-│				│	 ├── ...
-│				├── js/
-│						├── ...
+│	├── bootstrap/
+│		├── css/
+│		│	├── ...
+│		├── js/
+│			├── ...
 ├──.gitignore
 ├──index.php
 └──readme.md
