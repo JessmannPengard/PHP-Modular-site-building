@@ -4,10 +4,11 @@
 <section id="section-cards">
     <div class="container-fluid">
 
-        <!-- Contact heading: start -->
+        <!-- Cards heading: start -->
         <h2 class="h1 font-weight-bold text-center my-4" data-i18n="experience">Experience</h2>
-        <!-- Contact heading: end -->
+        <!-- Cards heading: end -->
 
+        <!-- Cards: start -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-4">
             <div class="col">
                 <div class="card mb-3 card-h">
@@ -70,6 +71,8 @@
                 </div>
             </div>
         </div>
+        <!-- Cards: end -->
+
     </div>
 </section>
 <!-- Section cards: end -->
@@ -94,7 +97,7 @@
         width: 40px;
     }
 
-    .card-title {
+    .card-h .card-title {
         font-weight: bold;
         color: red;
     }

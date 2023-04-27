@@ -4,10 +4,11 @@
 <section id="section-cards">
     <div class="container-fluid">
 
-        <!-- Contact heading: start -->
+        <!-- Cards heading: start -->
         <h2 class="h1 font-weight-bold text-center my-4">Some stuff I've been doing</h2>
-        <!-- Contact heading: end -->
+        <!-- cards heading: end -->
 
+        <!-- Cards: start -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 g-3">
             <div class="col">
                 <div class="card card-v">
@@ -43,8 +44,7 @@
                     </div>
                     <div class="card-footer">
                         <p><a href="" class="card-link">Test my web</a></p>
-                        </p><a href="" class="card-link">Github repository</a>
-                        <p>
+                        <p><a href="" class="card-link">Github repository</a></p>
                     </div>
                 </div>
             </div>
@@ -82,12 +82,12 @@
                     </div>
                     <div class="card-footer">
                         <p><a href="" class="card-link">Test my web</a></p>
-                        </p><a href="" class="card-link">Github repository</a>
-                        <p>
+                        <p><a href="" class="card-link">Github repository</a></p>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Cards: end -->
 
     </div>
 </section>
@@ -99,6 +99,10 @@
         margin: 0 10px;
         border: none;
         --bs-card-inner-border-radius: 0;
+    }
+
+    .card-v .card-title {
+        font-weight: bold;
     }
 
     .card-link {
