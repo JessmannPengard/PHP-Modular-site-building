@@ -68,12 +68,14 @@ Esta carpeta contiene cada uno de los módulos que conformarán nuestra aplicaci
 
 En ocasiones, ciertos módulos necesitan de otros para funcionar correctamente. Esto se especificará en la documentación de cada uno de los módulos.
 
+-  *ABOUT (en desarrollo)*
+-  *CARDS (en desarrollo)*
 -  *CAROUSEL*
 -  *CONTACT*
 -  *DATABASE*
 -  *FOOTER*
--  *GALLERY*
--  *HERO*
+-  *GALLERY (en desarrollo)*
+-  *HERO (en desarrollo)*
 -  *MAP*
 -  *NAV*
 -  *PHPMAILER*
