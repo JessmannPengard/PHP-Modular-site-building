@@ -117,8 +117,8 @@ Esta página se compone de una barra de navegación, un carrusel, un formulario 
 
 ```php
 <?php
-include("config/app.php"); //Incluimos el archivo de configuración
-session_start(); // Iniciamos sesión
+include("config/app.php"); // Config file
+session_start(); // Session start
 ?>
 
 <!DOCTYPE html>
@@ -127,33 +127,33 @@ session_start(); // Iniciamos sesión
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Título -->
+<!-- Title -->
 <title>
 <?= BRAND ?>
 </title>
 <!-- Bootstrap -->
 <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
-<!-- Script de idiomas -->
+<!-- Language script -->
 <script src="modules/translations/translations.js"></script>
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
 
 <body>
-<!-- Barra de navegación -->
+<!-- Nav bar -->
 <?php include("modules/nav/nav.php"); ?>
 
-<!-- Carrusel -->
+<!-- Carousel -->
 <?php include("modules/carousel/carousel.php"); ?>
 
-<!-- Formulario de contacto -->
+<!-- Contact form -->
 <?php include("modules/contact/contact.php"); ?>
 
-<!-- Mapa de google-->
+<!-- Google map-->
 <?php include("modules/map/map.php"); ?>
 
-<!-- Pie de página -->
+<!-- Footer -->
 <?php include("modules/footer/footer.php"); ?>
 
 </body>
