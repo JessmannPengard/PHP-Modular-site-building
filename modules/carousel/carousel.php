@@ -23,9 +23,9 @@
                 <div class="container">
                     <!-- Content start -->
                     <div class="carousel-caption text-start">
-                        <h1 data-i18n="carouselH1">Example headline.</h1>
-                        <p data-i18n="carouselB1">Some representative placeholder content for the first slide of the carousel.</p>
-                        <button class="btn btn-primary" data-i18n="carouselBTN1">Do something</button>
+                        <h1 data-i18n="carousel header 1">Example headline.</h1>
+                        <p data-i18n="carousel text 1">Some representative placeholder content for the first slide of the carousel.</p>
+                        <button class="btn btn-primary" data-i18n="carousel btn 1">Do something</button>
                     </div>
                 </div>
             </div>
@@ -34,9 +34,9 @@
                 <div class="container">
                     <!-- Content middle -->
                     <div class="carousel-caption">
-                        <h1 data-i18n="carouselH2">Another example headline.</h1>
-                        <p data-i18n="carouselB2">Some representative placeholder content for the second slide of the carousel.</p>
-                        <button class="btn btn-warning" data-i18n="carouselBTN2">Do something</button>
+                        <h1 data-i18n="carousel header 2">Another example headline.</h1>
+                        <p data-i18n="carousel text 2">Some representative placeholder content for the second slide of the carousel.</p>
+                        <button class="btn btn-warning" data-i18n="carousel btn 2">Do something</button>
                     </div>
                 </div>
             </div>
@@ -45,9 +45,9 @@
                 <div class="container">
                     <!-- Content end -->
                     <div class="carousel-caption text-end">
-                        <h1 data-i18n="carouselH3">One more for good measure.</h1>
-                        <p data-i18n="carouselB3">Some representative placeholder content for the third slide of this carousel.</p>
-                        <button class="btn btn-danger" data-i18n="carouselBTN3">Do something</button>
+                        <h1 data-i18n="carousel header 3">One more for good measure.</h1>
+                        <p data-i18n="carousel text 3">Some representative placeholder content for the third slide of this carousel.</p>
+                        <button class="btn btn-danger" data-i18n="carousel btn 3">Do something</button>
                     </div>
                 </div>
             </div>

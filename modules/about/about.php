@@ -1,30 +1,54 @@
-<section class="section gray-bg" id="about-section">
+<!-- About module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
+<!-- Section about: start -->
+<section class="section bg-light" id="about-section">
     <div class="container">
         <div class="row align-items-center justify-content-around flex-row-reverse">
+
+            <!-- About text area: start -->
             <div class="col-lg-6">
                 <div class="about-text">
-                    <h3 class="dark-color">Do some awsome stuff with me.</h3>
-                    <h4 class="theme-color">UI / UX Designer &amp; Web Developer</h4>
-                    <p>I design and develop services for customers of all sizes, specializing in creating stylish,
-                        modern websites, web services and online stores. My passion is to design digital user
-                        experiences through the bold interface and meaningful interactions.</p>
-                    <p>I design and develop services for customers of all sizes, specializing in creating stylish,
-                        modern websites, web services and online stores.</p>
+
+                    <!-- About title: start -->
+                    <h3 data-i18n="about title">Hi! I am Jesús</h3>
+                    <!-- About title: end -->
+
+                    <!-- About subtitle: start -->
+                    <h4 class="theme-color" data-i18n="about subtitle">UI / UX Designer &amp; Web Developer</h4>
+                    <!-- About subtitle: end -->
+
+                    <!-- About text: start -->
+                    <p data-i18n="about text">I design and develop services for customers of all sizes, specializing in creating stylish,
+                        modern websites, web services and online applications. My passion is to design digital user
+                        experiences through the bold interface and meaningful interactions.
+                    </p>
+                    <!-- About text: end -->
+
+                    <!-- About buttons: start -->
                     <div class="btn-bar">
-                        <a class="px-btn theme" href="#">View Works</a>
-                        <a class="px-btn theme-t" href="#">Download CV</a>
+                        <a class="btn btn-outline-dark btn-lg m-2" href="#" data-i18n="about btn 1">View Works</a>
+                        <a class="btn btn-dark btn-lg m-2" href="#" data-i18n="about btn 2">Download CV</a>
                     </div>
+                    <!-- About buttons: end -->
+
                 </div>
             </div>
+            <!-- About text area: end -->
+
+            <!-- About image area: start -->
             <div class="col-lg-5 text-center">
                 <div class="about-img">
                     <img class="about-profile-picture" src="upload/profiles/qwerty12345.png">
                 </div>
             </div>
+            <!-- About image area: end -->
+
         </div>
     </div>
 </section>
+<!-- Section about: end -->
 
+<!-- styles: start -->
 <style>
     @media (max-width: 991px) {
         .about-text {
@@ -77,7 +101,7 @@
 
     .about-profile-picture {
         border-radius: 200px;
-        max-width: 100%;
+        max-width: 80%;
     }
 
     .theme-color {
@@ -88,37 +112,5 @@
         padding: 50px 0;
         position: relative;
     }
-
-    .gray-bg {
-        background-color: #ebf4fa;
-    }
-
-    .px-btn.theme {
-        background: #fe4f6c;
-        color: #ffffff;
-        border: 2px solid #fe4f6c;
-    }
-
-    .px-btn {
-        padding: 0 20px;
-        line-height: 42px;
-        border: 2px solid transparent;
-        position: relative;
-        display: inline-block;
-        background: none;
-        border: none;
-        -moz-transition: ease all 0.35s;
-        -o-transition: ease all 0.35s;
-        -webkit-transition: ease all 0.35s;
-        transition: ease all 0.35s;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: 500;
-    }
-
-    .px-btn.theme-t {
-        background: transparent;
-        border: 2px solid #fe4f6c;
-        color: #fe4f6c;
-    }
 </style>
+<!-- styles: end -->

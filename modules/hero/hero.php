@@ -2,18 +2,32 @@
 
 <!-- Hero section: start -->
 <div id="hero-section" class="p-5 text-center bg-image">
+
+    <!-- Masked area: start -->
     <div class="mask">
         <div class="d-flex justify-content-center align-items-center h-100">
             <div class="text-white">
-                <h1 class="mb-3">Hero section</h1>
-                <h5 class="mb-4">
+
+                <!-- Hero title: start -->
+                <h1 class="mb-3" data-i18n="hero title">Hero section</h1>
+                <!-- Hero title: end -->
+
+                <!-- Hero text: start -->
+                <h5 class="mb-4" data-i18n="hero text">
                     This is a hero section sample
                 </h5>
-                <a class="btn btn-outline-light btn-lg m-2" href="#">Action</a>
-                <a class="btn btn-outline-light btn-lg m-2" href="#">Another Action</a>
+                <!-- Hero text: end -->
+
+                <!-- Hero buttons: start -->
+                <a class="btn btn-outline-light btn-lg m-2" href="#" data-i18n="hero btn 1">Action</a>
+                <a class="btn btn-outline-light btn-lg m-2" href="#" data-i18n="hero btn 2">Another Action</a>
+                <!-- Hero buttons: end -->
+
             </div>
         </div>
     </div>
+    <!-- Masked area: end -->
+
 </div>
 <!-- Hero section: end -->
 

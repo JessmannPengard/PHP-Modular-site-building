@@ -38,8 +38,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label for="contact-message" class="form-label" data-i18n="your message">Your message</label>
-                <textarea type="text" id="contact-message" name="contact-message" rows="5"
-                    class="form-control md-textarea" required></textarea>
+                <textarea type="text" id="contact-message" name="contact-message" rows="5" class="form-control md-textarea" required></textarea>
             </div>
         </div>
         <br>
@@ -63,8 +62,7 @@
         <!-- Send button: start -->
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="button" id="contact-form-submit-button" class="btn btn-primary"
-                    data-i18n="send">Send</button>
+                <button type="button" id="contact-form-submit-button" class="btn btn-outline-dark btn-lg m-2" data-i18n="send">Send</button>
             </div>
         </div>
         <!-- Send button: end -->
@@ -73,15 +71,13 @@
     <!-- Form: end -->
 
     <!-- Sent email modal confirmation: start -->
-    <div class="modal fade" id="emailConfirmationModal" tabindex="-1" aria-labelledby="emailConfirmationModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="emailConfirmationModal" tabindex="-1" aria-labelledby="emailConfirmationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="emailConfirmationModalLabel" data-i18n="email confirmation">Sent mail confirmation</h5>
                     <!-- Reload page on close to avoid resending -->
-                    <button type="button" onclick="location=location;" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" onclick="location=location;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="jumbotron">
@@ -124,17 +120,17 @@
 
                     // Send mail
                     fetch('modules/phpmailer/src/mail.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: new URLSearchParams({
-                            name: name,
-                            email: email,
-                            subject: subject,
-                            message: message
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({
+                                name: name,
+                                email: email,
+                                subject: subject,
+                                message: message
+                            })
                         })
-                    })
                         .then(response => response.json())
                         .then(data => {
                             if (data.succeed) {
@@ -180,7 +176,9 @@
 <!-- Styles: start -->
 <style>
     #section-contact {
-        margin-bottom: 20px;
+        margin: 40px auto;
+        padding: 20px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
     }
 
     .form-error {

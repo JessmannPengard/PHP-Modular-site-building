@@ -67,14 +67,14 @@ Esta carpeta contiene cada uno de los módulos que conformarán nuestra aplicaci
 
 En ocasiones, ciertos módulos necesitan de otros para funcionar correctamente. Esto se especificará en la documentación de cada uno de los módulos.
 
--  *ABOUT (en desarrollo)*
+-  *ABOUT*
 -  *CARDS (en desarrollo)*
 -  *CAROUSEL*
 -  *CONTACT*
 -  *DATABASE*
 -  *FOOTER*
 -  *GALLERY (en desarrollo)*
--  *HERO (en desarrollo)*
+-  *HERO*
 -  *MAP*
 -  *NAV*
 -  *PHPMAILER*
@@ -166,11 +166,15 @@ session_start(); // Iniciamos sesión
 
 ### Descripción
 
-*En desarrollo.*
+Una base sencilla para una sección *Acerca de*. Se compone de una parte de texto, con título, subtítulo y descripción, y una parte de imagen, habitualmente para la foto en caso de una web personal.
 
 ### Uso
+```php
+<?php include("modules/about/about.php"); ?>
+```
 
 ### Dependencias
+Ninguna.
 
 ## Cards
 
@@ -277,11 +281,15 @@ Ninguna.
 
 ### Descripción
 
-*En desarrollo.*
+Una sección Hero para nuestra web, con una imagen que ocupa la totalidad de la pantalla. Se puede combinar con el nav para lograr diferentes efectos.
 
 ### Uso
+```php
+<?php include("modules/hero/hero.php"); ?>
+```
 
 ### Dependencias
+Ninguna.
 
 ## Map
 

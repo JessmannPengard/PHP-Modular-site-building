@@ -5,7 +5,7 @@
     <div class="container-fluid">
 
         <!-- Contact heading: start -->
-        <h2 class="h1 font-weight-bold text-center my-4" data-i18n="">Some stuff I've been doing</h2>
+        <h2 class="h1 font-weight-bold text-center my-4">Some stuff I've been doing</h2>
         <!-- Contact heading: end -->
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 g-3">
