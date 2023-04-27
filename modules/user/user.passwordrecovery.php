@@ -5,14 +5,7 @@
 require("../../config/app.php");
 require("../database/database.php");
 require("user.model.php");
-
-require("../phpmailer/src/Exception.php");
-require("../phpmailer/src/PHPMailer.php");
-require("../phpmailer/src/SMTP.php");
-require("../phpmailer/src/mail.config.php");
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
+require("../mail/Mail.php");
 
 // Error messages
 $msgMailSent = "hidden";
@@ -38,28 +31,16 @@ if (isset($_POST['email'])) {
         // Store token in DB
         $result = $user->setToken($email, $token, $expiry_date);
 
-        // new PHPMailer
-        $mail = new PHPMailer();
+        // Instantiate Mail class
+        $mail = new Mail();
 
-        try {
-            // Configure mail server settings
-            $mail->SMTPDebug = SMTP::DEBUG_OFF; //Enable verbose debug output
-            $mail->isHTML(true);
-            $mail->CharSet = 'UTF-8';
-            $mail->isSMTP(); //Send using SMTP
-            $mail->Host = MAIL_HOST; //Set the SMTP server to send through
-            $mail->SMTPAuth = true; //Enable SMTP authentication
-            $mail->Username = MAIL_USERNAME; //SMTP username
-            $mail->Password = MAIL_PASSWORD; //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->Port = MAIL_PORT;
-
-            // Configure email details
-            $mail->setFrom(MAIL_MYEMAIL, BRAND);
-            $mail->addAddress($email);
-            $mail->Subject = 'Recuperación de contraseña';
-            $url = __DIR__ . '\user.passwordreset.php?email=' . $email . '&token=' . $token;
-            $mail->Body = "
+        // Mail details
+        $fromEmail = MAIL_MYEMAIL;
+        $fromName = BRAND;
+        $toEmail = $email;
+        $subject = 'Recuperación de contraseña';
+        $url = __DIR__ . '\user.passwordreset.php?email=' . $email . '&token=' . $token;
+        $body = "
                 <html>
                 <head>
                     <style>
@@ -91,14 +72,11 @@ if (isset($_POST['email'])) {
                 </html>
                 ";
 
-            // Send email and check for success
-            if ($mail->send()) {
-                $msgMailSent = '';
-            } else {
-                $msgMailingError = '';
-            }
-        } catch (Exception $e) {
-            $msgMailerError = "";
+        // Send mail and check for success
+        if ($mail->sendMail($fromEmail, $fromName, $toEmail, $subject, $body)) {
+            $msgMailSent = '';
+        } else {
+            $msgMailingError = '';
         }
     } else {
         $msgMailNotReg = "";

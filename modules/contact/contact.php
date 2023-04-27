@@ -1,5 +1,7 @@
 <!-- Contact module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
 
+<?php require_once("modules/mail/mail.config.php"); ?>
+
 <!-- Section contact: start -->
 <section class="container" id="section-contact">
 
@@ -38,7 +40,8 @@
         <div class="row">
             <div class="col-md-12">
                 <label for="contact-message" class="form-label" data-i18n="your message">Your message</label>
-                <textarea type="text" id="contact-message" name="contact-message" rows="5" class="form-control md-textarea" required></textarea>
+                <textarea type="text" id="contact-message" name="contact-message" rows="5"
+                    class="form-control md-textarea" required></textarea>
             </div>
         </div>
         <br>
@@ -62,7 +65,8 @@
         <!-- Send button: start -->
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="button" id="contact-form-submit-button" class="btn btn-outline-dark btn-lg m-2" data-i18n="send">Send</button>
+                <button type="button" id="contact-form-submit-button" class="btn btn-outline-dark btn-lg m-2"
+                    data-i18n="send">Send</button>
             </div>
         </div>
         <!-- Send button: end -->
@@ -71,19 +75,23 @@
     <!-- Form: end -->
 
     <!-- Sent email modal confirmation: start -->
-    <div class="modal fade" id="emailConfirmationModal" tabindex="-1" aria-labelledby="emailConfirmationModalLabel" aria-hidden="true">
+    <div class="modal fade" id="emailConfirmationModal" tabindex="-1" aria-labelledby="emailConfirmationModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="emailConfirmationModalLabel" data-i18n="email confirmation">Sent mail confirmation</h5>
+                    <h5 class="modal-title" id="emailConfirmationModalLabel" data-i18n="email confirmation">Sent mail
+                        confirmation</h5>
                     <!-- Reload page on close to avoid resending -->
-                    <button type="button" onclick="location=location;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="location=location;" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="jumbotron">
                         <h1 class="display-4" data-i18n="email success">Your email was successfully sent!</h1>
                         <hr class="my-4">
-                        <p class="lead" data-i18n="email thanks">Thank you for contacting us. We will come back to you as soon as possible.</p>
+                        <p class="lead" data-i18n="email thanks">Thank you for contacting us. We will come back to you
+                            as soon as possible.</p>
                     </div>
                 </div>
             </div>
@@ -119,18 +127,19 @@
                 if (ValidateEmail(email)) {
 
                     // Send mail
-                    fetch('modules/phpmailer/src/mail.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            },
-                            body: new URLSearchParams({
-                                name: name,
-                                email: email,
-                                subject: subject,
-                                message: message
-                            })
+                    fetch('modules/mail/sendMail.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams({
+                            fromName: name,
+                            fromEmail: email,
+                            toEmail: '<?= MAIL_MYEMAIL ?>',
+                            subject: subject,
+                            body: message
                         })
+                    })
                         .then(response => response.json())
                         .then(data => {
                             if (data.succeed) {

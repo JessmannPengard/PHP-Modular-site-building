@@ -75,9 +75,9 @@ En ocasiones, ciertos módulos necesitan de otros para funcionar correctamente. 
 -  *FOOTER*
 -  *GALLERY (en desarrollo)*
 -  *HERO*
+-  *MAIL*
 -  *MAP*
 -  *NAV*
--  *PHPMAILER*
 -  *TRANSLATIONS*
 -  *USER*
 
@@ -302,6 +302,55 @@ Una sección Hero para nuestra web, con una imagen que ocupa la totalidad de la 
 ### Dependencias
 Ninguna.
 
+## Mail
+
+### Descripción
+
+Para el mailing utilizo la biblioteca  [PHPMailer](https://github.com/PHPMailer/PHPMailer "Github"). He creado una clase Mail para interactuar con la biblioteca.
+
+### Uso
+Hay dos maneras de utilizar esta funcionalidad:
+- Mediante la clase Mail y sus métodos:
+
+```php
+$mail = new Mail();
+if ($mail->sendMail($fromEmail, $fromName, $toEmail, $subject, $body)) {
+            // Success
+        } else {
+            // Error
+        }
+```
+
+- Mediante el script sendMail.php:
+
+```php
+fetch('modules/mail/sendMail.php', {
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/x-www-form-urlencoded'
+	},
+	body: new URLSearchParams({
+		fromName: 'John',
+		fromEmail: 'john@example.com',
+		toEmail: 'recipient@example.com',
+		subject: 'Test email',
+		body: 'Test message'
+	})
+})
+	.then(response => response.json())
+	.then(data => {
+		if (data.succeed) {
+		// Success
+		} else {
+		// Error
+		}
+	})
+	.catch(error => console.error(error));
+```
+
+### Dependencias
+La biblioteca **PHPMailer**, que se encuentra incluida dentro del módulo. Para más información puedes visitar el [Repositorio oficial](https://github.com/PHPMailer/PHPMailer "Github").
+
 ## Map
 
 ### Descripción
@@ -366,18 +415,6 @@ Si no se van a utilizar, pueden eliminarse o comentarse.
 El *plugin* de sesión requiere de los módulos *user* y *database*.
 
 El *plugin* de idioma requiere el módulo *translations*.
-
-## PHPMailer
-
-### Descripción
-
-Para el mailing utilizo la biblioteca  [PHPMailer](https://github.com/PHPMailer/PHPMailer "Github").
-
-### Uso
-Para su uso puedes consultar su [Github](https://github.com/PHPMailer/PHPMailer "Github").
-
-### Dependencias
-Ninguna.
 
 ## Translations
 
