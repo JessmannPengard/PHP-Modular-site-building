@@ -1,9 +1,9 @@
 
 ------------
 
-[:tw-1f1ec-1f1e7: *English version*](#item1)
+[*English version*](#item1)
 
-[:tw-1f1ea-1f1f8: *Versión en español*](#item2)
+[*Versión en español*](#item2)
 
 ------------
 
