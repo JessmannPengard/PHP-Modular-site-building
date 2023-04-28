@@ -63,6 +63,8 @@ session_start();
 
     <?php include("modules/footer/footer.php"); ?>
 
+    <?php include("modules/gallery/gallery.scrolled.php"); ?>
+
 </body>
 
 </html>

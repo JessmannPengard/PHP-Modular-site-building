@@ -2,46 +2,24 @@
 
 <?php
 // Config file
-include("../../config/app.php");
-include("gallery.config.php");
+require_once("modules/gallery/gallery.config.php");
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- Section gallery: start -->
+<section class="container" id="section-gallery">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Gallery heading: start -->
+    <h2 class="h1 font-weight-bold text-center my-4" data-i18n="gallery">Gallery</h2>
+    <!-- Gallery heading: end -->
 
-    <!-- Bootstrap -->
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
+    <div class="row" id="gallery-container"></div>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="gallery.css">
 
-    <!-- Title -->
-    <title>
-        <?= BRAND ?>
-    </title>
-</head>
+</section>
 
-<body>
 
-    <section class="py-5" id="section-gallery">
-        <div class="container">
-
-            <h2 class="text-center mb-4 section-title">Galería</h2>
-
-            <div class="row" id="gallery-container"></div>
-
-        </div>
-    </section>
-
-</body>
-
-</html>
+<!-- Styles -->
+<link rel="stylesheet" href="modules/gallery/gallery.css">
 
 <script>
     // Lista de imágenes
@@ -61,14 +39,14 @@ include("gallery.config.php");
                 cargarPrimeras();
             }
         };
-        xhttp.open("GET", "gallery.scrolled.getList.php", true);
+        xhttp.open("GET", "modules/gallery/gallery.scrolled.getList.php", true);
         xhttp.send();
     }
 
     // Función para cargar las primeras imágenes
     function cargarPrimeras() {
         for (var i = 0; i < <?= PICS_PER_PAGE ?>; i++) {
-            galleryContainer.innerHTML += generarHtmlImagen("../../" + imageList[i]["url_picture"]);
+            galleryContainer.innerHTML += generarHtmlImagen(imageList[i]["url_picture"]);
             imageCount++;
             addLightbox();
         }
@@ -82,7 +60,7 @@ include("gallery.config.php");
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
             for (var i = 0; i < <?= PICS_PER_PAGE ?>; i++) { // cargamos las siguientes imágenes
                 if (imageCount < imageList.length) { // comprobamos que aún quedan imágenes por cargar
-                    galleryContainer.innerHTML += generarHtmlImagen("../../" + imageList[imageCount]["url_picture"]);
+                    galleryContainer.innerHTML += generarHtmlImagen(imageList[imageCount]["url_picture"]);
                     imageCount++;
                     addLightbox();
                 }
