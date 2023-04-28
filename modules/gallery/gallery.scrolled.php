@@ -31,16 +31,14 @@ require_once("modules/gallery/gallery.config.php");
 
     // Función para cargar la lista de imágenes
     function cargarLista() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                imageList = JSON.parse(this.responseText);
+        fetch('modules/gallery/gallery.getList.php')
+            .then(response => response.json())
+            .then(data => {
+                imageList = data;
                 // Cargar las primeras
                 cargarPrimeras();
-            }
-        };
-        xhttp.open("GET", "modules/gallery/gallery.scrolled.getList.php", true);
-        xhttp.send();
+            })
+            .catch(error => console.error(error));
     }
 
     // Función para cargar las primeras imágenes
@@ -56,7 +54,7 @@ require_once("modules/gallery/gallery.config.php");
     cargarLista();
 
     // Al llegar al final de la página cargamos más imágenes si hay
-    window.addEventListener("scroll", function() {
+    window.addEventListener("scroll", function () {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
             for (var i = 0; i < <?= PICS_PER_PAGE ?>; i++) { // cargamos las siguientes imágenes
                 if (imageCount < imageList.length) { // comprobamos que aún quedan imágenes por cargar
