@@ -1,6 +1,6 @@
-<!-- Database module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
-
 <?php
+// Database module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard)
+
 // Database connection data
 require("database.config.php");
 

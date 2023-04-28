@@ -1,7 +1,7 @@
 <?php
 
 // Requires
-require_once("../../modules/database/database.php");
+require_once("../database/database.php");
 require_once("gallery.model.php");
 
 // código para conectarse a la base de datos

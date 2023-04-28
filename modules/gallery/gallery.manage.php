@@ -1,14 +1,14 @@
 <?php
 // Importamos los modelos necesarios
-require_once("./modules/database/database.php");
-require_once("./modules/gallery/gallery.model.php");
-require_once("./modules/user/user.model.php");
+require_once("../database/database.php");
+require_once("../gallery/gallery.model.php");
+require_once("../user/user.model.php");
 
 // Conexión a la base de datos
 $db = new Database();
 
 // Establecemos la ruta en la que guardamos las imágenes subidas por los usuarios
-$directorio_subida = './modules/gallery/upload/';
+$directorio_subida = '../../upload/gallery/';
 
 // Inicializamos la variable que guardará el mensaje en caso de posibles errores
 $msg = "";
@@ -56,6 +56,8 @@ if (isset($_POST["file"])) {
 
 ?>
 
+
+
 <div class="tab-pane fade show active" id="galeria" role="tabpanel" aria-labelledby="galeria-tab">
     <!-- Subir imagen -->
     <div class="container" style="margin: 40px 0;">
@@ -91,7 +93,7 @@ if (isset($_POST["file"])) {
 
     <!-- Galería -->
     <?php
-    require_once("./modules/gallery/gallery.scrolled.php");
+    require_once("../gallery/gallery.scrolled.php");
     ?>
 
     <!-- Modal de confirmación de borrado -->
