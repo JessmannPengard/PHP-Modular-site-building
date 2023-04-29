@@ -85,7 +85,7 @@ Sometimes, certain modules require others to function properly. This will be spe
 -  *CONTACT*
 -  *DATABASE*
 -  *FOOTER*
--  *GALLERY (en desarrollo)*
+-  *GALLERY*
 -  *HERO*
 -  *MAIL*
 -  *MAP*
@@ -302,11 +302,30 @@ None.
 
 ### Description
 
-*In development.*
+This module includes two gallery templates: one with pagination and the other that loads images as the user scrolls down. Additionally, I have added a page with the logic for uploading images (not yet translated).
 
 ### Usage
+We need to include the desired gallery in the section of our page where we want to display the gallery:
+
+```php
+<?php include("modules/gallery/gallery.paginated.php"); ?>
+```
+
+```php
+<?php include("modules/gallery/gallery.scrolled.php"); ?>
+```
+
+The page to upload images:
+
+```php
+<?php include("modules/gallery/gallery.upload.php"); ?>
+```
+
+In this case, it is necessary to be logged in to access the page.
 
 ### Dependencies
+
+It requires the database module to retrieve the images.
 
 ## Hero
 
@@ -656,7 +675,7 @@ En ocasiones, ciertos módulos necesitan de otros para funcionar correctamente. 
 -  *CONTACT*
 -  *DATABASE*
 -  *FOOTER*
--  *GALLERY (en desarrollo)*
+-  *GALLERY*
 -  *HERO*
 -  *MAIL*
 -  *MAP*
@@ -873,11 +892,30 @@ Ninguna.
 
 ### Descripción
 
-*En desarrollo.*
+Este módulo incluye dos plantillas de galerías: una paginada y otra que va cargando imágenes al hacer scroll. Adicionalmente he añadido una página con la lógica para subir imágenes (todavía sin traducir).
 
 ### Uso
+Hay que incluir la galería deseada en la parte de nuestra página en la que queramos mostrar la galería:
+
+```php
+<?php include("modules/gallery/gallery.paginated.php"); ?>
+```
+
+```php
+<?php include("modules/gallery/gallery.scrolled.php"); ?>
+```
+
+La página para subir imágenes:
+
+```php
+<?php include("modules/gallery/gallery.upload.php"); ?>
+```
+
+En este caso es necesario tener iniciada sesión para poder acceder a la página.
 
 ### Dependencias
+
+Requiere del módulo **database** para recuperar las imágenes.
 
 ## Hero
 
