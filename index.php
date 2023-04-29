@@ -65,6 +65,8 @@ session_start();
 
     <?php //include("modules/gallery/gallery.scrolled.php"); ?>
 
+    <?php include("modules/cookies/cookies.php"); ?>
+
 </body>
 
 </html>

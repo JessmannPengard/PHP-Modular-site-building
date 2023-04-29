@@ -52,6 +52,14 @@
                 <input type="text" id="contact-checker" name="contact-checker" class="form-control"></input>
             </div>
         </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckPrivacy">
+            <label class="form-check-label" for="flexCheckPrivacy" data-i18n="privacy policy">
+                I accept the privacy policy
+            </label>
+            <a href=""><img src="img/svg/document.svg" alt="" class="icon-privacy"></a>
+        </div>
         <!-- Fields: end -->
 
         <!-- Error message container: start -->
@@ -113,58 +121,66 @@
     contactSubmitButton.onclick = (e) => {
         // Checker field
         var checker = document.getElementById('contact-checker').value;
+        // Accept privacy policy
+        var privacy = document.getElementById('flexCheckPrivacy').checked;
 
         if (checker == "") {
-            // Get fields
-            var name = document.getElementById('contact-name').value;
-            var email = document.getElementById('contact-email').value;
-            var subject = document.getElementById('contact-subject').value;
-            var message = document.getElementById('contact-message').value;
+            if (privacy) {
+                // Get fields
+                var name = document.getElementById('contact-name').value;
+                var email = document.getElementById('contact-email').value;
+                var subject = document.getElementById('contact-subject').value;
+                var message = document.getElementById('contact-message').value;
 
-            // Check for fullfilled fields
-            if (name && email && subject && message) {
-                // Validate email
-                if (ValidateEmail(email)) {
+                // Check for fullfilled fields
+                if (name && email && subject && message) {
+                    // Validate email
+                    if (ValidateEmail(email)) {
 
-                    // Send mail
-                    fetch('modules/mail/sendMail.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: new URLSearchParams({
-                            fromName: name,
-                            fromEmail: email,
-                            toEmail: '<?= MAIL_MYEMAIL ?>',
-                            subject: subject,
-                            body: message
+                        // Send mail
+                        fetch('modules/mail/sendMail.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({
+                                fromName: name,
+                                fromEmail: email,
+                                toEmail: '<?= MAIL_MYEMAIL ?>',
+                                subject: subject,
+                                body: message
+                            })
                         })
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.succeed) {
-                                // Show confirmation modal (reload page on close)
-                                var emailConfirmationModal = new bootstrap.Modal(document.getElementById('emailConfirmationModal'), {
-                                    backdrop: 'static',
-                                    keyboard: false
-                                });
-                                emailConfirmationModal.show();
-                            } else {
-                                // Mailer error
-                                document.getElementById('error').innerText = translations ? translate("mailer error") : "Message could not be sent. Mailer Error";
-                                document.getElementById('contact-name').focus();
-                            }
-                        })
-                        .catch(error => console.error(error));
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.succeed) {
+                                    // Show confirmation modal (reload page on close)
+                                    var emailConfirmationModal = new bootstrap.Modal(document.getElementById('emailConfirmationModal'), {
+                                        backdrop: 'static',
+                                        keyboard: false
+                                    });
+                                    emailConfirmationModal.show();
+                                } else {
+                                    // Mailer error
+                                    document.getElementById('error').innerText = translations ? translate("mailer error") : "Message could not be sent. Mailer Error";
+                                    document.getElementById('contact-name').focus();
+                                }
+                            })
+                            .catch(error => console.error(error));
+                    } else {
+                        // Invalid email
+                        document.getElementById('error').innerText = translations ? translate("enter valid email") : "Please, enter a valid email";
+                        document.getElementById('contact-email').focus();
+                    }
                 } else {
-                    // Invalid email
-                    document.getElementById('error').innerText = translations ? translate("enter valid email") : "Please, enter a valid email";
-                    document.getElementById('contact-email').focus();
+                    // Unfilled fields
+                    document.getElementById('error').innerText = translations ? translate("fill all fields") : "You must fill all the fields";
+                    document.getElementById('contact-name').focus();
                 }
             } else {
-                // Unfilled fields
-                document.getElementById('error').innerText = translations ? translate("fill all fields") : "You must fill all the fields";
-                document.getElementById('contact-name').focus();
+                // Accept privacy policy
+                document.getElementById('error').innerText = translations ? translate("must accept privacy") : "You must accept the privacy policy";
+                document.getElementById('flexCheckPrivacy').focus();
             }
         }
     }
@@ -200,6 +216,11 @@
 
     th {
         width: 30%;
+    }
+
+    .icon-privacy {
+        width: 16px;
+        margin: 0 5px;
     }
 </style>
 <!-- Styles: end -->
