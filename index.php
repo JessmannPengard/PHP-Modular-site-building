@@ -47,7 +47,7 @@ session_start();
 
     <?php include("modules/hero/hero.php"); ?>
 
-    <?php include("modules/carousel/carousel.php"); ?>
+    <?php //include("modules/carousel/carousel.php"); ?>
 
     <?php include("modules/gallery/gallery.paginated.php"); ?>
 

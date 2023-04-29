@@ -1,6 +1,6 @@
 <?php
 
-// Clase que interactúa con la tabla 'gallery'
+// Gallery class
 class Gallery
 {
     protected $dbconn;
@@ -10,7 +10,7 @@ class Gallery
         $this->dbconn = $conn;
     }
 
-    // Obtiene todas las imágenes ordenadas por fecha descendente (últimas subidas primero)
+    // Get all images order by descending date (last uploaded first)
     public function getAll()
     {
         $query = "SELECT * FROM " . DATABASE_TABLES_PREFIX . "gallery ORDER BY date DESC";
@@ -20,7 +20,7 @@ class Gallery
         return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Obtiene una imagen por su Id
+    // Get an image by ID
     public function getById($id_imagen)
     {
         $stm = $this->dbconn->prepare("SELECT * FROM " . DATABASE_TABLES_PREFIX . "gallery WHERE id = :id");
@@ -29,7 +29,7 @@ class Gallery
         return $stm->fetch();
     }
 
-    // Obtiene el número total de imágenes
+    // Get total number of images
     public function getCount()
     {
         $stm = $this->dbconn->query("SELECT COUNT(*) AS total FROM " . DATABASE_TABLES_PREFIX . "gallery");
@@ -38,7 +38,7 @@ class Gallery
         return $total;
     }
 
-    // Guardar imagen: guarda la ruta de la imagen en el servidor y el id de usuario que subió la imagen
+    // Save image: save url of the picture and user ID
     public function upload($id_user, $url_picture)
     {
         $stm = $this->dbconn->prepare("INSERT INTO " . DATABASE_TABLES_PREFIX . "gallery (id_user, url_picture) VALUES (:id_user, :url_picture)");
@@ -47,7 +47,7 @@ class Gallery
         $stm->execute();
     }
 
-    // Elimina una imagen
+    // Delete an image
     public function deleteById($id_imagen)
     {
         $stm = $this->dbconn->prepare("DELETE FROM " . DATABASE_TABLES_PREFIX . "gallery WHERE id=:id");
@@ -55,27 +55,26 @@ class Gallery
         $stm->execute();
     }
 
-    // Obtiene las imágenes por página
+    // Get images by page
     public function getImages($page, $perPage)
     {
-        // Cálculo del límite y offset
+        // Calculate limit and offset
         $limit = $perPage;
         $offset = ($page - 1) * $perPage;
 
-        // Consulta para obtener los datos de la página actual
+        // Get images
         $sql = "SELECT id, url_picture, id_user FROM " . DATABASE_TABLES_PREFIX . "gallery ORDER BY date DESC LIMIT :limit OFFSET :offset";
         $stmt = $this->dbconn->prepare($sql);
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
         $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
 
-        // Convertir los resultados en un array asociativo
         $rows = array();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $rows[] = $row;
         }
 
-        // Devolver las imágenes de la página especificada
+        // Return images
         return $rows;
     }
 

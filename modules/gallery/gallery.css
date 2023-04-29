@@ -1,65 +1,25 @@
-/* Controles de paginación */
-.pagination>li>a {
-    background: rgba(233, 39, 25, 0.568);
-    color: #fff;
-    border: none;
+/* Pagination controls */
+.pagination>li>button {
+    background: #fff;
+    color: black;
+    border: 1px solid black;
 }
 
-.pagination>li>a:hover {
-    background: red;
+.pagination>li>button:hover {
+    background: black;
     color: #fff;
-    border: none;
     transition: ease-in-out 0.7s;
 }
 
-.pagination>li.active>a {
-    background: red;
+.pagination>li>button.active {
+    background: black;
     color: #fff;
-    border: none;
 }
 
-/* Galería */
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    max-width: 100%;
-}
-
-.image-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1 0 25%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Gallery */
 .image-container:hover .image-overlay:hover {
     opacity: 1;
     cursor: pointer;
-}
-
-@media (max-width: 600px) {
-    .image-container {
-        flex-basis: 50%;
-    }
-}
-
-@media (max-width: 350px) {
-    .image-container {
-        flex-basis: 100%;
-    }
-}
-
-.gallery img {
-    display: block;
-    max-width: 100%;
-    height: auto;
 }
 
 .image-overlay {
@@ -107,5 +67,5 @@
 
 .close-lb:hover {
     fill: red;
-    transition: 0.7s;
+    transition: fill 1s;
 }

@@ -93,7 +93,7 @@ if (isset($_POST['email'])) {
 <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
 
     <!-- Title: start -->
-    <h2 data-i18n="password recovery">Recuperación de contraseña</h2>
+    <h2 data-i18n="password recovery">Password recovery</h2>
     <!-- Title: end -->
 
     <!-- Password recovery form: start -->
@@ -108,28 +108,26 @@ if (isset($_POST['email'])) {
 
         <!-- Error message container: start -->
         <div class="form-group">
-            <p class="form-error" data-i18n="recovery mail sent" <?= $msgMailSent ?>>Se ha enviado el email de
-                recuperación de contraseña.</p>
-            <p class="form-error" data-i18n="mail sending error" <?= $msgMailingError ?>>Ha ocurrido un error al
-                enviar el email de recuperación de contraseña.</p>
-            <p class="form-error" data-i18n="email not registered" <?= $msgMailNotReg ?>>Email no registrado</p>
-            <p class="form-error" data-i18n="mailer error" <?= $msgMailerError ?>>El mensaje no se ha podido enviar.
-                ¡Error de Mailer!</p>
+            <p class="form-error" data-i18n="recovery mail sent" <?= $msgMailSent ?>>Password recovery mail was sent.</p>
+            <p class="form-error" data-i18n="mail sending error" <?= $msgMailingError ?>>An error ocurred while sending
+                password recovery mail.</p>
+            <p class="form-error" data-i18n="email not registered" <?= $msgMailNotReg ?>>Email not registered</p>
+            <p class="form-error" data-i18n="mailer error" <?= $msgMailerError ?>>Message could not be sent. Mailer
+                Error!</p>
         </div>
         <!-- Error message container: end -->
         <br>
 
         <!-- Submit button: start -->
         <div class="form-group form-center-container">
-            <button type="submit" class="btn btn-primary" data-i18n="send email">Enviar email</button>
+            <button type="submit" class="btn btn-primary" data-i18n="send email">Send email</button>
         </div>
         <!-- Submit button: end -->
         <hr>
 
         <!-- Init session link: start -->
         <div class="form-group form-center-container">
-            <small data-i18n="or">o</small><small><a href="user.login.php" class="user-link" data-i18n="sign in">Inicia
-                    sesión</a></small>
+            <small data-i18n="or">o</small><small><a href="user.login.php" class="user-link" data-i18n="sign in">sign in</a></small>
         </div>
         <!-- Init session link: end -->
 

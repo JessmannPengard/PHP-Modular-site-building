@@ -55,7 +55,7 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
 <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
 
     <!-- Title: start -->
-    <h2 data-i18n="reset password">Restablecer contraseña</h2>
+    <h2 data-i18n="reset password">Reset password</h2>
     <!-- Title: end -->
 
     <!-- Pasword reset form: start -->
@@ -67,32 +67,30 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
             <input type="password" name="password" id="password" class="form-control" maxlength=50 required>
         </div>
         <div class="form-group">
-            <label for="r-password" class="form-label" data-i18n="repeat password">Repetir password</label>
+            <label for="r-password" class="form-label" data-i18n="repeat password">Repeat password</label>
             <input type="password" name="r-password" id="r-password" class="form-control" maxlength=50 required>
         </div>
         <!-- Fields: end -->
 
         <!-- Error message container: start -->
         <div class="form-group">
-            <p class="form-error" data-i18n="email not registered" <?= $msgEmailNotReg ?>>Email no registrado</p>
+            <p class="form-error" data-i18n="email not registered" <?= $msgEmailNotReg ?>>Email not registered</p>
 
             <div class="form-error" <?= $msgInvalidToken ?>>
-                <p data-i18n="recovery link not valid">Enlace no válido o caducado.</p>
+                <p data-i18n="recovery link not valid">Recovery link not valid.</p>
                 <small>
-                    <a href='user.passwordrecovery.php' class='user-link' data-i18n="password recovery">Recuperación
-                        de contraseña</a>
+                    <a href='user.passwordrecovery.php' class='user-link' data-i18n="password recovery">Password recovery</a>
                 </small>
             </div>
 
-            <p class="form-error" data-i18n="password not match" id="password-match" <?= $msgErrorPass ?>>La
-                contraseña no coincide</p>
+            <p class="form-error" data-i18n="password not match" id="password-match" <?= $msgErrorPass ?>>Password does not match</p>
         </div>
         <br>
         <!-- Error message container: end -->
 
         <!-- Submit button: start -->
         <div class="form-group form-center-container">
-            <button type="submit" class="btn btn-primary" data-i18n="reset password">Restablecer contraseña</button>
+            <button type="submit" class="btn btn-primary" data-i18n="reset password">Reset password</button>
         </div>
         <hr>
         <!-- Submit button: end -->
