@@ -325,7 +325,7 @@ In this case, it is necessary to be logged in to access the page.
 
 ### Dependencies
 
-It requires the database module to retrieve the images.
+It requires the **database** module to retrieve the images. If we use *image uploading*, we also need the **user** module.
 
 ## Hero
 
@@ -915,7 +915,7 @@ En este caso es necesario tener iniciada sesión para poder acceder a la página
 
 ### Dependencias
 
-Requiere del módulo **database** para recuperar las imágenes.
+Requiere del módulo **database** para recuperar las imágenes. Si usamos la *subida de imágenes* necesitamos también el módulo **user**.
 
 ## Hero
 
