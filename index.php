@@ -2,7 +2,7 @@
 
 <?php
 // Config file
-include("config/app.php");
+require_once("config/app.php");
 
 // Init session
 session_start();
@@ -43,29 +43,31 @@ session_start();
 
 <body>
 
-    <?php include("modules/nav/nav.php"); ?>
+    <?php require_once("modules/translations/language.php"); ?>
 
-    <?php include("modules/hero/hero.php"); ?>
+    <?php require("modules/nav/nav.php"); ?>
 
-    <?php //include("modules/carousel/carousel.php"); ?>
+    <?php require("modules/hero/hero.php"); ?>
 
-    <?php include("modules/gallery/gallery.paginated.php"); ?>
+    <?php //require("modules/carousel/carousel.php"); ?>
 
-    <?php include("modules/about/about.php"); ?>
+    <?php require("modules/gallery/gallery.paginated.php"); ?>
 
-    <?php include("modules/cards/cards-horizontal.php"); ?>
+    <?php require("modules/about/about.php"); ?>
 
-    <?php include("modules/cards/cards-vertical.php"); ?>
+    <?php require("modules/cards/cards-horizontal.php"); ?>
 
-    <?php include("modules/contact/contact.php"); ?>
+    <?php require("modules/cards/cards-vertical.php"); ?>
 
-    <?php include("modules/map/map.php"); ?>
+    <?php require("modules/contact/contact.php"); ?>
 
-    <?php include("modules/footer/footer.php"); ?>
+    <?php require("modules/map/map.php"); ?>
 
-    <?php //include("modules/gallery/gallery.scrolled.php"); ?>
+    <?php require("modules/footer/footer.php"); ?>
 
-    <?php include("modules/cookies/cookies.php"); ?>
+    <?php //require("modules/gallery/gallery.scrolled.php"); ?>
+
+    <?php require("modules/cookies/cookies.php"); ?>
 
 </body>
 

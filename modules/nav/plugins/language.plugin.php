@@ -2,17 +2,22 @@
 
 <!-- Language dropdown: start -->
 <?php
-$languages = [];
-foreach (glob("modules/translations/lang/*.json") as $file) {
+// Languages configuration file
+require_once("modules/translations/language.config.php");
+require_once("modules/translations/language.php");
+
+// Generate language list
+$languages_list = [];
+foreach ($supported_languages as $sup_language) {
     // Get file name (without extension)
-    $name = basename($file, ".json");
+    $name = $sup_language;
     // Get file name of the picture
-    $image = "modules/translations/lang/" . $name . ".png";
+    $image = "modules/translations/lang/" . $sup_language . ".png";
     // Add language to list
-    $languages[] = [
-        "id" => $name,
+    $languages_list[] = [
+        "id" => $sup_language,
         // First character to uppercase
-        "name" => ucfirst($name),
+        "name" => ucfirst($sup_language),
         "image" => $image,
     ];
 }
@@ -24,14 +29,14 @@ foreach (glob("modules/translations/lang/*.json") as $file) {
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end">
-        <?php foreach ($languages as $language) { ?>
-            <li class="language-item" data-language-id="<?= $language["id"] ?>">
+        <?php foreach ($languages_list as $language_item) { ?>
+            <li class="language-item" data-language-id="<?= $language_item["id"] ?>">
                 <a class="dropdown-item" href="#">
-                    <img src="<?= $language["image"] ?>" alt="" class="menu-icon">
+                    <img src="<?= $language_item["image"] ?>" alt="" class="menu-icon">
                     <span>
-                        <?= $language["name"] ?>
+                        <?= $language_item["name"] ?>
                     </span>
-                    <?php if ($language["id"] === $selectedLanguageId) { ?>
+                    <?php if ($language_item["id"] === $language) { ?>
                         <span id="language-selected-icon">&#x2714;</span>
                     <?php } ?>
                 </a>
@@ -48,36 +53,50 @@ foreach (glob("modules/translations/lang/*.json") as $file) {
 
         languageItems.forEach(item => {
             item.addEventListener("click", function () {
-                // Get picture and icon from selected item
-                const imageUrl = this.querySelector("img").src;
-                const selectedIcon = document.querySelector("#language-selected-icon");
-                // Change selected picture
-                document.querySelector("#language-selected-image").src = imageUrl;
-                // Move selection icon to the selected item
-                if (selectedIcon) {
-                    selectedIcon.parentNode.removeChild(selectedIcon);
-                }
-                const icon = document.createElement("span");
-                icon.id = "language-selected-icon";
-                icon.innerText = "\u2714";
-                const dropdownItem = this.querySelector(".dropdown-item");
-                insertAfter(icon, dropdownItem.lastElementChild);
-
-                // Get data-language-id attribute from selected item
-                const languageId = this.getAttribute("data-language-id");
-                // Translate
-                loadTranslations(languageId);
-                // Store selected item in localStorage
-                localStorage.setItem("selectedLanguageId", languageId);
+                // Set language
+                var language = this.getAttribute("data-language-id");
+                setLanguage(language);
+                // Reload page
+                location = location;
             });
-            // Select element that match localStorage value
-            if (selectedLanguageId && item.getAttribute("data-language-id") === selectedLanguageId) {
-                item.click();
-            }
         });
 
         function insertAfter(newNode, existingNode) {
             existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+        }
+
+        // Function to get current language
+        function getLanguage() {
+            fetch('modules/translations/language.php?action=get_language', {
+                method: 'GET'
+            }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                console.log(data);
+                //
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        // Function to set current language
+        function setLanguage(language) {
+            fetch('modules/translations/language.php?action=set_language', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    language: language
+                })
+            }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                console.log(data);
+                //
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     }
 </script>
