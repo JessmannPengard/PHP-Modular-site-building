@@ -38,22 +38,3 @@ echo '<script>var lang = ' . json_encode($lang) . ';</script>';
 //      PHP: echo $lang[key];
 //      JS: console.log(lang[key]);
 ///////////////////////////////////
-
-// Function to get current language
-function getLanguage()
-{
-    global $language;
-    echo json_encode(array('language' => $language));
-}
-
-// Function to set current language
-function setLanguage()
-{
-    global $supported_languages;
-    if (isset($_POST['language']) && in_array($_POST['language'], $supported_languages)) {
-        $_SESSION['language'] = $_POST['language'];
-        echo json_encode(array('success' => true));
-    } else {
-        echo json_encode(array('success' => false));
-    }
-}

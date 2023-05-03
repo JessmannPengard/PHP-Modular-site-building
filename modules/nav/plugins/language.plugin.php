@@ -25,7 +25,7 @@ foreach ($supported_languages as $sup_language) {
 <!-- Generate HTML -->
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="" alt="" class="menu-icon" id="language-selected-image">
+        <img src="modules/translations/lang/<?= $language ?>.png" alt="" class="menu-icon" id="language-selected-image">
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end">
@@ -48,55 +48,39 @@ foreach ($supported_languages as $sup_language) {
 
 <script>
     // Language selection
-    window.onload = function () {
+    window.onload = function() {
         const languageItems = document.querySelectorAll(".language-item");
 
         languageItems.forEach(item => {
-            item.addEventListener("click", function () {
+            item.addEventListener("click", function() {
                 // Set language
                 var language = this.getAttribute("data-language-id");
                 setLanguage(language);
-                // Reload page
-                location = location;
+                // Reload page with new selected language
+                //location = location;
             });
         });
 
-        function insertAfter(newNode, existingNode) {
-            existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
-        }
-
-        // Function to get current language
-        function getLanguage() {
-            fetch('modules/translations/language.php?action=get_language', {
-                method: 'GET'
-            }).then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                console.log(data);
-                //
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-
         // Function to set current language
         function setLanguage(language) {
-            fetch('modules/translations/language.php?action=set_language', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    language: language
+            fetch('modules/translations/language.functions.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'set_language',
+                        new_language: language
+                    })
                 })
-            }).then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                console.log(data);
-                //
-            }).catch(function (error) {
-                console.log(error);
-            });
+                .then((response) => response.json())
+                .then((data) => {
+                    // Success
+                    console.log(data);
+                }).catch(function(error) {
+                    // Error
+                    console.log(error);
+                });
         }
     }
 </script>
