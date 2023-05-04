@@ -87,10 +87,10 @@ Sometimes, certain modules require others to function properly. This will be spe
 -  *FOOTER*
 -  *GALLERY*
 -  *HERO*
+-  *LANGUAGE*
 -  *MAIL*
 -  *MAP*
 -  *NAV*
--  *TRANSLATIONS*
 -  *USER*
 
 ## upload/
@@ -128,47 +128,62 @@ File with all the documentation and description of the project.
 This page consists of a navigation bar, a carousel, a contact form, a *Google* map, and a footer, as well as a language selection system and user login and registration.
 
 ```php
+<!-- Index sample by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
 <?php
-include("config/app.php"); // Config file
-session_start(); // Session start
+// Config file
+require_once("config/app.php");
+
+// Start session if not started yet
+session_status() == PHP_SESSION_NONE ? session_start() : null;
+
+//Language
+require_once("modules/language/language.php");
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Title -->
-<title>
-<?= BRAND ?>
-</title>
-<!-- Bootstrap -->
-<script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
-<!-- Language script -->
-<script src="modules/translations/translations.js"></script>
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="img/favicon.ico">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>
+        <?= BRAND ?>
+    </title>
+
+    <!-- Bootstrap -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
 
 <body>
-<!-- Nav bar -->
-<?php include("modules/nav/nav.php"); ?>
 
-<!-- Carousel -->
-<?php include("modules/carousel/carousel.php"); ?>
+    <?php require("modules/nav/nav.php"); ?>
 
-<!-- Contact form -->
-<?php include("modules/contact/contact.php"); ?>
+    <?php require("modules/hero/hero.php"); ?>
 
-<!-- Google map-->
-<?php include("modules/map/map.php"); ?>
+    <?php require("modules/about/about.php"); ?>
 
-<!-- Footer -->
-<?php include("modules/footer/footer.php"); ?>
+    <?php require("modules/cards/cards-horizontal.php"); ?>
+
+    <?php require("modules/cards/cards-vertical.php"); ?>
+
+    <?php require("modules/contact/contact.php"); ?>
+
+    <?php require("modules/map/map.php"); ?>
+
+    <?php require("modules/footer/footer.php"); ?>
+
+    <?php require("modules/cookies/cookies.php"); ?>
 
 </body>
+
 </html>
 ```
 
@@ -343,6 +358,75 @@ A Hero section for our website, with an image that covers the entire screen. It 
 
 None.
 
+## Language
+
+### Description
+
+This module allows the use of different languages on your site. 
+
+It will load the corresponding texts according to the selected language.
+
+### Usage
+
+To be able to use translation on your website, there are several basic requirements:
+
+- Inside the module folder *language/lang*, you must include the language files in *json* format with the following format:
+
+```json
+{
+"home": "Inicio",
+"about": "Acerca de",
+"contact": "Contacto",
+"login": "Iniciar sesión"
+}
+```
+
+This file would be named, for example, es.json.
+
+Additionally, if you are going to use the nav module's plugin to select the language, you must include the flag image corresponding to the language, which in this case would be es.png. And so for the rest of the languages: en.json, en.png, etc.
+
+In the language.config.php file we define the languages that our application will support, the languages by country (if we have the Geoip extension installed), and the default language:
+
+```php
+<?php
+// Define supported languages
+$supported_languages = array('es', 'en');
+
+// Define languages by country
+$languages_by_country = array(
+    'es' => array('AR', 'BO', 'CL', 'CO', 'CR', 'CU', 'DO', 'EC', 'SV', 'GQ', 'GT', 'HN', 'MX', 'NI', 'PA', 'PY', 'PE', 'PR', 'ES', 'UY', 'VE'),
+    'en' => array('AU', 'BS', 'CA', 'GB', 'HK', 'IE', 'IN', 'JM', 'MY', 'NZ', 'PH', 'SG', 'ZA', 'US')
+);
+
+// Define default language
+$default_language = 'en';
+```
+
+To display the text, it is done in the following way:
+
+##### PHP
+
+```php
+echo $lang[key];
+```
+
+##### Javascript
+
+```javascript
+console.log(lang[key]);
+```
+
+To use this module, simply include it at the beginning of our script:
+
+```php
+require_once("modules/language/language.php");
+
+```
+
+### Dependencies
+
+This module doesn't require any other module to work, however, it can be combined with the *language.plugin.php* plugin from the **nav** module to have complete functionality.
+
 ## Mail
 
 ### Description
@@ -424,7 +508,7 @@ The full version, in addition to the *BRAND*, includes a traditional *responsive
 
 #### language.plugin.php
 
-For sites with different languages, there is a language selector that saves the selected language in localStorage.
+For sites with different languages, there is a language selector that saves the selected language in session.
 
 #### session.plugin.php
 
@@ -457,95 +541,7 @@ If they are not going to be used, they can be removed or commented out.
 
 The *session plugin* requires the **user** and **database** modules.
 
-The *language plugin* requires the **translations** module.
-
-## Translations
-
-### Description
-
-This module allows you to use different languages on your site.
-
-It consists of a script that translates the different elements based on the selected language.
-
-### Usage
-
-To be able to use translation on your website, there are some basic requirements:
-
-- Inside the *translations/lang* folder of the module, you must include language files in *json* format with the following structure:
-
-```json
-{
-"home": "Inicio",
-"about": "Acerca de",
-"contact": "Contacto",
-"login": "Iniciar sesión"
-}
-```
-
-This file would be named, for example, es.json.
-
-- Additionally, if you are going to use the nav module's plugin to select the language, you must include the image of the corresponding language flag, which in this case would be es.png. And so on for the rest of the languages: en.json, en.png, etc.
-
-- Each text that you want to translate must include the data-i18n attribute with the corresponding key from the json language file:
-
-```html
-<label data-i18n="home">Home</label>
-```
-
-- If you generate text dynamically (for example, to display error messages) using JavaScript, you can use the function translate(key):
-
-```javascript
-translate("mailer error");
-```
-
-You must have the *translations* module loaded for it to work, to avoid errors you could do the verification as follows:
-
-```javascript
-let texto = translations ? translate("mailer error") : "Message could not be sent. Mailer Error;
-```
-
-Depending on the website you are building, language handling can be used in two different ways:
-
-##### Sites WITHOUT registered users.
-
-The language will be stored in LocalStorage. Once the user selects a language, it will be saved on their local machine and every time they access the site, it will use this value to translate the page. To do this, it is only necessary to add the script to each page:
-
-```html
-<script src="modules/translations/translations.js"></script>
-```
-
-The path may vary depending on the structure of your site.
-
-##### Sites WITH registered users.
-
-In this case, the requirements are the same, with the difference that the language can be saved at the user level in the database. The system will search for the selected language in the following order:
-
-- Session
-- LocalStorage
-- Default ("en")
-
-In this case, we must include in our page:
-
-```php
-<?php
-if (isset($_SESSION['language'])) {
-	$selectedLanguageId = $_SESSION['language'];
-} else {
-	$selectedLanguageId = null;
-}
-
-echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
-?>
-
-<script src="modules/translations/translations.js"></script>
-
-```
-
-Again, the script path may vary depending on the structure of your site.
-
-### Dependencies
-
-This module doesn't require any other module to work, however, it can be combined with the *language.plugin.php* plugin from the **nav** module to have complete functionality.
+The *language plugin* requires the **language** module.
 
 ## User
 
@@ -677,10 +673,10 @@ En ocasiones, ciertos módulos necesitan de otros para funcionar correctamente. 
 -  *FOOTER*
 -  *GALLERY*
 -  *HERO*
+-  *LANGUAGE*
 -  *MAIL*
 -  *MAP*
 -  *NAV*
--  *TRANSLATIONS*
 -  *USER*
 
 ## upload/
@@ -718,47 +714,62 @@ Archivo con toda la documentación y descripción del proyecto.
 Esta página se compone de una barra de navegación, un carrusel, un formulario de contacto, un mapa de *google* y un pie de página, además de un sistema de selección de idioma y un acceso y registro de usuarios.
 
 ```php
+<!-- Index sample by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
 <?php
-include("config/app.php"); // Config file
-session_start(); // Session start
+// Config file
+require_once("config/app.php");
+
+// Start session if not started yet
+session_status() == PHP_SESSION_NONE ? session_start() : null;
+
+//Language
+require_once("modules/language/language.php");
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Title -->
-<title>
-<?= BRAND ?>
-</title>
-<!-- Bootstrap -->
-<script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
-<!-- Language script -->
-<script src="modules/translations/translations.js"></script>
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="img/favicon.ico">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>
+        <?= BRAND ?>
+    </title>
+
+    <!-- Bootstrap -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
 
 <body>
-<!-- Nav bar -->
-<?php include("modules/nav/nav.php"); ?>
 
-<!-- Carousel -->
-<?php include("modules/carousel/carousel.php"); ?>
+    <?php require("modules/nav/nav.php"); ?>
 
-<!-- Contact form -->
-<?php include("modules/contact/contact.php"); ?>
+    <?php require("modules/hero/hero.php"); ?>
 
-<!-- Google map-->
-<?php include("modules/map/map.php"); ?>
+    <?php require("modules/about/about.php"); ?>
 
-<!-- Footer -->
-<?php include("modules/footer/footer.php"); ?>
+    <?php require("modules/cards/cards-horizontal.php"); ?>
+
+    <?php require("modules/cards/cards-vertical.php"); ?>
+
+    <?php require("modules/contact/contact.php"); ?>
+
+    <?php require("modules/map/map.php"); ?>
+
+    <?php require("modules/footer/footer.php"); ?>
+
+    <?php require("modules/cookies/cookies.php"); ?>
 
 </body>
+
 </html>
 ```
 
@@ -933,6 +944,75 @@ Una sección Hero para nuestra web, con una imagen que ocupa la totalidad de la 
 
 Ninguna.
 
+## Language
+
+### Descripción
+
+Este módulo permite la utilización de diferentes idiomas en tu sitio.
+
+Cargará los textos correspondientes según el idioma seleccionado.
+
+### Uso
+
+Para poder utilizar la traducción en tu sitio, hay varios requisitos básicos:
+
+- Dentro de la carpeta del módulo *language/lang* debes incluir los archivos de idiomas en formato *json* con el siguiente formato:
+
+```json
+{
+"home": "Inicio",
+"about": "Acerca de",
+"contact": "Contacto",
+"login": "Iniciar sesión"
+}
+```
+
+Este archivo se llamaría, por ejemplo *es.json*.
+
+- Además, si vas a usar el *plugin* del módulo *nav* para seleccionar el idioma, debes incluir la imagen de la bandera correspondiente al idioma que en este caso sería *es.png*. Y así para el resto de idiomas: *en.json*, *en.png*, etc.
+
+- En el archivo *language.config.php* definimos los idiomas que soportará nuestra aplicación, los idiomas por país (si tenemos instalada la extensión *Geoip*) y el idioma por defecto:
+
+```php
+<?php
+// Define supported languages
+$supported_languages = array('es', 'en');
+
+// Define languages by country
+$languages_by_country = array(
+    'es' => array('AR', 'BO', 'CL', 'CO', 'CR', 'CU', 'DO', 'EC', 'SV', 'GQ', 'GT', 'HN', 'MX', 'NI', 'PA', 'PY', 'PE', 'PR', 'ES', 'UY', 'VE'),
+    'en' => array('AU', 'BS', 'CA', 'GB', 'HK', 'IE', 'IN', 'JM', 'MY', 'NZ', 'PH', 'SG', 'ZA', 'US')
+);
+
+// Define default language
+$default_language = 'en';
+```
+
+Para mostrar el texto se hace de la siguiente manera:
+
+##### PHP
+
+```php
+echo $lang[key];
+```
+
+##### Javascript
+
+```javascript
+console.log(lang[key]);
+```
+
+Para utilizar este módulo simplemente hay que incluirlo al inicio de nuestro script:
+
+```php
+require_once("modules/language/language.php");
+
+```
+
+### Dependencias
+
+Este módulo no necesita de ningún otro para funcionar, no obstante se puede combinar con el plugin *language.plugin.php* del módulo **nav** para tener una funcionalidad completa.
+
 ## Mail
 
 ### Descripción
@@ -1014,7 +1094,7 @@ La versión completa además del *BRAND* incluye un menú de navegación tradici
 
 #### language.plugin.php
 
-Para sitios con distintos idiomas, es un selector de idioma que guarda el idioma seleccionado en localStorage.
+Para sitios con distintos idiomas, es un selector de idioma que guarda el idioma seleccionado en sesión.
 
 #### session.plugin.php
 
@@ -1047,95 +1127,7 @@ Si no se van a utilizar, pueden eliminarse o comentarse.
 
 El *plugin* de sesión requiere de los módulos **user** y **database**.
 
-El *plugin* de idioma requiere el módulo **translations**.
-
-## Translations
-
-### Descripción
-
-Este módulo permite la utilización de diferentes idiomas en tu sitio.
-
-Consiste en un script que traduce los diferentes elementos en función del idioma seleccionado.
-
-### Uso
-
-Para poder utilizar la traducción en tu sitio, hay varios requisitos básicos:
-
-- Dentro de la carpeta del módulo *translations/lang* debes incluir los archivos de idiomas en formato *json* con el siguiente formato:
-
-```json
-{
-"home": "Inicio",
-"about": "Acerca de",
-"contact": "Contacto",
-"login": "Iniciar sesión"
-}
-```
-
-Este archivo se llamaría, por ejemplo *es.json*.
-
-- Además, si vas a usar el *plugin* del módulo *nav* para seleccionar el idioma, debes incluir la imagen de la bandera correspondiente al idioma que en este caso sería *es.png*. Y así para el resto de idiomas: *en.json*, *en.png*, etc.
-
-- Cada texto que desees traducir debe incluir el atributo *data-i18n* con la *key* correspondiente del archivo de idioma *json*:
-
-```html
-<label data-i18n="home">Home</label>
-```
-
-- En el caso de que generes el texto de manera dinámica (por ejemplo para mostrar mensajes de error) mediante javascript, puedes utilizar la función *translate(key)*:
-
-```javascript
-translate("mailer error");
-```
-
-Debes tener cargado el módulo *translations* para que funcione, para evitar errores podrías hacer la comprobación de este modo:
-
-```javascript
-let texto = translations ? translate("mailer error") : "Message could not be sent. Mailer Error;
-```
-
-Dependiendo del sitio que estés construyendo, el manejo de idiomas se puede utilizar de dos formas diferentes:
-
-##### Sitios SIN usuarios registrados
-
-El idioma se guardará en LocalStorage. Una vez que el usuario selecciona un idioma, este se almacenará en su máquina local y cada vez que acceda al sitio, utilizará este valor para traducir la página. Para ello sólo será necesario añadir el script a cada página:
-
-```html
-<script src="modules/translations/translations.js"></script>
-```
-
-La ruta puede variar en función de la estructura de tu sitio.
-
-##### Sitios CON usuarios registrados
-
-En este caso, los requisitos son los mismos, con la diferencia de que el idioma se puede guardar a nivel de usuario en la base de datos. El sistema buscará el idioma seleccionado por este orden:
-
-- Sesión
-- LocalStorage
-- Default ("en")
-
-En este caso debemos incluir en nuestra página:
-
-```php
-<?php
-if (isset($_SESSION['language'])) {
-	$selectedLanguageId = $_SESSION['language'];
-} else {
-	$selectedLanguageId = null;
-}
-
-echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
-?>
-
-<script src="modules/translations/translations.js"></script>
-
-```
-
-De nuevo, la ruta del script puede variar en función de la estructura de tu sitio.
-
-### Dependencias
-
-Este módulo no necesita de ningún otro para funcionar, no obstante se puede combinar con el plugin *language.plugin.php* del módulo **nav** para tener una funcionalidad completa.
+El *plugin* de idioma requiere el módulo **language**.
 
 ## User
 

@@ -5,10 +5,10 @@
 require("../../config/app.php");
 require("../../modules/database/database.php");
 require("user.model.php");
+require_once("../language/language.php");
 
-// Init error messagess variables
-$msgEmailExists = "hidden";
-$msgErrorPass = "hidden";
+// Init error message variable
+$msg = "";
 
 // if POST...
 if (isset($_POST["email"])) {
@@ -31,7 +31,7 @@ if (isset($_POST["email"])) {
         exit();
     } else {
         // Email already registered
-        $msgEmailExists = "";
+        $msg = $lang["email already registered"];
     }
     // Close DB connection
     $db->closeConnection();
@@ -47,7 +47,9 @@ if (isset($_POST["email"])) {
 <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
 
     <!-- Title: start -->
-    <h2 data-i18n="create account">Crear cuenta</h2>
+    <h2>
+        <?= $lang["create account"] ?>
+    </h2>
     <!-- Title: end -->
 
     <!-- Register form: start -->
@@ -55,41 +57,52 @@ if (isset($_POST["email"])) {
 
         <!-- Fields: start -->
         <div class="form-group">
-            <label for="email" class="form-label" data-i18n="email">Email</label>
+            <label for="email" class="form-label">
+                <?= $lang["email"] ?>
+            </label>
             <input type="text" name="email" class="form-control" maxlength=50 required autofocus>
         </div>
         <div class="form-group">
-            <label for="password" class="form-label" data-i18n="password">Contraseña</label>
+            <label for="password" class="form-label">
+                <?= $lang["password"] ?>
+            </label>
             <input type="password" name="password" id="password" class="form-control" maxlength=50 required>
         </div>
         <div class="form-group">
-            <label for="r-password" class="form-label" data-i18n="repeat password">Repetir contraseña</label>
+            <label for="r-password" class="form-label">
+                <?= $lang["repeat password"] ?>
+            </label>
             <input type="password" name="r-password" id="r-password" class="form-control" maxlength=50 required>
         </div>
         <!-- Fields: end -->
 
-        <!-- Error messsage container: start -->
+        <!-- Error message container: start -->
         <div class="form-group">
-            <p class="form-error" data-i18n="email already registered" <?= $msgEmailExists ?>>Este email ya está
-                registrado</p>
-            <p class="form-error" data-i18n="password not match" id="password-match" <?= $msgErrorPass ?>>La
-                contraseña no coincide</p>
+            <p class="form-error" id="error-msg">
+                <?= $msg ?>
+            </p>
         </div>
         <br>
-        <!-- Error messsage container: end -->
+        <!-- Error message container: end -->
 
         <!-- Submit button: start -->
         <div class="form-group form-center-container">
-            <button type="submit" class="btn btn-primary" data-i18n="register">Registrarse</button>
+            <button type="submit" class="btn btn-primary">
+                <?= $lang["register"] ?>
+            </button>
         </div>
         <hr>
         <!-- Submit button: end -->
 
         <!-- Login link: start -->
         <div class="form-group form-center-container">
-            <small data-i18n="already registered">¿Ya tienes una cuenta? </small>
             <small>
-                <a href="user.login.php" class="user-link" data-i18n="log in"> Inicia sesión</a>
+                <?= $lang["already registered"] ?>
+            </small>
+            <small>
+                <a href="user.login.php" class="user-link">
+                    <?= $lang["log in"] ?>
+                </a>
             </small>
         </div>
         <!-- Login link: end -->
@@ -106,15 +119,15 @@ if (isset($_POST["email"])) {
 
 <!-- Script: start -->
 <script>
-    // Check both password fields equal
-    let form = document.getElementById("form-register");
-    form.onsubmit = function(e) {
+    // Check for both password fields equal
+    const form = document.getElementById("form-register");
+    const elementError = document.getElementById("error-msg");
+    form.onsubmit = function (e) {
         let passw = document.getElementById("password").value;
         let cpassw = document.getElementById("r-password").value;
         if (passw != cpassw) {
             e.preventDefault();
-            // Error: not equal
-            elementError = document.getElementById("password-match").hidden = false;
+            elementError.innerText = lang["password not match"];
         }
     }
 </script>

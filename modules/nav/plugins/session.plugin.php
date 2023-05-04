@@ -4,8 +4,12 @@
 <!-- If there is no session, show login/register options -->
 <?php if (!isset($_SESSION["email"])) { ?>
     <li class="session-container nav-item">
-        <a href="modules/user/user.login.php" class="btn btn-primary" data-i18n="login">Login</a>
-        <a href="modules/user/user.register.php" class="btn btn-outline-primary" data-i18n="register">Register</a>
+        <a href="modules/user/user.login.php" class="btn btn-primary">
+            <?= $lang["login"] ?>
+        </a>
+        <a href="modules/user/user.register.php" class="btn btn-outline-primary">
+            <?= $lang["register"] ?>
+        </a>
     </li>
 <?php } else { // If a session exists, show user options
         require_once("modules/database/database.php");
@@ -24,10 +28,14 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
             <li>
-                <a class="dropdown-item" href="modules/user/user.settings.php" data-i18n="settings">Settings</a>
+                <a class="dropdown-item" href="modules/user/user.settings.php">
+                    <?= $lang["settings"] ?>
+                </a>
             </li>
             <li>
-                <a class="dropdown-item" href="modules/user/user.logout.php" data-i18n="logout">Logout</a>
+                <a class="dropdown-item" href="modules/user/user.logout.php">
+                    <?= $lang["logout"] ?>
+                </a>
             </li>
         </ul>
     </li>

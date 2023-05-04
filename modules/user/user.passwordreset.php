@@ -5,11 +5,10 @@
 require("../../config/app.php");
 require("../../modules/database/database.php");
 require("user.model.php");
+require_once("../language/language.php");
 
-// Init error messages variables
-$msgEmailNotReg = "hidden";
-$msgInvalidToken = "hidden";
-$msgErrorPass = "hidden";
+// Init error message variable
+$msg = "";
 
 // Check for POST
 if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"])) {
@@ -30,7 +29,7 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
 
         if ($result["result"] == false) {
             // Email not registered
-            $msgEmailNotReg = "";
+            $msg = $lang["email not registered"];
         } else {
             // Success: delete stored tokens from user
             $user->deleteToken($email);
@@ -39,11 +38,11 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
         }
     } else {
         // Invalid token
-        $msgInvalidToken = "";
+        $msg = $lang["recovery link not valid"];
     }
 } else {
     // Invalid data
-    $msgInvalidToken = "";
+    $msg = $lang["recovery link not valid"];
 }
 ?>
 
@@ -55,7 +54,9 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
 <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
 
     <!-- Title: start -->
-    <h2 data-i18n="reset password">Reset password</h2>
+    <h2>
+        <?= $lang["reset password"] ?>
+    </h2>
     <!-- Title: end -->
 
     <!-- Pasword reset form: start -->
@@ -63,34 +64,40 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
 
         <!-- Fields: start -->
         <div class="form-group">
-            <label for="password" class="form-label" data-i18n="password">Password</label>
+            <label for="password" class="form-label">
+                <?= $lang["password"] ?>
+            </label>
             <input type="password" name="password" id="password" class="form-control" maxlength=50 required>
         </div>
         <div class="form-group">
-            <label for="r-password" class="form-label" data-i18n="repeat password">Repeat password</label>
+            <label for="r-password" class="form-label">
+                <?= $lang["repeat password"] ?>
+            </label>
             <input type="password" name="r-password" id="r-password" class="form-control" maxlength=50 required>
         </div>
         <!-- Fields: end -->
 
         <!-- Error message container: start -->
         <div class="form-group">
-            <p class="form-error" data-i18n="email not registered" <?= $msgEmailNotReg ?>>Email not registered</p>
-
-            <div class="form-error" <?= $msgInvalidToken ?>>
-                <p data-i18n="recovery link not valid">Recovery link not valid.</p>
+            <div class="form-error">
+                <p id="error-msg">
+                    <?= $msg ?>
+                </p>
                 <small>
-                    <a href='user.passwordrecovery.php' class='user-link' data-i18n="password recovery">Password recovery</a>
+                    <a href='user.passwordrecovery.php' class='user-link'>
+                        <?= $lang["password recovery"] ?>
+                    </a>
                 </small>
             </div>
-
-            <p class="form-error" data-i18n="password not match" id="password-match" <?= $msgErrorPass ?>>Password does not match</p>
         </div>
         <br>
         <!-- Error message container: end -->
 
         <!-- Submit button: start -->
         <div class="form-group form-center-container">
-            <button type="submit" class="btn btn-primary" data-i18n="reset password">Reset password</button>
+            <button type="submit" class="btn btn-primary">
+                <?= $lang["reset password"] ?>
+            </button>
         </div>
         <hr>
         <!-- Submit button: end -->
@@ -108,13 +115,14 @@ if (isset($_GET['email']) && isset($_GET["token"]) && isset($_POST["password"]))
 <!-- Script: start -->
 <script>
     // Check for both password fields equal
-    let form = document.getElementById("form-reset");
-    form.onsubmit = function(e) {
+    const form = document.getElementById("form-reset");
+    const elementError = document.getElementById("error-msg");
+    form.onsubmit = function (e) {
         let passw = document.getElementById("password").value;
         let cpassw = document.getElementById("r-password").value;
         if (passw != cpassw) {
             e.preventDefault();
-            elementError = document.getElementById("password-match").hidden = false;
+            elementError.innerText = lang["password not match"];
         }
     }
 </script>

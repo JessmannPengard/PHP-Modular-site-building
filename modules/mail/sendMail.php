@@ -3,7 +3,7 @@ require("Mail.php");
 
 $response = new stdClass();
 
-// Obtener los datos enviados mediante POST
+// Get POST data
 $fromEmail = $_POST['fromEmail'] ?? '';
 $fromName = $_POST['fromName'] ?? '';
 $toEmail = $_POST['toEmail'] ?? '';
@@ -22,13 +22,13 @@ if ($mail->sendMail($fromEmail, $fromName, $toEmail, $subject, $body)) {
     $response->msg = "Error: Message could not be sent.";
 }
 
-// Convertir el objeto PHP a JSON
+// Convert to JSON
 $json = json_encode($response);
 
-// Establecer la cabecera de respuesta para indicar que se está devolviendo JSON
+// Establish header
 header('Content-Type: application/json');
 
-// Devolver el JSON
+// Return JSON
 echo $json;
 
 ?>

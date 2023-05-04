@@ -6,6 +6,8 @@ require_once("language.config.php");
 session_status() == PHP_SESSION_NONE ? session_start() : null;
 
 // Define selected language
+$language = $default_language;
+
 if (isset($_SESSION['language']) && in_array($_SESSION['language'], $supported_languages)) {
     // By session
     $language = $_SESSION['language'];
@@ -20,10 +22,7 @@ if (isset($_SESSION['language']) && in_array($_SESSION['language'], $supported_l
             }
         }
     }
-    // Default
-    if (!isset($language)) {
-        $language = $default_language;
-    }
+    $_SESSION["language"] = $language;
 }
 
 // Get data from language file

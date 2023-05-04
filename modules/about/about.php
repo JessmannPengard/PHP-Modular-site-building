@@ -1,7 +1,7 @@
 <!-- About module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
 
 <!-- Section about: start -->
-<section class="section bg-light" id="about-section">
+<section class="section bg-light" id="section-about">
     <div class="container">
         <div class="row align-items-center justify-content-around flex-row-reverse">
 
@@ -10,24 +10,31 @@
                 <div class="about-text">
 
                     <!-- About title: start -->
-                    <h3 data-i18n="about title">Hi! I am Jesús</h3>
+                    <h3>
+                        <?= $lang["about title"] ?>
+                    </h3>
                     <!-- About title: end -->
 
                     <!-- About subtitle: start -->
-                    <h4 class="theme-color" data-i18n="about subtitle">UI / UX Designer &amp; Web Developer</h4>
+                    <h4 class="theme-color">
+                        <?= $lang["about subtitle"] ?>
+                    </h4>
                     <!-- About subtitle: end -->
 
                     <!-- About text: start -->
-                    <p data-i18n="about text">I design and develop services for customers of all sizes, specializing in creating stylish,
-                        modern websites, web services and online applications. My passion is to design digital user
-                        experiences through the bold interface and meaningful interactions.
+                    <p>
+                        <?= $lang["about text"] ?>
                     </p>
                     <!-- About text: end -->
 
                     <!-- About buttons: start -->
                     <div class="btn-bar">
-                        <a class="btn btn-outline-dark btn-lg m-2" href="#" data-i18n="about btn 1">View Works</a>
-                        <a class="btn btn-dark btn-lg m-2" href="#" data-i18n="about btn 2">Download CV</a>
+                        <a class="btn btn-outline-dark btn-lg m-2" href="#">
+                            <?= $lang["about btn 1"] ?>
+                        </a>
+                        <a class="btn btn-dark btn-lg m-2" href="#">
+                            <?= $lang["about btn 2"] ?>
+                        </a>
                     </div>
                     <!-- About buttons: end -->
 

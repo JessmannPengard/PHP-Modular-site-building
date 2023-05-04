@@ -1,5 +1,10 @@
 <!-- User module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
 
+<?php
+//Language
+require_once("../language/language.php");
+?>
+
 <!-- Header template: start -->
 <!DOCTYPE html>
 <html lang="en">
@@ -11,19 +16,6 @@
     <!-- Bootstrap -->
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
-
-    <!-- Language variables -->
-    <?php
-    if (isset($_SESSION['language'])) {
-        $selectedLanguageId = $_SESSION['language'];
-    } else {
-        $selectedLanguageId = null;
-    }
-    echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
-    ?>
-
-    <!-- Language script -->
-    <script src="../../modules/translations/translations.js"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="user.css">
@@ -42,4 +34,4 @@
     <?php require("../nav/nav.lite.php"); ?>
     <!-- Header: end -->
 
-<!-- Header template: end -->
+    <!-- Header template: end -->

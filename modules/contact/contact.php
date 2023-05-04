@@ -6,12 +6,15 @@
 <section class="container" id="section-contact">
 
     <!-- Contact heading: start -->
-    <h2 class="h1 font-weight-bold text-center my-4" data-i18n="contact us">Contact us</h2>
+    <h2 class="h1 font-weight-bold text-center my-4">
+        <?= $lang["contact us"] ?>
+    </h2>
     <!-- Contact heading: end -->
 
     <!-- Contact description: start -->
-    <p class="text-center mx-auto mb-5" data-i18n="contact message">Do you have any questions? Please do not hesitate to
-        contact us directly. Our team will come back to you within a matter of hours to help you.</p>
+    <p class="text-center mx-auto mb-5">
+        <?= $lang["contact message"] ?>
+    </p>
     <!-- Contact description: end -->
 
     <!-- Form: start -->
@@ -20,26 +23,34 @@
         <!-- Fields: start -->
         <div class="row">
             <div class="col-md-6">
-                <label for="contact-name" class="form-label" data-i18n="your name">Your name</label>
+                <label for="contact-name" class="form-label">
+                    <?= $lang["your name"] ?>
+                </label>
                 <input type="text" id="contact-name" name="contact-name" class="form-control" required>
             </div>
 
             <div class="col-md-6">
-                <label for="contact-email" class="form-label" data-i18n="your email">Your email</label>
+                <label for="contact-email" class="form-label">
+                    <?= $lang["your email"] ?>
+                </label>
                 <input type="email" id="contact-email" name="contact-email" class="form-control" required>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <label for="contact-subject" class="form-label" data-i18n="subject">Subject</label>
+                <label for="contact-subject" class="form-label">
+                    <?= $lang["subject"] ?>
+                </label>
                 <input type="text" id="contact-subject" name="contact-subject" class="form-control" required>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <label for="contact-message" class="form-label" data-i18n="your message">Your message</label>
+                <label for="contact-message" class="form-label">
+                    <?= $lang["your message"] ?>
+                </label>
                 <textarea type="text" id="contact-message" name="contact-message" rows="5"
                     class="form-control md-textarea" required></textarea>
             </div>
@@ -55,8 +66,8 @@
 
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="flexCheckPrivacy">
-            <label class="form-check-label" for="flexCheckPrivacy" data-i18n="privacy policy">
-                I accept the privacy policy
+            <label class="form-check-label" for="flexCheckPrivacy">
+                <?= $lang["privacy policy"] ?>
             </label>
             <a href=""><img src="img/svg/document.svg" alt="" class="icon-privacy"></a>
         </div>
@@ -73,8 +84,9 @@
         <!-- Send button: start -->
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="button" id="contact-form-submit-button" class="btn btn-outline-dark btn-lg m-2"
-                    data-i18n="send">Send</button>
+                <button type="button" id="contact-form-submit-button" class="btn btn-outline-dark btn-lg m-2">
+                    <?= $lang["send"] ?>
+                </button>
             </div>
         </div>
         <!-- Send button: end -->
@@ -88,18 +100,22 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="emailConfirmationModalLabel" data-i18n="email confirmation">Sent mail
-                        confirmation</h5>
+                    <h5 class="modal-title" id="emailConfirmationModalLabel">
+                        <?= $lang["email confirmation"] ?>
+                    </h5>
                     <!-- Reload page on close to avoid resending -->
                     <button type="button" onclick="location=location;" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="jumbotron">
-                        <h1 class="display-4" data-i18n="email success">Your email was successfully sent!</h1>
+                        <h1 class="display-4">
+                            <?= $lang["email success"] ?>
+                        </h1>
                         <hr class="my-4">
-                        <p class="lead" data-i18n="email thanks">Thank you for contacting us. We will come back to you
-                            as soon as possible.</p>
+                        <p class="lead">
+                            <?= $lang["email thanks"] ?>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -162,24 +178,24 @@
                                     emailConfirmationModal.show();
                                 } else {
                                     // Mailer error
-                                    document.getElementById('error').innerText = translations ? translate("mailer error") : "Message could not be sent. Mailer Error";
+                                    document.getElementById('error').innerText = lang["mailer error"];
                                     document.getElementById('contact-name').focus();
                                 }
                             })
                             .catch(error => console.error(error));
                     } else {
                         // Invalid email
-                        document.getElementById('error').innerText = translations ? translate("enter valid email") : "Please, enter a valid email";
+                        document.getElementById('error').innerText = lang["enter valid email"];
                         document.getElementById('contact-email').focus();
                     }
                 } else {
                     // Unfilled fields
-                    document.getElementById('error').innerText = translations ? translate("fill all fields") : "You must fill all the fields";
+                    document.getElementById('error').innerText = lang["fill all fields"];
                     document.getElementById('contact-name').focus();
                 }
             } else {
                 // Accept privacy policy
-                document.getElementById('error').innerText = translations ? translate("must accept privacy") : "You must accept the privacy policy";
+                document.getElementById('error').innerText = lang["must accept privacy"];
                 document.getElementById('flexCheckPrivacy').focus();
             }
         }

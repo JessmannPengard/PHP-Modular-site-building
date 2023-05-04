@@ -1,3 +1,5 @@
+<!-- Gallery (upload) module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
+
 <?php
 
 // Auth session
@@ -9,54 +11,54 @@ require("../database/database.php");
 require("gallery.model.php");
 require("gallery.config.php");
 require("../user/user.model.php");
+require("../language/language.php");
 
 // DB connection
 $db = new Database();
 
 // Path for uploaded pictures
-$directorio_subida = GALLERY_UPLOAD_PATH;
+$upload_path = GALLERY_UPLOAD_PATH;
 
-// Inicializamos la variable que guardará el mensaje en caso de posibles errores
+// Error messages variable
 $msg = "";
 
-// Si nos han enviado una imagen:
+// If an image was sent:
 if (isset($_POST["file"])) {
-    // Verificamos si se subió un archivo y si no hay errores
+    // Verify file and errors
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        // Verificamos el tipo de archivo (aquí establecemos los tipos de archivos permitidos)
-        $tipos_permitidos = array('image/jpeg', 'image/png');
-        if (in_array($_FILES['image']['type'], $tipos_permitidos)) {
-            // Verificamos el tamaño del archivo, aquí establecemos el tamaño máximo de archivo permitido
-            $tamano_maximo = 5 * 1024 * 1024; // 5MB
-            if ($_FILES['image']['size'] <= $tamano_maximo) {
-                // Renombramos el archivo para evitar sobrescribir archivos existentes mediante la función uniqid
-                $nombre_archivo = uniqid('imagen_', true) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-                // Movemos el archivo a la carpeta de destino que hemos designado ($directorio_subida) con el nuevo nombre de archivo
-                if (move_uploaded_file($_FILES['image']['tmp_name'], '../../'.$directorio_subida . $nombre_archivo)) {
-                    // El archivo se subió correctamente
-                    // Obtenemos los id's de usuario e imagen
-                    $usuario = new User($db->getConnection());
-                    $imagen = new Gallery($db->getConnection());
-                    // Y los guardamos en la base de datos junto con la ruta del archivo que se acaba de subir
-                    $imagen->upload($usuario->getId($_SESSION["username"]), $directorio_subida . $nombre_archivo);
-                    $msg = "Imagen subida correctamente";
-                    // Recargamos la página
+        // Verify allowed file
+        $allowed = array('image/jpeg', 'image/png');
+        if (in_array($_FILES['image']['type'], $allowed)) {
+            // Verify file size
+            if ($_FILES['image']['size'] <= MAX_SIZE_UPLOAD) {
+                // Set file name with uniqid()
+                $file_name = uniqid('imagen_', true) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+                // Upload file
+                if (move_uploaded_file($_FILES['image']['tmp_name'], '../../' . $upload_path . $file_name)) {
+                    // Success:
+                    // Get id's from user and image
+                    $user = new User($db->getConnection());
+                    $image = new Gallery($db->getConnection());
+                    // Save data in DB
+                    $image->upload($user->getId($_SESSION["username"]), $upload_path . $file_name);
+                    $msg = $lang["upload pic success"];
+                    // Reload page
                     header("Location: ../../index.php");
                 } else {
-                    // Error al mover el archivo
-                    $msg = "Hubo un error al mover el archivo";
+                    // Error:
+                    $msg = $lang["upload pic error"];
                 }
             } else {
-                // Archivo demasiado grande
-                $msg = "El archivo es demasiado grande (tamaño máximo permitido: " . $tamano_maximo / 1024 / 1024 . "MB)";
+                // File is bigger than allowed
+                $msg = $lang["upload pic big"];
             }
         } else {
-            // Tipo de archivo no permitido
-            $msg = "El tipo de archivo no está permitido";
+            // File type not allowed
+            $msg = $lang["upload type error"];
         }
     } else {
-        // Error al subir el archivo
-        $msg = "Hubo un error al subir el archivo";
+        // Error uploading
+        $msg = $lang["upload pic error"];
     }
 }
 
@@ -78,6 +80,10 @@ if (isset($_POST["file"])) {
     <!-- Bootstrap -->
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.ico">
+
 </head>
 
 <body>
@@ -86,36 +92,60 @@ if (isset($_POST["file"])) {
     <?php require("../nav/nav.lite.php"); ?>
     <!-- Nav-lite: end -->
 
-    <!-- Subir imagen -->
+    <!-- Upload image: start -->
     <div class="container-fluid upload-image">
         <div class="row">
             <div class="col-md-6 mx-auto">
-                <!-- Título del formulario -->
-                <h3>Subir imagen</h3>
+
+                <!-- Form title: start -->
+                <h3>
+                    <?= $lang["upload pic"] ?>
+                </h3>
+                <!-- Form title: end -->
                 <hr>
+
+                <!-- Upload image info: start -->
                 <div>
-                    <p>PNG o JPEG, tamaño máximo permitido: 5MB</p>
+                    <p>
+                        <?= $lang["upload pic specs"] ?>
+                    </p>
                 </div>
+                <!-- Upload image info: end -->
+
+                <!-- Preview image: start -->
                 <div class="form-group d-none" id="previewImg">
                     <img id="preview" src="#" alt="Previsualización de la imagen">
                 </div>
+                <!-- Preview image: end -->
+
+                <!-- Upload form: start -->
                 <form id="formulario" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="file" class="form-control-file" id="image" name="image"
                             accept="image/png, image/jpeg">
                     </div>
-                    <!-- Mensaje de error si lo hubiese -->
+
+                    <!-- Error message -->
                     <div class="mb-3">
                         <p class='error-text'>
                             <?php echo $msg; ?>
                         </p>
                     </div>
+
+                    <!-- Submit form: start -->
                     <button type="submit" name="file" class="btn btn-primary d-none" id="file"><i
-                            class="fa-solid fa-cloud-arrow-up"></i> Subir</button>
+                            class="fa-solid fa-cloud-arrow-up"></i>
+                        <?= $lang["upload"] ?>
+                    </button>
+                    <!-- Submit form: end -->
+
                 </form>
+                <!-- Upload form: end -->
+
             </div>
         </div>
     </div>
+    <!-- Upload image: end -->
 
     <!-- Footer-lite: start -->
     <?php require("../footer/footer.lite.php"); ?>

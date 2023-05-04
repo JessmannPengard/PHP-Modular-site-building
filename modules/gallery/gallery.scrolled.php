@@ -9,7 +9,9 @@ require_once("modules/gallery/gallery.config.php");
 <section class="container" id="section-gallery">
 
     <!-- Gallery heading: start -->
-    <h2 class="h1 font-weight-bold text-center my-4" data-i18n="gallery">Gallery</h2>
+    <h2 class="h1 font-weight-bold text-center my-4">
+        <?= $lang["gallery"] ?>
+    </h2>
     <!-- Gallery heading: end -->
 
     <!-- Gallery container: start -->

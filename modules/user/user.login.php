@@ -2,12 +2,13 @@
 
 <?php
 // Includes
-require("../../config/app.php");
-require("../../modules/database/database.php");
-require("user.model.php");
+require_once("../../config/app.php");
+require_once("../../modules/database/database.php");
+require_once("user.model.php");
+require_once("../language/language.php");
 
 // Init error variable
-$msgWrong = "hidden";
+$msg = "";
 
 // on POST...
 if (isset($_POST["email"])) {
@@ -22,7 +23,8 @@ if (isset($_POST["email"])) {
     // Call login method
     if ($user->login($email, $password)) {
         // Login success, init session
-        session_start();
+        // Start session if not started yet
+        session_status() == PHP_SESSION_NONE ? session_start() : null;
         // Store email in session
         $_SESSION["email"] = $email;
         // Store language in session
@@ -36,7 +38,7 @@ if (isset($_POST["email"])) {
         exit();
     } else {
         // Login not successful, show error message
-        $msgWrong = "";
+        $msg = $lang["wrong email or password"];
     }
     // Close DB connection
     $db->closeConnection();
@@ -52,7 +54,9 @@ if (isset($_POST["email"])) {
 <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
 
     <!-- Title: start -->
-    <h2 data-i18n="log in">Inicia sesión</h2>
+    <h2>
+        <?= $lang["login"] ?>
+    </h2>
     <!-- Title: end -->
 
     <!-- Login form: start -->
@@ -60,39 +64,50 @@ if (isset($_POST["email"])) {
 
         <!-- Fields: start -->
         <div class="form-group">
-            <label for="email" class="form-label" data-i18n="email">Email</label>
-            <input type="text" class="form-control" name="email" maxlength=50 required autofocus>
+            <label for="email" class="form-label">
+                <?= $lang["email"] ?>
+            </label>
+            <input type="email" class="form-control" name="email" maxlength=50 required autofocus>
         </div>
         <div class="form-group">
-            <label for="password" class="form-label" data-i18n="password">Contraseña</label>
+            <label for="password" class="form-label">
+                <?= $lang["password"] ?>
+            </label>
             <input type="password" class="form-control" name="password" maxlength=50 required>
         </div>
         <!-- Fields: end -->
 
         <!-- Error message container: start -->
         <div class="form-group">
-            <p class="form-error" data-i18n="wrong email or password" <?= $msgWrong ?>>Email
-                y/o contraseña incorrectos</p>
+            <p class="form-error">
+                <?= $msg ?>
+            </p>
         </div>
         <!-- Error message container: end -->
         <br>
 
         <!-- Submit button: start -->
         <div class="form-group form-center-container">
-            <button type="submit" class="btn btn-primary" data-i18n="login">Iniciar sesión</button>
+            <button type="submit" class="btn btn-primary">
+                <?= $lang["login"] ?>
+            </button>
         </div>
         <!-- Submit button: end -->
         <hr>
 
         <!-- Register and Recovery links: start -->
         <div class="form-group form-center-container">
-            <small data-i18n="not account">¿Todavía no tienes una cuenta?</small>
-            <small><a href="user.register.php" class="user-link" data-i18n="register here"> Regístrate
-                    aquí</a></small>
+            <small data-i18n="not account">
+                <?= $lang["not account"] ?>
+            </small>
+            <small><a href="user.register.php" class="user-link">
+                    <?= $lang["register here"] ?>
+                </a></small>
             <br>
             <small>
-                <a href="user.passwordrecovery.php" class="user-link" data-i18n="forgot password">He olvidado mi
-                    contraseña</a>
+                <a href="user.passwordrecovery.php" class="user-link">
+                    <?= $lang["forgot password"] ?>
+                </a>
             </small>
         </div>
         <!-- Register and Recovery links: end -->

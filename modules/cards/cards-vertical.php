@@ -5,7 +5,9 @@
     <div class="container-fluid">
 
         <!-- Cards heading: start -->
-        <h2 class="h1 font-weight-bold text-center my-4" data-i18n="cards-v heading">Some stuff I've been doing</h2>
+        <h2 class="h1 font-weight-bold text-center my-4">
+            <?= $lang["cards-v heading"] ?>
+        </h2>
         <!-- cards heading: end -->
 
         <!-- Cards: start -->
@@ -14,12 +16,20 @@
                 <div class="card card-v bg-light">
                     <img src="modules/cards/img/padel.jpg" class="card-img-top" alt="padel">
                     <div class="card-body">
-                        <small class="card-title" data-i18n="paddle title">Paddle Reservations</small>
-                        <p class="text-muted" data-i18n="paddle text">This web allows users to reserve paddle courts.</p>
+                        <small class="card-title">
+                            <?= $lang["paddle title"] ?>
+                        </small>
+                        <p class="text-muted">
+                            <?= $lang["paddle text"] ?>
+                        </p>
                     </div>
                     <div class="card-footer text-center">
-                        <p><small><a href="" class="card-link" data-i18n="visit web">Test the web</a></small></p>
-                        <p><small><a href="" class="card-link" data-i18n="repo">Github repository</a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["visit web"] ?>
+                                </a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["repo"] ?>
+                                </a></small></p>
                     </div>
                 </div>
             </div>
@@ -27,11 +37,17 @@
                 <div class="card card-v bg-light">
                     <img src="modules/cards/img/transylvania.jpg" class="card-img-top" alt="transylvania">
                     <div class="card-body">
-                        <small class="card-title" data-i18n="heavy title">Heavy metal Pub</small>
-                        <p class="text-muted" data-i18n="heavy text">A cool web for a Heavy Metal Pub.</p>
+                        <small class="card-title">
+                            <?= $lang["heavy title"] ?>
+                        </small>
+                        <p class="text-muted">
+                            <?= $lang["heavy text"] ?>
+                        </p>
                     </div>
                     <div class="card-footer text-center">
-                        <p><small><a href="" class="card-link" data-i18n="visit web">Visit the web</a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["visit web"] ?>
+                                </a></small></p>
                     </div>
                 </div>
             </div>
@@ -39,12 +55,20 @@
                 <div class="card card-v bg-light">
                     <img src="modules/cards/img/lopaje.jpg" class="card-img-top" alt="lopaje">
                     <div class="card-body">
-                        <small class="card-title" data-i18n="voting title">Picture voting site</small>
-                        <p class="text-muted" data-i18n="voting text">Site to create votations, upload and vote pictures.</p>
+                        <small class="card-title">
+                            <?= $lang["voting title"] ?>
+                        </small>
+                        <p class="text-muted">
+                            <?= $lang["voting text"] ?>
+                        </p>
                     </div>
                     <div class="card-footer text-center">
-                        <p><small><a href="" class="card-link" data-i18n="visit web">Test my web</a></small></p>
-                        <p><small><a href="" class="card-link" data-i18n="repo">Github repository</a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["visit web"] ?>
+                                </a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["repo"] ?>
+                                </a></small></p>
                     </div>
                 </div>
             </div>
@@ -52,12 +76,20 @@
                 <div class="card card-v bg-light">
                     <img src="modules/cards/img/padel.jpg" class="card-img-top" alt="padel">
                     <div class="card-body">
-                        <small class="card-title" data-i18n="paddle title">Paddle Reservations</small>
-                        <p class="text-muted" data-i18n="paddle text">This web allows users to reserve paddle courts.</p>
+                        <small class="card-title">
+                            <?= $lang["paddle title"] ?>
+                        </small>
+                        <p class="text-muted">
+                            <?= $lang["paddle text"] ?>
+                        </p>
                     </div>
                     <div class="card-footer text-center">
-                        <p><small><a href="" class="card-link" data-i18n="visit web">Test the web</a></small></p>
-                        <p><small><a href="" class="card-link" data-i18n="repo">Github repository</a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["visit web"] ?>
+                                </a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["repo"] ?>
+                                </a></small></p>
                     </div>
                 </div>
             </div>
@@ -65,11 +97,17 @@
                 <div class="card card-v bg-light">
                     <img src="modules/cards/img/transylvania.jpg" class="card-img-top" alt="transylvania">
                     <div class="card-body">
-                        <small class="card-title" data-i18n="heavy title">Heavy metal Pub</small>
-                        <p class="text-muted" data-i18n="heavy text">A cool web for a Heavy Metal Pub.</p>
+                        <small class="card-title">
+                            <?= $lang["heavy title"] ?>
+                        </small>
+                        <p class="text-muted">
+                            <?= $lang["heavy text"] ?>
+                        </p>
                     </div>
                     <div class="card-footer text-center">
-                        <p><small><a href="" class="card-link" data-i18n="visit web">Visit the web</a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["visit web"] ?>
+                                </a></small></p>
                     </div>
                 </div>
             </div>
@@ -77,19 +115,26 @@
                 <div class="card card-v bg-light">
                     <img src="modules/cards/img/lopaje.jpg" class="card-img-top" alt="lopaje">
                     <div class="card-body">
-                        <small class="card-title" data-i18n="voting title">Picture voting site</small>
-                        <p class="text-muted" data-i18n="voting text">Site to create votations, upload and vote pictures.</p>
+                        <small class="card-title">
+                            <?= $lang["voting title"] ?>
+                        </small>
+                        <p class="text-muted">
+                            <?= $lang["voting text"] ?>
+                        </p>
                     </div>
                     <div class="card-footer text-center">
-                        <p><small><a href="" class="card-link" data-i18n="visit web">Test my web</a></small></p>
-                        <p><small><a href="" class="card-link" data-i18n="repo">Github repository</a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["visit web"] ?>
+                                </a></small></p>
+                        <p><small><a href="" class="card-link">
+                                    <?= $lang["repo"] ?>
+                                </a></small></p>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Cards: end -->
+            <!-- Cards: end -->
 
-    </div>
+        </div>
 </section>
 <!-- Section cards: end -->
 

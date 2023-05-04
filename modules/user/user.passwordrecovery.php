@@ -2,16 +2,14 @@
 
 <?php
 // Includes
-require("../../config/app.php");
-require("../database/database.php");
-require("user.model.php");
-require("../mail/Mail.php");
+require_once("../../config/app.php");
+require_once("../database/database.php");
+require_once("user.model.php");
+require_once("../mail/Mail.php");
+require_once("../language/language.php");
 
-// Error messages
-$msgMailSent = "hidden";
-$msgMailingError = "hidden";
-$msgMailNotReg = "hidden";
-$msgMailerError = "hidden";
+// Init error message variable
+$msg = "";
 
 // Check if email was sent
 if (isset($_POST['email'])) {
@@ -38,7 +36,7 @@ if (isset($_POST['email'])) {
         $fromEmail = MAIL_MYEMAIL;
         $fromName = BRAND;
         $toEmail = $email;
-        $subject = 'Recuperación de contraseña';
+        $subject = $lang['password recovery'];
         $url = __DIR__ . '\user.passwordreset.php?email=' . $email . '&token=' . $token;
         $body = "
                 <html>
@@ -59,27 +57,25 @@ if (isset($_POST['email'])) {
                         }
                     </style>
                 </head>
-                <body>
-                    <p>Hola,</p>
-                    <p>Hemos recibido una solicitud para restablecer tu contraseña. Si no has solicitado este cambio, por favor ignora este mensaje.</p>
-                    <p>Para restablecer tu contraseña, por favor haz clic en el siguiente botón:</p>
-                    <a href='" . $url . "' class='button'>Restablecer contraseña</a>
-                    <p>Si el botón no funciona, también puedes copiar y pegar la siguiente URL en tu navegador:</p>
-                    <p>" . $url . "</p>
-                    <p>Saludos cordiales,</p>
-                    <p>El equipo de " . BRAND . "</p>
+                <body>" .
+            $lang['recovery mail 1'] .
+            "<a href='" . $url . "' class='button'>" . $lang["reset password"] . "</a>" .
+            $lang['recovery mail 2'] .
+            "<p>" . $url . "</p>" .
+            $lang['recovery mail 3'] .
+            "<p>" . BRAND . "</p>
                 </body>
                 </html>
                 ";
 
         // Send mail and check for success
         if ($mail->sendMail($fromEmail, $fromName, $toEmail, $subject, $body)) {
-            $msgMailSent = '';
+            $msg = $lang["recovery mail sent"];
         } else {
-            $msgMailingError = '';
+            $msg = $lang["mail sending error"];
         }
     } else {
-        $msgMailNotReg = "";
+        $msg = $lang["email not registered"];
     }
 }
 
@@ -93,7 +89,9 @@ if (isset($_POST['email'])) {
 <div class="container user-form col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-8 col-11">
 
     <!-- Title: start -->
-    <h2 data-i18n="password recovery">Password recovery</h2>
+    <h2>
+        <?= $lang["password recovery"] ?>
+    </h2>
     <!-- Title: end -->
 
     <!-- Password recovery form: start -->
@@ -101,33 +99,38 @@ if (isset($_POST['email'])) {
 
         <!-- Fields: start -->
         <div class="form-group">
-            <label for="email" class="form-label" data-i18n="email">Email</label>
+            <label for="email" class="form-label">
+                <?= $lang["email"] ?>
+            </label>
             <input type="text" class="form-control" name="email" maxlength=50 required autofocus>
         </div>
         <!-- Fields: end -->
 
         <!-- Error message container: start -->
         <div class="form-group">
-            <p class="form-error" data-i18n="recovery mail sent" <?= $msgMailSent ?>>Password recovery mail was sent.</p>
-            <p class="form-error" data-i18n="mail sending error" <?= $msgMailingError ?>>An error ocurred while sending
-                password recovery mail.</p>
-            <p class="form-error" data-i18n="email not registered" <?= $msgMailNotReg ?>>Email not registered</p>
-            <p class="form-error" data-i18n="mailer error" <?= $msgMailerError ?>>Message could not be sent. Mailer
-                Error!</p>
+            <p class="form-error">
+                <?= $msg ?>
+            </p>
         </div>
         <!-- Error message container: end -->
         <br>
 
         <!-- Submit button: start -->
         <div class="form-group form-center-container">
-            <button type="submit" class="btn btn-primary" data-i18n="send email">Send email</button>
+            <button type="submit" class="btn btn-primary">
+                <?= $lang["send email"] ?>
+            </button>
         </div>
         <!-- Submit button: end -->
         <hr>
 
         <!-- Init session link: start -->
         <div class="form-group form-center-container">
-            <small data-i18n="or">o</small><small><a href="user.login.php" class="user-link" data-i18n="sign in">sign in</a></small>
+            <small>
+                <?= $lang["or"] ?>
+            </small><small><a href="user.login.php" class="user-link">
+                    <?= $lang["sign in"] ?>
+                </a></small>
         </div>
         <!-- Init session link: end -->
 

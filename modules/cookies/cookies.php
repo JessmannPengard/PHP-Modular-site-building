@@ -1,12 +1,14 @@
 <!-- Cookie Banner: start -->
 <div id="cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
-    🍪 This website uses cookies to ensure you get the best experience on our website.
-    <a href="legal/cookies.policy.php" target="blank">Learn more</a>
+    <?= $lang["cookie banner"] ?>
+    <a href="legal/cookies.policy.php" target="blank">
+        <?= $lang["learn more"] ?>
+    </a>
     <button type="button" class="btn btn-outline-light btn-sm ms-3" id="btn-refuse-cookies">
-        Refuse
+        <?= $lang["refuse"] ?>
     </button>
     <button type="button" class="btn btn-light btn-sm ms-3" id="btn-accept-cookies" autofocus>
-        Accept
+        <?= $lang["accept"] ?>
     </button>
 </div>
 <!-- Cookie Banner: end -->

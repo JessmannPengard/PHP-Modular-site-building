@@ -31,26 +31,30 @@
 
                 <!-- Menu links: start -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse.show" href="#" data-i18n="home">Home</a>
+                    <a class="nav-link nav-link-to-section active" href="#section-hero" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show"><?= $lang["home"] ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
-                        data-i18n="about">About</a>
+                    <a class="nav-link nav-link-to-section" href="#section-about" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">
+                        <?= $lang["about"] ?>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
-                        data-i18n="contact">Contact</a>
+                    <a class="nav-link nav-link-to-section" href="#section-contact" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">
+                        <?= $lang["contact"] ?>
+                    </a>
                 </li>
                 <!-- Menu links: end -->
 
                 <?php
                 // Session plugin
                 require("plugins/session.plugin.php");
+
                 // Language plugin
                 require("plugins/language.plugin.php");
                 ?>
-
 
             </ul>
         </div>
@@ -62,14 +66,15 @@
 
 <!-- Script: start -->
 <script>
-    // Header color transition on scroll (Comment or delete this code if you don't want this behavior)
     const nav = document.getElementById('nav');
     const navLinks = document.querySelectorAll('.nav-link');
+    const navLinksToSection = document.querySelectorAll('.nav-link-to-section');
     const navBrand = document.querySelector('.navbar-brand');
     const navToggler = document.querySelector('.navbar-toggler-icon');
     const posHeader = nav.offsetTop;
     const wP = window.scrollY;
 
+    // Header color transition on scroll (Comment or delete this code if you don't want this behavior)
     if (wP <= posHeader) {
         nav.classList.add("dark");
         navToggler.classList.add("navbar-dark");
@@ -84,6 +89,7 @@
     window.addEventListener('scroll', () => {
         const wPos = window.scrollY;
 
+        // Change navbar Items color on scroll
         if (wPos > posHeader) {
             nav.classList.remove("dark");
             navToggler.classList.remove("navbar-dark");
@@ -103,6 +109,31 @@
             navBrand.classList.remove('navbar-brand-light');
             navBrand.classList.add('navbar-brand-dark');
         }
+
+        // Highlight link from current section
+        navLinksToSection.forEach(link => {
+            link.classList.remove('active');
+            let section = document.querySelector(link.hash);
+            if (section.offsetTop <= wPos + 100 && section.offsetTop + section.offsetHeight > wPos + 100) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    });
+
+    // Nav links scroll to section
+    navLinksToSection.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            const hash = this.hash;
+            const target = document.querySelector(hash);
+            const scrollTop = target.offsetTop - nav.offsetHeight;
+            window.scrollTo({
+                top: scrollTop,
+                behavior: 'smooth'
+            });
+        });
     });
 
 </script>
@@ -162,7 +193,9 @@
         color: black;
     }
 
-    .nav-link.active {
+    .nav-link.active,
+    .nav-link:focus {
+        font-weight: bolder !important;
         color: dimgrey !important;
     }
 

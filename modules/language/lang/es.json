@@ -90,5 +90,19 @@
     "voting text": "Permite crear votaciones, subir y votar imágenes.",
     "gallery": "Galería",
     "privacy policy": "Acepto la política de privacidad",
-    "must accept privacy": "Debe aceptar la política de privacidad"
+    "must accept privacy": "Debe aceptar la política de privacidad",
+    "upload pic": "Subir imagen",
+    "upload pic specs": "PNG or JPEG, tamño máximo: 5MB",
+    "upload": "Subir",
+    "upload pic success": "Imagen subida correctamente",
+    "upload pic error": "Error subiendo imagen",
+    "upload pic big": "El archivo es demasiado grande",
+    "upload type error": "Tipo de archivo no permitido",
+    "recovery mail 1": "<p>Hola,</p><p>Hemos recibido una solicitud para restablecer tu contraseña. Si no has solicitado este cambio, por favor ignora este mensaje.</p><p>Para restablecer tu contraseña, por favor haz clic en el siguiente botón:</p>",
+    "recovery mail 2": "<p>Si el botón no funciona, también puedes copiar y pegar la siguiente URL en tu navegador:</p>",
+    "recovery mail 3": "<p>Saludos cordiales,</p>",
+    "cookie banner": "🍪 Este sitio web utiliza cookies para garantizar que obtenga la mejor experiencia en nuestro sitio web.",
+    "learn more": "Saber más",
+    "accept": "Aceptar",
+    "refuse": "Rechazar"
 }

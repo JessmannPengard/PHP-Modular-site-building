@@ -4,8 +4,12 @@
 // Config file
 require_once("config/app.php");
 
-// Init session
-session_start();
+// Start session if not started yet
+session_status() == PHP_SESSION_NONE ? session_start() : null;
+
+//Language
+require_once("modules/language/language.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -24,34 +28,15 @@ session_start();
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
 
-    <!-- Variables for languages with users -->
-    <?php
-    if (isset($_SESSION['language'])) {
-        $selectedLanguageId = $_SESSION['language'];
-    } else {
-        $selectedLanguageId = null;
-    }
-    echo '<script>const sessionLanguage = "' . $selectedLanguageId . '";</script>';
-    ?>
-
-    <!-- Language script -->
-    <script src="modules/translations/translations.js"></script>
-
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
 
 <body>
 
-    <?php require_once("modules/translations/language.php"); ?>
-
     <?php require("modules/nav/nav.php"); ?>
 
     <?php require("modules/hero/hero.php"); ?>
-
-    <?php //require("modules/carousel/carousel.php"); ?>
-
-    <?php require("modules/gallery/gallery.paginated.php"); ?>
 
     <?php require("modules/about/about.php"); ?>
 
@@ -64,8 +49,6 @@ session_start();
     <?php require("modules/map/map.php"); ?>
 
     <?php require("modules/footer/footer.php"); ?>
-
-    <?php //require("modules/gallery/gallery.scrolled.php"); ?>
 
     <?php require("modules/cookies/cookies.php"); ?>
 

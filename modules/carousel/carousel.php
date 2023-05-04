@@ -8,9 +8,12 @@
 
         <!-- Carousel indicators: start -->
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1"
+                class="active"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
+                class=""></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"
+                class=""></button>
         </div>
         <!-- Carousel indicators: end -->
 
@@ -23,9 +26,15 @@
                 <div class="container">
                     <!-- Content start -->
                     <div class="carousel-caption text-start">
-                        <h1 data-i18n="carousel header 1">Example headline.</h1>
-                        <p data-i18n="carousel text 1">Some representative placeholder content for the first slide of the carousel.</p>
-                        <button class="btn btn-primary" data-i18n="carousel btn 1">Do something</button>
+                        <h1>
+                            <?= $lang["carousel header 1"] ?>
+                        </h1>
+                        <p>
+                            <?= $lang["carousel text 1"] ?>
+                        </p>
+                        <button class="btn btn-primary">
+                            <?= $lang["carousel btn 1"] ?>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -34,9 +43,15 @@
                 <div class="container">
                     <!-- Content middle -->
                     <div class="carousel-caption">
-                        <h1 data-i18n="carousel header 2">Another example headline.</h1>
-                        <p data-i18n="carousel text 2">Some representative placeholder content for the second slide of the carousel.</p>
-                        <button class="btn btn-warning" data-i18n="carousel btn 2">Do something</button>
+                        <h1>
+                            <?= $lang["carousel header 2"] ?>
+                        </h1>
+                        <p>
+                            <?= $lang["carousel text 2"] ?>
+                        </p>
+                        <button class="btn btn-warning">
+                            <?= $lang["carousel btn 2"] ?>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -45,9 +60,15 @@
                 <div class="container">
                     <!-- Content end -->
                     <div class="carousel-caption text-end">
-                        <h1 data-i18n="carousel header 3">One more for good measure.</h1>
-                        <p data-i18n="carousel text 3">Some representative placeholder content for the third slide of this carousel.</p>
-                        <button class="btn btn-danger" data-i18n="carousel btn 3">Do something</button>
+                        <h1>
+                            <?= $lang["carousel header 3"] ?>
+                        </h1>
+                        <p>
+                            <?= $lang["carousel text 3"] ?>
+                        </p>
+                        <button class="btn btn-danger">
+                            <?= $lang["carousel btn 3"] ?>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -59,11 +80,15 @@
         <!-- Carousel controls: start -->
         <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden" data-i18n="previous">Previous</span>
+            <span class="visually-hidden">
+                <?= $lang["previous"] ?>
+            </span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden" data-i18n="next">Next</span>
+            <span class="visually-hidden">
+                <?= $lang["next"] ?>
+            </span>
         </button>
         <!-- Carousel controls: end -->
 

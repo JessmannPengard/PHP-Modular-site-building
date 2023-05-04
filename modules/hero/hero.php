@@ -1,7 +1,7 @@
 <!-- Hero module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
 
 <!-- Hero section: start -->
-<div id="hero-section" class="p-5 text-center bg-image">
+<section id="section-hero" class="p-5 text-center bg-image">
 
     <!-- Masked area: start -->
     <div class="mask">
@@ -9,18 +9,24 @@
             <div class="text-white">
 
                 <!-- Hero title: start -->
-                <h1 class="mb-3" data-i18n="hero title">Hero section</h1>
+                <h1 class="mb-3">
+                    <?= $lang["hero title"] ?>
+                </h1>
                 <!-- Hero title: end -->
 
                 <!-- Hero text: start -->
-                <h5 class="mb-4" data-i18n="hero text">
-                    This is a hero section sample
+                <h5 class="mb-4">
+                    <?= $lang["hero text"] ?>
                 </h5>
                 <!-- Hero text: end -->
 
                 <!-- Hero buttons: start -->
-                <a class="btn btn-outline-light btn-lg m-2" href="#" data-i18n="hero btn 1">Action</a>
-                <a class="btn btn-outline-light btn-lg m-2" href="#" data-i18n="hero btn 2">Another Action</a>
+                <a class="btn btn-outline-light btn-lg m-2" href="#">
+                    <?= $lang["hero btn 1"] ?>
+                </a>
+                <a class="btn btn-outline-light btn-lg m-2" href="#">
+                    <?= $lang["hero btn 2"] ?>
+                </a>
                 <!-- Hero buttons: end -->
 
             </div>
@@ -28,12 +34,12 @@
     </div>
     <!-- Masked area: end -->
 
-</div>
+</section>
 <!-- Hero section: end -->
 
 <!-- Styles: start -->
 <style>
-    #hero-section {
+    #section-hero {
         height: 100vh;
         padding-top: 80px;
         background-size: cover;

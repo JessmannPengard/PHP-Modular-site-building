@@ -90,5 +90,19 @@
     "voting text": "Site to create votations, upload and vote pictures.",
     "gallery": "Gallery",
     "privacy policy": "I accept the privacy policy",
-    "must accept privacy": "You must accept the privacy policy"
+    "must accept privacy": "You must accept the privacy policy",
+    "upload pic": "Upload image",
+    "upload pic specs": "PNG or JPEG, max size: 5MB",
+    "upload": "Upload",
+    "upload pic success": "Image uploaded",
+    "upload pic error": "Error uploading image",
+    "upload pic big": "The file is too big",
+    "upload type error": "File type not allowed",
+    "recovery mail 1": "<p>Hello,</p><p>We have received a request to reset your password. If you did not request this change, please ignore this message.</p><p>To reset your password, please click on the following button:</p>",
+    "recovery mail 2": "<p>If the button does not work, you can also copy and paste the following URL into your browser:</p>",
+    "recovery mail 3": "<p>Best regards,</p>",
+    "cookie banner": "🍪 This website uses cookies to ensure you get the best experience on our website.",
+    "learn more": "Learn more",
+    "accept": "Accept",
+    "refuse": "Refuse"
 }
