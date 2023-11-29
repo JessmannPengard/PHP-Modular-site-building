@@ -116,20 +116,15 @@ require("../config/app.php");
             la configuración de las opciones del navegador instalado en su ordenador:</p>
         <ul>
             <li>Microsoft Edge:
-                <a
-                    href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09">https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09</a>
+                <a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09">https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09</a>
             </li>
-            <li>Mozilla Firefox: <a
-                    href="https://support.mozilla.org/es/kb/Borrar%20cookies">https://support.mozilla.org/es/kb/Borrar%20cookies</a>
+            <li>Mozilla Firefox: <a href="https://support.mozilla.org/es/kb/Borrar%20cookies">https://support.mozilla.org/es/kb/Borrar%20cookies</a>
             </li>
-            <li>Chrome: <a
-                    href="https://support.google.com/chrome/answer/95647?hl=es&co=GENIE.Platform%3DDesktop">https://support.google.com/chrome/answer/95647?hl=es&co=GENIE.Platform%3DDesktop</a>
+            <li>Chrome: <a href="https://support.google.com/chrome/answer/95647?hl=es&co=GENIE.Platform%3DDesktop">https://support.google.com/chrome/answer/95647?hl=es&co=GENIE.Platform%3DDesktop</a>
             </li>
-            <li>Safari: <a
-                    href="https://support.apple.com/es-es/guide/safari/sfri11471/mac">https://support.apple.com/es-es/guide/safari/sfri11471/mac</a>
+            <li>Safari: <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac">https://support.apple.com/es-es/guide/safari/sfri11471/mac</a>
             </li>
-            <li>Opera: <a
-                    href="https://help.opera.com/en/latest/web-preferences/#cookies">https://help.opera.com/en/latest/web-preferences/#cookies</a>
+            <li>Opera: <a href="https://help.opera.com/en/latest/web-preferences/#cookies">https://help.opera.com/en/latest/web-preferences/#cookies</a>
             </li>
         </ul>
         <h5>Aceptación de la Política de cookies</h5>

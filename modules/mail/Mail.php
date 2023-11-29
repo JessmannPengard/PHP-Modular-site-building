@@ -10,7 +10,7 @@ use PHPMailer\PHPMailer\SMTP;
 
 class Mail
 {
-    public function sendMail($fromEmail, $fromName, $toEmail, $subject, $body)
+    public function sendMail(string $fromEmail, string $fromName, string $toEmail, string $subject, string $body): bool
     {
         $response = false;
 
@@ -46,6 +46,3 @@ class Mail
         return $response;
     }
 }
-
-
-?>

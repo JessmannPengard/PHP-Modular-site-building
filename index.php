@@ -1,13 +1,8 @@
-<!-- Index sample by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
-
 <?php
 // Config file
 require_once("config/app.php");
 
-// Start session if not started yet
-session_status() == PHP_SESSION_NONE ? session_start() : null;
-
-//Language
+// Language
 require_once("modules/language/language.php");
 
 ?>
@@ -40,13 +35,7 @@ require_once("modules/language/language.php");
 
     <?php require("modules/about/about.php"); ?>
 
-    <?php require("modules/cards/cards-horizontal.php"); ?>
-
-    <?php require("modules/cards/cards-vertical.php"); ?>
-
     <?php require("modules/contact/contact.php"); ?>
-
-    <?php require("modules/map/map.php"); ?>
 
     <?php require("modules/footer/footer.php"); ?>
 

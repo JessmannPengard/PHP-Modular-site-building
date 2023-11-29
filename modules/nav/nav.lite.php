@@ -1,5 +1,3 @@
-<!-- Nav module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
-
 <!-- Nav Lite: start -->
 <nav class="navbar fixed-top navbar-expand-md bg-body-tertiary">
     <div class="container-fluid navbar-lite">

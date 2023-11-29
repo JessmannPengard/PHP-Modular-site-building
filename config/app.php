@@ -1,9 +1,7 @@
 <?php
 
 // Site Title
-define("BRAND", "Jessmann");
+define("BRAND", "ONG");
 
 // Site url
-define("SITE_URL", "www.jessmann.com");
-
-?>
+define("SITE_URL", "https://www.ONG.com");

@@ -1,5 +1,3 @@
-<!-- Language plugin by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
-
 <!-- Language dropdown: start -->
 <?php
 // Languages
@@ -47,11 +45,11 @@ foreach ($supported_languages as $sup_language) {
 
 <script>
     // Language selection
-    window.onload = function () {
+    window.onload = function() {
         const languageItems = document.querySelectorAll(".language-item");
 
         languageItems.forEach(item => {
-            item.addEventListener("click", function () {
+            item.addEventListener("click", function() {
                 // Set language
                 var language = this.getAttribute("data-language-id");
                 setLanguage(language);
@@ -66,13 +64,13 @@ foreach ($supported_languages as $sup_language) {
             langFormdata.append('action', 'set_language');
             langFormdata.append('new_language', language);
             fetch('modules/language/language.functions.php', {
-                method: 'POST',
-                body: langFormdata
-            })
+                    method: 'POST',
+                    body: langFormdata
+                })
                 .then((response) => response.json())
                 .then((data) => {
                     // Success
-                }).catch(function (error) {
+                }).catch(function(error) {
                     // Error
                     console.log(error);
                 });

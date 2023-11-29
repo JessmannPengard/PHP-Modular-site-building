@@ -1,5 +1,3 @@
-<!-- Hero module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
-
 <!-- Hero section: start -->
 <section id="section-hero" class="p-5 text-center bg-image">
 

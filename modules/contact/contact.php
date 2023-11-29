@@ -1,5 +1,3 @@
-<!-- Contact module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
-
 <?php require_once("modules/mail/mail.config.php"); ?>
 
 <!-- Section contact: start -->
@@ -51,8 +49,7 @@
                 <label for="contact-message" class="form-label">
                     <?= $lang["your message"] ?>
                 </label>
-                <textarea type="text" id="contact-message" name="contact-message" rows="5"
-                    class="form-control md-textarea" required></textarea>
+                <textarea type="text" id="contact-message" name="contact-message" rows="5" class="form-control md-textarea" required></textarea>
             </div>
         </div>
         <br>
@@ -95,8 +92,7 @@
     <!-- Form: end -->
 
     <!-- Sent email modal confirmation: start -->
-    <div class="modal fade" id="emailConfirmationModal" tabindex="-1" aria-labelledby="emailConfirmationModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="emailConfirmationModal" tabindex="-1" aria-labelledby="emailConfirmationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -104,8 +100,7 @@
                         <?= $lang["email confirmation"] ?>
                     </h5>
                     <!-- Reload page on close to avoid resending -->
-                    <button type="button" onclick="location=location;" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" onclick="location=location;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="jumbotron">
@@ -155,18 +150,18 @@
 
                         // Send mail
                         fetch('modules/mail/sendMail.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            },
-                            body: new URLSearchParams({
-                                fromName: name,
-                                fromEmail: email,
-                                toEmail: '<?= MAIL_MYEMAIL ?>',
-                                subject: subject,
-                                body: message
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                },
+                                body: new URLSearchParams({
+                                    fromName: name,
+                                    fromEmail: email,
+                                    toEmail: '<?= MAIL_MYEMAIL ?>',
+                                    subject: subject,
+                                    body: message
+                                })
                             })
-                        })
                             .then(response => response.json())
                             .then(data => {
                                 if (data.succeed) {

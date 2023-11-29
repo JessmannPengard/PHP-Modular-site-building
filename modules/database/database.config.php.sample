@@ -1,9 +1,0 @@
-<?php
-// Database connection data
-define("HOST_NAME", "db_host");
-define("DB_NAME", "your_database");
-define("DB_USER", "your_db_user");
-define("DB_PASSWORD", "your_db_password");
-
-// Prefix for database tables
-define("DATABASE_TABLES_PREFIX", "sample_");

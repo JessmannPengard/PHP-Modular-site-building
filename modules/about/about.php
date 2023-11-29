@@ -1,5 +1,3 @@
-<!-- About module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
-
 <!-- Section about: start -->
 <section class="section bg-light" id="section-about">
     <div class="container">
@@ -45,7 +43,7 @@
             <!-- About image area: start -->
             <div class="col-lg-5 text-center">
                 <div class="about-img">
-                    <img class="about-profile-picture" src="upload/profiles/qwerty12345.png">
+                    <img class="about-profile-picture" src="img/logo.png">
                 </div>
             </div>
             <!-- About image area: end -->

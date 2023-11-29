@@ -30,5 +30,3 @@ header('Content-Type: application/json');
 
 // Return JSON
 echo $json;
-
-?>

@@ -1,8 +1,5 @@
-<!-- Nav module by Jessmann (https://jessmann.com - https://github.com/JessmannPengard) -->
-
 <!-- Collapse NavBar by clicking outside: start -->
-<a class="close-navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
-    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"></a>
+<a class="close-navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"></a>
 <!-- Collapse NavBar by clicking outside: end -->
 
 <!-- NavBar: start -->
@@ -19,8 +16,7 @@
         <!-- Brand container (Logo, title): end -->
 
         <!-- Toggle button: start -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
-            aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Toggle button: end -->
@@ -31,27 +27,21 @@
 
                 <!-- Menu links: start -->
                 <li class="nav-item">
-                    <a class="nav-link nav-link-to-section active" href="#section-hero" data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse.show"><?= $lang["home"] ?></a>
+                    <a class="nav-link nav-link-to-section active" href="#section-hero" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"><?= $lang["home"] ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-to-section" href="#section-about" data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse.show">
+                    <a class="nav-link nav-link-to-section" href="#section-about" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                         <?= $lang["about"] ?>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-to-section" href="#section-contact" data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse.show">
+                    <a class="nav-link nav-link-to-section" href="#section-contact" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                         <?= $lang["contact"] ?>
                     </a>
                 </li>
                 <!-- Menu links: end -->
 
                 <?php
-                // Session plugin
-                require("plugins/session.plugin.php");
-
                 // Language plugin
                 require("plugins/language.plugin.php");
                 ?>
@@ -124,7 +114,7 @@
 
     // Nav links scroll to section
     navLinksToSection.forEach(link => {
-        link.addEventListener('click', function (event) {
+        link.addEventListener('click', function(event) {
             event.preventDefault();
             const hash = this.hash;
             const target = document.querySelector(hash);
@@ -135,7 +125,6 @@
             });
         });
     });
-
 </script>
 <!-- Script: end -->
 
